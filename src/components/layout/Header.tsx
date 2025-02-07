@@ -54,8 +54,18 @@ const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo, children, .
             alignContent="center"
             justifyItems="center"
             onClick={handleClick}
-            sx={{ '&:hover': {                    boxShadow: '0px 4px 20px rgba(30,22,59, 0.1)', // Add shadow on hover
-                backgroundColor: '#5e6bae', cursor: 'pointer' }, paddingTop: "5px", paddingBottom: "5px", ...gridProps.sx }}
+            sx={{
+                transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
+                '&:hover': {
+                    backgroundColor: '#5e6bae',
+                    cursor: 'pointer',
+                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Add shadow on hover
+                    transform: 'scale(1.05)', // Slightly scale up on hover
+                },
+                paddingTop: "5px",
+                paddingBottom: "5px",
+                ...gridProps.sx,
+            }}
         >
             {children}
         </Grid>
