@@ -9,15 +9,29 @@ import { MenuIcon } from "../../assets/icons/MenuIcon"
 import Grid from '@mui/material/Grid2';
 import './Header.css';
 import LeftSideMenu from './LeftSideMenu';
-import { Typography } from '@mui/material';
-
-
+import { Typography, TypographyProps } from '@mui/material';
 
 
 
 interface HeaderProps {
     onClick: () => void;
 }
+
+const HeaderMenuTypography: React.FC<TypographyProps> = (props) => {
+    return (
+        <Typography
+            {...props}
+            color ="black"
+            sx={{
+                fontFamily: 'Anta',
+                fontSize: '1.2rem',
+                ...props.sx, // Allow overriding styles
+            }}
+        >
+            {props.children}
+        </Typography>
+    );
+};
 
 const Header: React.FC<HeaderProps> = () => {
     const navigate = useNavigate();
@@ -36,16 +50,17 @@ const Header: React.FC<HeaderProps> = () => {
                     </IconButton>
                     <LeftSideMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
                 </Grid>
-                <Grid size={12} container sx={{ paddingTop: "5px" }} alignItems='center' justifyContent="center" alignContent="center" justifyItems="center" display={{ xs: 'none', sm: 'none', md: 'flex', }}>
+                <Grid size={12} container  alignItems='center' justifyContent="center" alignContent="center" justifyItems="center" display={{ xs: 'none', sm: 'none', md: 'flex', }}>
                     <Grid size={2}
+                   
                         component="div"
                         alignItems='center'
                         justifyContent="center"
                         alignContent="center"
                         justifyItems="center"
                         onClick={() => navigate('/')}
-                        sx={{ '&:hover': { backgroundColor: '#f0f0f0', cursor: 'pointer' } }}>
-                        <Typography variant="h6" color="textPrimary">Home</Typography>
+                        sx={{ '&:hover': { backgroundColor: '#f0f0f0', cursor: 'pointer'}, paddingTop: "5px", paddingBottom: "5px" }}>
+                        <HeaderMenuTypography >Home</HeaderMenuTypography>
                     </Grid>
 
                     <Grid size={2}
@@ -55,8 +70,8 @@ const Header: React.FC<HeaderProps> = () => {
                         alignContent="center"
                         justifyItems="center"
                         onClick={() => navigate('/testnet-limit-order-book')}
-                        sx={{ '&:hover': { backgroundColor: '#f0f0f0', cursor: 'pointer' } }}>
-                        <Typography variant="h6" color="textPrimary">Tesnet Order Book</Typography>
+                        sx={{ '&:hover': { backgroundColor: '#f0f0f0', cursor: 'pointer'}, paddingTop: "5px", paddingBottom: "5px" }}>
+                        <HeaderMenuTypography >Tesnet Order Book</HeaderMenuTypography>
                     </Grid>
                     <Grid size={2}
                         component="div"
@@ -65,19 +80,19 @@ const Header: React.FC<HeaderProps> = () => {
                         alignContent="center"
                         justifyItems="center"
                         onClick={() => navigate('/')}
-                        sx={{ '&:hover': { backgroundColor: '#f0f0f0', cursor: 'pointer' } }}
-                    >
+                        sx={{ '&:hover': { backgroundColor: '#f0f0f0', cursor: 'pointer'}, paddingTop: "5px", paddingBottom: "5px" }}>
+                    
 
-                        <Typography variant="h6" color="textPrimary">White Paper</Typography>
+                        <HeaderMenuTypography >White Paper</HeaderMenuTypography>
                     </Grid>
                     <Grid size={2} alignItems='center' justifyContent="center" alignContent="center" justifyItems="center">
-                        <Typography variant="h6" color="textPrimary">Support</Typography>
+                        <HeaderMenuTypography>Support</HeaderMenuTypography>
                     </Grid>
                     <Grid size={2} alignItems='center' justifyContent="center" alignContent="center" justifyItems="center">
-                        <Typography variant="h6" color="textPrimary">Roadmap</Typography>
+                        <HeaderMenuTypography>Roadmap</HeaderMenuTypography>
                     </Grid>
                     <Grid size={2} alignItems='center' justifyContent="center" alignContent="center" justifyItems="center">
-                        <Typography variant="h6" color="textPrimary">Connect Wallet </Typography>
+                        <HeaderMenuTypography>Connect Wallet </HeaderMenuTypography>
                     </Grid>
 
 
