@@ -1,0 +1,14 @@
+.orderBookDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    width:100%
+  
+}
+
+.orderBookItem {
+    flex: 1 1 auto; /* Allow items to grow and shrink as needed */
+    margin: 0 10px; /* Add some margin between items */
+    flex-grow: 1;
+}
