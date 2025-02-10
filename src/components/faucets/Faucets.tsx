@@ -1,12 +1,12 @@
 import Grid from '@mui/material/Grid2';
-import { useAccount, useReadContract } from 'wagmi'
+import { useBalance,useAccount, useReadContract } from 'wagmi'
 import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
 import { Typography, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
 
 
-export default function StoxEcosystem() {
+export default function Faucets() {
 
     const { address: connectedWalletAddress } = useAccount()
 
@@ -25,6 +25,13 @@ export default function StoxEcosystem() {
         args: [connectedWalletAddress as `0x${string}`],
         query: { refetchInterval: 1000, refetchIntervalInBackground: true }
     })
+
+    const { data: ethBalance } = useBalance({
+        address: connectedWalletAddress,
+        query: { refetchInterval: 1000, refetchIntervalInBackground: true }
+
+    });
+
 
     const nvidiaBalanceInBigInt = nvidiaBalance ? BigInt(nvidiaBalance.toString()) : 0n;
     const nvidiaBalanceFormatted = nvidiaBalanceInBigInt / (10n ** 18n);
@@ -54,22 +61,29 @@ export default function StoxEcosystem() {
                 </Grid>
 
                 <Grid container >
-                    <Grid size={6}>
+                    <Grid size={4}>
                         <Typography variant="body2" color='#1e163b'>STOX </Typography>
                     </Grid>
-                    <Grid size={6}>
+                    <Grid size={4}>
                         <Typography variant="body2" color='#1e163b'>NVIDIA</Typography>
+                    </Grid>
+                    <Grid size={4}>
+                        <Typography variant="body2" color='#1e163b'>BASE ETH</Typography>
                     </Grid>
 
                 </Grid>
                 <Grid container>
-                    <Grid size={6}>
+                    <Grid size={4}>
                         <Typography color='#1e163b' variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(Number(stoxBalanceFormatted), 2)}</Typography>
                     </Grid>
-                    <Grid size={6}>
+                    <Grid size={4}>
                         <Typography color='#1e163b' variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(Number(nvidiaBalanceFormatted), 2)}</Typography>
                     </Grid>
+                    <Grid size={4}>
+                        <Typography color='#1e163b' variant="body2" sx={{ fontWeight: 700 }}>{ethBalance?.value}</Typography>
+                    </Grid>
                 </Grid>
+                
             </Stack>
         </Box>
 

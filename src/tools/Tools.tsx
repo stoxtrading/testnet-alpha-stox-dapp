@@ -3,6 +3,9 @@ export const truncateAddress = (address: string) => {
 };
 
 
+
+
+
 // Function to format a date to a readable string
 export const formatDate = (date: Date): string => {
     return date.toLocaleDateString('en-US', {

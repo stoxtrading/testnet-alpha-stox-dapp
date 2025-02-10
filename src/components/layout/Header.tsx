@@ -102,11 +102,11 @@ const Header: React.FC<HeaderProps> = () => {
                     <HeaderMenuButton redirectTo="/testnet-limit-order-book">
                         <HeaderMenuTypography>Testnet Order Book</HeaderMenuTypography>
                     </HeaderMenuButton>
+                    <HeaderMenuButton redirectTo="/faucets">
+                        <HeaderMenuTypography>Faucets</HeaderMenuTypography>
+                    </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/white-paper">
                         <HeaderMenuTypography>White Paper</HeaderMenuTypography>
-                    </HeaderMenuButton>
-                    <HeaderMenuButton redirectTo="/support">
-                        <HeaderMenuTypography>Support</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/roadmap">
                         <HeaderMenuTypography>Roadmap</HeaderMenuTypography>
