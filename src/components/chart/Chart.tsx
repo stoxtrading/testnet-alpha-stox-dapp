@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { createChart, ColorType, ISeriesApi, CandlestickData } from 'lightweight-charts';
+import {  CandlestickSeries } from 'lightweight-charts';
+
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
@@ -18,13 +20,13 @@ const Chart = () => {
             const chartOptions = {
                 layout: {
                     textColor: 'black',
-                    background: { type: ColorType.Solid, color: 'white' },
+                    background: { type: ColorType.Solid, color: '#99b8ed' },
                 },
             };
             const chart = createChart(chartContainerRef.current, chartOptions);
             chartRef.current = chart;
 
-            const candlestickSeries = chart.addCandlestickSeries({
+            const candlestickSeries = chart.addSeries(CandlestickSeries,{
                 upColor: '#26a69a',
                 downColor: '#ef5350',
                 borderVisible: false,
@@ -127,7 +129,6 @@ const Chart = () => {
     return (
         <Box sx={{
             borderRadius: 0,
-            border: 1,
             color: '#ECF0F1',
         }}>
             <Stack sx={{ padding: 2 }}>
