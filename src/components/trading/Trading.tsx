@@ -311,7 +311,7 @@ export default function Trading() {
 
 
     }}>
-      <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}} height={120}>
+      <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}} height={{ xs: 180, md: 120 }}>
         <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
           <Grid size={1} >
             <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Trading</Typography>
@@ -387,7 +387,7 @@ export default function Trading() {
         </Grid>
         <Grid container display="flex" justifyContent="center" alignItems="center" spacing={1} sx={{ marginTop: 1 }} >
 
-          <Grid display="flex" justifyContent="center" alignItems="center"  >
+          <Grid display="flex" justifyContent="center" alignItems="center" size={{ xs: 12, md: 4 }} >
             <BuyButton
               disabled={buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming}
               onClick={placeBuyOrder}
@@ -400,7 +400,7 @@ export default function Trading() {
               </>}
             </BuyButton>
           </Grid>
-          <Grid display="flex" justifyContent="center" alignItems="center" >
+          <Grid display="flex" justifyContent="center" alignItems="center" size={{ xs: 12, md: 4 }}>
             <SellButton
               disabled={buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming}
               onClick={placeSellOrder}
