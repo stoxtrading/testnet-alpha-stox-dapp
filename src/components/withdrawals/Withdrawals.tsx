@@ -159,7 +159,7 @@ export default function Withdrawals() {
 
 
 
-           <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}} height={120}>
+           <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2}} height={120}>
 
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid size={1} >

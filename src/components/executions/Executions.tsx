@@ -156,7 +156,7 @@ export default function Executions(): JSX.Element {
 
   return (
     <Box >
-            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}}  >
+            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2}}  >
 
 
 

@@ -20,7 +20,7 @@ const Chart = () => {
             const chartOptions = {
                 layout: {
                     textColor: 'black',
-                    background: {  color:  'rgba(153, 184, 237, 0.3)' },
+                    background: {  color:  'rgba(153, 184, 237, 0.9)' },
                     borderRadius: 3,
                 },
             };
@@ -131,7 +131,7 @@ const Chart = () => {
         <Box sx={{
             
         }}>
-            <Stack sx={{ padding: 2, backgroundColor:  'rgba(153, 184, 237, 0.5)', borderRadius: 2,
+            <Stack sx={{ padding: 2, backgroundColor:  'rgba(153, 184, 237, 0.9)', borderRadius: 2,
              }} height={500}
             >
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1}}>

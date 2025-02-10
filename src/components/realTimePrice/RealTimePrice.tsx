@@ -85,7 +85,7 @@ const RealTimePrice = () => {
 
     return (
         <Box >
-            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}}  >
+            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2}}  >
             <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid>
                         <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Live Data</Typography>

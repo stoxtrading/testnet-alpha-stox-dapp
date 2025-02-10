@@ -4,7 +4,7 @@ import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
 import { Typography, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
-
+import { ethers } from 'ethers';
 
 export default function Faucets() {
 
@@ -28,7 +28,7 @@ export default function Faucets() {
 
     const { data: ethBalance } = useBalance({
         address: connectedWalletAddress,
-        query: { refetchInterval: 1000, refetchIntervalInBackground: true }
+        query: { refetchInterval: 1000, refetchIntervalInBackground: true },
 
     });
 
@@ -52,7 +52,7 @@ export default function Faucets() {
 
         <Box>
 
-            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2 }} height={120}>
+            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }} height={120}>
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid size={1} >
                         <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Balances</Typography>
@@ -80,7 +80,7 @@ export default function Faucets() {
                         <Typography color='#1e163b' variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(Number(nvidiaBalanceFormatted), 2)}</Typography>
                     </Grid>
                     <Grid size={4}>
-                        <Typography color='#1e163b' variant="body2" sx={{ fontWeight: 700 }}>{ethBalance?.value}</Typography>
+                        <Typography color='#1e163b' variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(Number(ethers.formatUnits( String(ethBalance?.value))),8)}</Typography>
                     </Grid>
                 </Grid>
                 

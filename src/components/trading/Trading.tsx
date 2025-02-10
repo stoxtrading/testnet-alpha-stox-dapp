@@ -311,7 +311,7 @@ export default function Trading() {
 
 
     }}>
-      <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}} height={{ xs: 180, md: 120 }}>
+      <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2}} height={{ xs: 180, md: 120 }}>
         <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
           <Grid size={1} >
             <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Trading</Typography>
@@ -324,7 +324,7 @@ export default function Trading() {
 
             <TextField
               size="small"
-              label={assetReserves !== null ? `${(currencyReserves.symbol)} ` : 'Loading ccy...'}
+              label="USD$"
               id="outlined-basic"
               
               onChange={handlePriceChange}

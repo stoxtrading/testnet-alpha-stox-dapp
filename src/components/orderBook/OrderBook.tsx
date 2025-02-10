@@ -25,7 +25,7 @@ import GetReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 
 const GridBidsNb = styled(Grid)(({ theme }: { theme: any }) => ({
     borderRadius: 0,
-    backgroundColor: 'rgba(263, 263, 263, 0.7)',
+    backgroundColor: 'rgba(263, 263, 263, 0.9)',
     ...theme.typography.body2,
     textAlign: 'center',
     color: '#27AE60',
@@ -39,7 +39,7 @@ const GridBidsNb = styled(Grid)(({ theme }: { theme: any }) => ({
 const GridBidsAddr = styled(Grid)(({ theme }: { theme: any }) => ({
     borderTopLeftRadius: 6,
     borderBottomLeftRadius: 6,
-    backgroundColor: 'rgba(263, 263, 263, 0.7)',
+    backgroundColor: 'rgba(263, 263, 263, 0.9)',
     ...theme.typography.body2,
     textAlign: 'left',
     color: '#27AE60',
@@ -62,7 +62,7 @@ const GridAsksHeader = styled(Grid)(({ theme }: { theme: any }) => ({
 
 const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
     borderRadius: 0,
-    backgroundColor: 'rgba(263, 263, 263, 0.7)',
+    backgroundColor: 'rgba(263, 263, 263, 0.9)',
     ...theme.typography.body2,
     textAlign: 'center',
     color: 'red',
@@ -74,7 +74,7 @@ const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
 const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
     borderTopLeftRadius: 6,
     borderBottomLeftRadius: 6,
-    backgroundColor: 'rgba(263, 263, 263, 0.7)',
+    backgroundColor: 'rgba(263, 263, 263, 0.9)',
     ...theme.typography.body2,
     textAlign: 'left',
     color: 'red',
@@ -88,7 +88,7 @@ const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
 const GridAction = styled(Grid)(({ theme }: { theme: any }) => ({
     borderTopRightRadius: 6,
     borderBottomRightRadius: 6,
-    backgroundColor: 'rgba(263, 263, 263, 0.7)',
+    backgroundColor: 'rgba(263, 263, 263, 0.9)',
     ...theme.typography.body2,
     textAlign: 'center',
     color: '#1e163b',
@@ -260,7 +260,7 @@ export default function OrderBook(): JSX.Element {
         <Box sx={{
 
         }}>
-            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2 }} height={500}>
+            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }} height={500}>
 
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1, }}>
                     <Grid  >
