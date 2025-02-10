@@ -20,7 +20,8 @@ const Chart = () => {
             const chartOptions = {
                 layout: {
                     textColor: 'black',
-                    background: { type: ColorType.Solid, color: '#99b8ed' },
+                    background: {  color:  'rgba(153, 184, 237, 0.3)' },
+                    borderRadius: 3,
                 },
             };
             const chart = createChart(chartContainerRef.current, chartOptions);
@@ -128,13 +129,14 @@ const Chart = () => {
 
     return (
         <Box sx={{
-            borderRadius: 0,
-            color: '#ECF0F1',
+            
         }}>
-            <Stack sx={{ padding: 2 }}>
-                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
+            <Stack sx={{ padding: 2, backgroundColor:  'rgba(153, 184, 237, 0.5)', borderRadius: 2,
+             }} height={500}
+            >
+                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1}}>
                     <Grid>
-                        <Typography sx={{ fontWeight: 700 }} color='#2C3E50' variant="overline">
+                        <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">
                             Chart {price ? `- Last Price: $${price.toFixed(2)}` : ''}
                         </Typography>
                     </Grid>
@@ -145,9 +147,10 @@ const Chart = () => {
                         display: 'flex', 
                         justifyContent: 'right', 
                         alignItems: 'center', 
-                        width: '100%', 
                         maxWidth: '90vw', 
-                        height: '50vh' 
+                        height: '100%' ,
+                        marginTop: 8,
+                        
                     }} 
                 />
             </Stack>

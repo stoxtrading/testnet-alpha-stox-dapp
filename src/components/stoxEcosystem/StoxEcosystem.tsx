@@ -43,35 +43,31 @@ export default function StoxEcosystem() {
 
     return (
 
-        <Box sx={{
-            borderRadius: 0,
-            border: 1,
-            color: '#ECF0F1',
-        }}>
+        <Box>
 
-            <Stack sx={{ padding: 2 }}>
+            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2 }} height={120}>
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid size={1} >
-                        <Typography sx={{ fontWeight: 700 }} color='#2C3E50' variant="overline">Balances</Typography>
+                        <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Balances</Typography>
                     </Grid>
 
                 </Grid>
 
                 <Grid container >
                     <Grid size={6}>
-                        <Typography variant="body2" color='#2C3E50'>STOX </Typography>
+                        <Typography variant="body2" color='#1e163b'>STOX </Typography>
                     </Grid>
                     <Grid size={6}>
-                        <Typography variant="body2" color='#2C3E50'>NVIDIA</Typography>
+                        <Typography variant="body2" color='#1e163b'>NVIDIA</Typography>
                     </Grid>
 
                 </Grid>
                 <Grid container>
                     <Grid size={6}>
-                        <Typography color='#2C3E50' variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(Number(stoxBalanceFormatted), 2)}</Typography>
+                        <Typography color='#1e163b' variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(Number(stoxBalanceFormatted), 2)}</Typography>
                     </Grid>
                     <Grid size={6}>
-                        <Typography color='#2C3E50' variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(Number(nvidiaBalanceFormatted), 2)}</Typography>
+                        <Typography color='#1e163b' variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(Number(nvidiaBalanceFormatted), 2)}</Typography>
                     </Grid>
                 </Grid>
 

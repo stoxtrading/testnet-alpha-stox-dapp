@@ -7,8 +7,8 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
 import { useAccount } from 'wagmi'
-import { CopyIcon } from "../../components/icons/CopyIcon";
-import { CancelIcon } from "../../components/icons/CancelIcon";
+import { CopyIcon } from "../../assets/icons/CopyIcon";
+import { CancelIcon } from "../../assets/icons/CancelIcon";
 import {
 
     useWaitForTransactionReceipt,
@@ -25,7 +25,7 @@ import GetReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 
 const GridBidsNb = styled(Grid)(({ theme }: { theme: any }) => ({
     borderRadius: 0,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: 'rgba(263, 263, 263, 0.7)',
     ...theme.typography.body2,
     textAlign: 'center',
     color: '#27AE60',
@@ -36,13 +36,15 @@ const GridBidsNb = styled(Grid)(({ theme }: { theme: any }) => ({
 }));
 
 const GridBidsAddr = styled(Grid)(({ theme }: { theme: any }) => ({
-    borderRadius: 0,
-    backgroundColor: '#FFFFFF',
-    ...theme.typography.body2,
+    borderTopLeftRadius: 6,
+    borderBottomLeftRadius: 6,
+    backgroundColor: 'rgba(263, 263, 263, 0.7)',
+        ...theme.typography.body2,
     textAlign: 'left',
     color: '#27AE60',
     alignContent: 'center',
     height: 28,
+    paddingLeft: 6,
 
 }));
 
@@ -51,7 +53,7 @@ const GridAsksHeader = styled(Grid)(({ theme }: { theme: any }) => ({
     borderRadius: 0,
     ...theme.typography.body2,
     textAlign: 'center',
-    color: '#2C3E50',
+    color: '#1e163b',
     paddingLeft: 2,
     height: 30,
     alignContent: 'center',
@@ -59,35 +61,40 @@ const GridAsksHeader = styled(Grid)(({ theme }: { theme: any }) => ({
 
 const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
     borderRadius: 0,
-    backgroundColor: '#FFFFFF',
-    ...theme.typography.body2,
+    backgroundColor: 'rgba(263, 263, 263, 0.7)',
+        ...theme.typography.body2,
     textAlign: 'center',
-    color: '#E74C3C',
+    color: 'red',
     alignContent: 'center',
     height: 28,
 
 }));
 
 const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
-    borderRadius: 0,
-    backgroundColor: '#FFFFFF',
-    ...theme.typography.body2,
+    borderTopLeftRadius: 6,
+    borderBottomLeftRadius: 6,
+    backgroundColor: 'rgba(263, 263, 263, 0.7)',
+        ...theme.typography.body2,
     textAlign: 'left',
-    color: '#E74C3C',
+    color: 'red',
     alignContent: 'center',
     height: 28,
+    paddingLeft: 6,
 
 }));
 
 
 const GridAction = styled(Grid)(({ theme }: { theme: any }) => ({
-    borderRadius: 0,
-    backgroundColor: '#FFFFFF',
-    ...theme.typography.body2,
+    borderTopRightRadius: 6,
+    borderBottomRightRadius: 6,
+    backgroundColor: 'rgba(263, 263, 263, 0.7)',
+        ...theme.typography.body2,
     textAlign: 'center',
-    color: '#E74C3C',
+    color: '#1e163b',
     alignContent: 'center',
     height: 28,
+   
+
 
 }));
 
@@ -101,7 +108,7 @@ const GridAction = styled(Grid)(({ theme }: { theme: any }) => ({
 
 
 const truncateAddress = (address: string) => {
-    return `${address.slice(0, 4)}...${address.slice(-4)}`;
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
 };
 
 export default function OrderBook(): JSX.Element {
@@ -250,34 +257,29 @@ export default function OrderBook(): JSX.Element {
 
     return (
         <Box sx={{
-            borderRadius: 0,
-            border: 1,
-            color: '#ECF0F1',
+           
         }}>
-            <Stack sx={{ padding: 2 }}>
+            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}}  height={500}>
 
-
-
-                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
+                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1, }}>
                     <Grid  >
-                        <Typography sx={{ fontWeight: 700 }} color='#2C3E50' variant="overline">Order Book</Typography>
+                        <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Order Book</Typography>
                     </Grid>
 
 
 
                 </Grid>
+           
                 <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
                     <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>ADDRESS</GridAsksHeader>
-                    <GridAsksHeader size={2}>{assetReserves !== null ? `${(assetReserves.symbol)} ` : 'Loading ccy...'} PRICE</GridAsksHeader>
-                    <GridAsksHeader size={2}>{currencyReserves !== null ? `${(currencyReserves.symbol)} ` : 'Loading ccy...'} PRICE</GridAsksHeader>
+                    <GridAsksHeader size={4}>PRICE</GridAsksHeader>
                     <GridAsksHeader size={2}>QUANTITY</GridAsksHeader>
                     <GridAsksHeader size={2}>ACTION</GridAsksHeader>
                 </Grid>
 
                 <Grid container columns={10} display={{ xs: 'flex', sm: 'none' }} >
                     <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>ADDR</GridAsksHeader>
-                    <GridAsksHeader size={2}>{assetReserves !== null ? `${(assetReserves.symbol)} ` : 'Loading ccy...'} PRICE</GridAsksHeader>
-                    <GridAsksHeader size={2}>{currencyReserves !== null ? `${(currencyReserves.symbol)} ` : 'Loading ccy...'} PRICE</GridAsksHeader>
+                    <GridAsksHeader size={4}>PRICE</GridAsksHeader>
                     <GridAsksHeader size={2}>QTY</GridAsksHeader>
                     <GridAsksHeader size={2}>ACTION</GridAsksHeader>
                 </Grid>
@@ -289,17 +291,13 @@ export default function OrderBook(): JSX.Element {
                                 {truncateAddress(order.address)}
                             </Typography>
                             <IconButton size="small">
-                                <CopyIcon size={15} color="white" />
+                                <CopyIcon size={15}  color="#1e163b"  />
                             </IconButton>
                         </GridAsksAddr>
-                        <GridAsksNb size={2}>
+        
+                        <GridAsksNb size={4}>
                             <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                {Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}
-                            </Typography>
-                        </GridAsksNb>
-                        <GridAsksNb size={2}>
-                            <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 4)}
+                                {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves !== null ? `${(assetReserves.symbol)} ` : 'Loading ccy...'})
                             </Typography>
                         </GridAsksNb>
                         <GridAsksNb size={2}>
@@ -312,7 +310,7 @@ export default function OrderBook(): JSX.Element {
                                 {order.address === connectedWalletAddress && (
                                     <Tooltip title="Cancel SELL order" placement="top">
                                         <IconButton size="small" onClickCapture={cancelSell}>
-                                            <CancelIcon size={15} color="#2C3E50" />
+                                            <CancelIcon size={15} color="#1e163b" />
                                         </IconButton>
                                     </Tooltip>
                                 )}
@@ -329,17 +327,13 @@ export default function OrderBook(): JSX.Element {
                                     {truncateAddress(order.address)}
                                 </Typography>
                                 <IconButton size="small">
-                                    <CopyIcon size={15} color="white" />
+                                    <CopyIcon size={15} color="#1e163b"  />
                                 </IconButton>
                             </GridBidsAddr>
-                            <GridBidsNb size={2}>
+                           
+                            <GridBidsNb size={4}>
                                 <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                    {Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}
-                                </Typography>
-                            </GridBidsNb>
-                            <GridBidsNb size={2}>
-                                <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                    {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 4)}
+                                    {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;( {Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves !== null ? `${(assetReserves.symbol)} ` : 'Loading ccy...'})
                                 </Typography>
                             </GridBidsNb>
                             <GridBidsNb size={2}>
@@ -352,7 +346,7 @@ export default function OrderBook(): JSX.Element {
                                     {order.address === connectedWalletAddress && (
                                         <Tooltip title="Cancel BUY order" placement="top">
                                             <IconButton size="small" onClickCapture={cancelBuy}>
-                                                <CancelIcon size={15} color="#2C3E50" />
+                                                <CancelIcon size={15} color="#1e163b" />
                                             </IconButton></Tooltip>
                                     )}
                                 </Typography>

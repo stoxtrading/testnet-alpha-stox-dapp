@@ -17,7 +17,7 @@ import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 
 const WithdrawButton = styled(Button)<ButtonProps>(() => ({
-    color: '#2C3E50',
+    color: '#1e163b',
     width: 100,
 
     height: 24,
@@ -152,21 +152,18 @@ export default function Withdrawals() {
 
 
     return (
-        <Box sx={{
-            borderRadius: 0,
-            border: 1,
-            color: '#ECF0F1',
+        <Box
 
 
-        }}>
+        >
 
 
 
-            <Stack sx={{ padding: 2 }}>
+           <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}} height={120}>
 
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid size={1} >
-                        <Typography sx={{ fontWeight: 700 }} color='#2C3E50' variant="overline">Withdrawals</Typography>
+                        <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Withdrawals</Typography>
                     </Grid>
 
                 </Grid>
@@ -174,21 +171,21 @@ export default function Withdrawals() {
 
                 <Grid container >
                     <Grid size={6}>
-                        <Typography color='#2C3E50' variant="body2" >STOX</Typography>
+                        <Typography color='#1e163b' variant="body2" >STOX</Typography>
                     </Grid>
 
                     <Grid size={6}>
 
-                        <Typography color='#2C3E50' variant="body2">NVIDIA</Typography>
+                        <Typography color='#1e163b' variant="body2">NVIDIA</Typography>
                     </Grid>
 
                 </Grid>
                 <Grid container>
                     <Grid size={6} >
-                        <Typography variant="body2" color='#2C3E50' sx={{ fontWeight: 700 }}>{withdrawalbleCurrenciesFormatted?.toString()}</Typography>
+                        <Typography variant="body2" color='#1e163b' sx={{ fontWeight: 700 }}>{withdrawalbleCurrenciesFormatted?.toString()}</Typography>
                     </Grid>
                     <Grid size={6}>
-                        <Typography variant="body2" color='#2C3E50' sx={{ fontWeight: 700 }}>{withdrawalbleSecuritiesFormatted?.toString()}</Typography>
+                        <Typography variant="body2" color='#1e163b' sx={{ fontWeight: 700 }}>{withdrawalbleSecuritiesFormatted?.toString()}</Typography>
                     </Grid>
                 </Grid>
                 <Grid container sx={{ marginTop: 1 }}>

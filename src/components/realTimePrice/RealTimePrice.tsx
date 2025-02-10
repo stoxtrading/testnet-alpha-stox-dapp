@@ -84,13 +84,9 @@ const RealTimePrice = () => {
     };
 
     return (
-        <Box sx={{
-            borderRadius: 0,
-            border: 1,
-            color: '#ECF0F1',
-        }}>
-            <Stack sx={{ paddingTop: 2, paddingLeft: 2 }}>
-                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
+        <Box >
+            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}}  >
+            <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid>
                         <Typography sx={{ fontWeight: 700 }} color='#2C3E50' variant="overline">Live Data</Typography>
                     </Grid>
@@ -120,8 +116,8 @@ const RealTimePrice = () => {
                         </Typography>
                     </Grid>
 
-                    <Grid container offset='auto' sx={{ marginRight: 2 }} alignItems={'center'}>
-                        <img src='./white-logo.svg' width="40" height="40" />
+                   {/*  <Grid container offset='auto' sx={{ marginRight: 2 }} alignItems={'center'}>
+                        <img src='./stox_logo.png' width="40" height="40" />
                         <Typography variant="subtitle1" sx={{ color: "#2C3E50", fontWeight: 600 }}>
                             STOX
                         </Typography>
@@ -138,7 +134,7 @@ const RealTimePrice = () => {
                             {currencyReserves !== null ? `${(currencyReserves.symbol)} ${formatNumber(Number(currencyReserves.reserve), 6)}` : 'Loading...'}
                         </Typography>
 
-                    </Grid>
+                    </Grid> */}
 
                 </Grid>
             </Stack>

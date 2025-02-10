@@ -307,16 +307,14 @@ export default function Trading() {
 
   return (
     <Box sx={{
-      borderRadius: 0,
-      border: 1,
-      color: '#ECF0F1',
+     
 
 
     }}>
-      <Stack sx={{ padding: 2 }}>
+      <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}} height={120}>
         <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
           <Grid size={1} >
-            <Typography sx={{ fontWeight: 700 }} color='#2C3E50' variant="overline">Trading</Typography>
+            <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Trading</Typography>
           </Grid>
 
         </Grid>
@@ -328,18 +326,32 @@ export default function Trading() {
               size="small"
               label={assetReserves !== null ? `${(currencyReserves.symbol)} ` : 'Loading ccy...'}
               id="outlined-basic"
-              sx={{ m: 1, width: '10ch' }}
+              
               onChange={handlePriceChange}
               defaultValue={0}
+              sx={{
+                width: '10ch',
+                height: '35px', // Increase the height
+                '& .MuiOutlinedInput-root': {
+                    height: '100%', // Ensure the input takes the full height of the TextField
+                },
+                '& .MuiOutlinedInput-input': {
+                    padding: '10px 14px', // Adjust padding to vertically center the text
+                     // Smaller text size
+                },
+                '& .MuiInputAdornment-root': {
+                    height: '25px',
+                },
+            }}
             />
           </Grid>
 
           <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
-            <Stack >
-              <Typography variant="caption" color='#2C3E50'>
+            <Stack alignContent={"center"} justifyContent={"center"} alignItems={"center"} spacing={1}>
+              <Typography variant="caption" color='#1e163b'>
                 {assetReserves !== null ? `Price in ${(assetReserves.symbol)} ` : 'Loading ccy...'}
               </Typography>
-              <Typography variant="caption" color='#2C3E50'>
+              <Typography variant="caption" color='#1e163b'>
                 {formatNumber(priceInStox, 2)}
               </Typography>
             </Stack>
@@ -351,7 +363,22 @@ export default function Trading() {
               size="small"
               label="Quantity"
               id="outlined-basic"
-              sx={{ m: 1, width: '10ch' }}
+              defaultValue={0}
+              
+              sx={{
+                width: '10ch',
+                height: '35px', // Increase the height
+                '& .MuiOutlinedInput-root': {
+                    height: '100%', // Ensure the input takes the full height of the TextField
+                },
+                '& .MuiOutlinedInput-input': {
+                    padding: '10px 14px', // Adjust padding to vertically center the text
+                     // Smaller text size
+                },
+                '& .MuiInputAdornment-root': {
+                    height: '25px',
+                },
+            }}
               //value={quantity}
               onChange={handleQuantityChange}
             />
