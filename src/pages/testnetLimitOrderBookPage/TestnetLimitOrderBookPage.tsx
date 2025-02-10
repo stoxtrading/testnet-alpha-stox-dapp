@@ -34,22 +34,27 @@ export default function TestnetLimitOrderBookPage() {
                     </Grid>
 
                     <Grid container columnSpacing={2} rowSpacing={2}>
-                        <Grid size={6}>
+                        <Grid size={{ xs: 12, md: 6 }}>    
                             <Chart />
                         </Grid>
-                        <Grid size={6}>
+                        <Grid size={{ xs: 12, md: 6}}>
                             <OrderBook />
                         </Grid>
                     </Grid>
                     <Grid container columnSpacing={2} rowSpacing={2}>
-                        <Grid size={4}>
+                        <Grid size={{ xs: 12, md: 4 }}>
                             <Trading />
                         </Grid>
-                        <Grid size={4}>
+                        <Grid size={{ xs: 12, md: 4 }}>
                             <Withdrawals />
                         </Grid>
-                        <Grid size={4}>
+                        <Grid size={{ xs: 12, md: 4 }}>
                             <StoxEcosystem />
+                        </Grid>
+                    </Grid>
+                    <Grid container columnSpacing={2} rowSpacing={2}>
+                        <Grid size={12}>
+                            <Executions />
                         </Grid>
                     </Grid>
 

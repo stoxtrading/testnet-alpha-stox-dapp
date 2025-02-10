@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-import { CopyIcon } from "../../components/icons/CopyIcon";
+import { CopyIcon } from "../../assets/icons/CopyIcon";
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
@@ -16,7 +16,7 @@ const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
   backgroundColor: '#FFFFFF',
   ...theme.typography.body2,
   textAlign: 'center',
-  color: '#2C3E50',
+  color: '#1e163b',
   alignContent: 'center',
   height: 28,
 
@@ -27,7 +27,7 @@ const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
   backgroundColor: '#FFFFFF',
   ...theme.typography.body2,
   textAlign: 'left',
-  color: '#2C3E50',
+  color: '#1e163b',
   alignContent: 'center',
   height: 28,
 
@@ -37,7 +37,7 @@ const GridAsksHeader = styled(Grid)(({ theme }: { theme: any }) => ({
   borderRadius: 0,
   ...theme.typography.body2,
   textAlign: 'center',
-  color: '#2C3E50',
+  color: '#1e163b',
   paddingLeft: 2,
   height: 30,
   alignContent: 'center',
@@ -155,19 +155,14 @@ export default function Executions(): JSX.Element {
   }, []);
 
   return (
-    <Box sx={{
-
-      borderRadius: 0,
-      border: 1,
-      color: '#ECF0F1',
-    }}>
-      <Stack sx={{ padding: 2 }}>
+    <Box >
+            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}}  >
 
 
 
         <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
           <Grid  >
-            <Typography sx={{ fontWeight: 700 }} color='#2C3E50' variant="overline">Executions</Typography>
+            <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Executions</Typography>
           </Grid>
         </Grid>
         <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >

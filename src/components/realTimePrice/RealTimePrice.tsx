@@ -65,14 +65,14 @@ const RealTimePrice = () => {
 
     const getColor = () => {
         if (previousPrice === null || price === null) {
-            return '#2C3E50'; // Default color
+            return '#1e163b'; // Default color
         }
         return price > previousPrice ? '#27AE60' : '#E74C3C';
     };
 
     const getStoxColor = () => {
         if (previousStoxPrice === null || stoxPrice === null) {
-            return '#2C3E50'; // Default color
+            return '#1e163b'; // Default color
         }
         return stoxPrice >= previousStoxPrice ? '#27AE60' : '#E74C3C';
     }
@@ -88,7 +88,7 @@ const RealTimePrice = () => {
             <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.5)', borderRadius: 2}}  >
             <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid>
-                        <Typography sx={{ fontWeight: 700 }} color='#2C3E50' variant="overline">Live Data</Typography>
+                        <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Live Data</Typography>
                     </Grid>
                 </Grid>
                 <Grid container columnSpacing={2} alignItems="center">
