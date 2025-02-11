@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import TestnetLimitOrderBookPage from './pages/testnetLimitOrderBookPage/TestnetLimitOrderBookPage';
-import Faucets from './pages/faucets/FaucetsPage';
+import TokenomicsPage from './pages/TokenomicsPage/TokenomicsPage';
 import WelcomePage from './pages/welcomePage/WelcomPage';
 import CryptoWrapper from './components/cryptoWapper/CryptoWrapper';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
@@ -18,7 +18,7 @@ function App() {
               {/*   <Route index element={<Navigate to="/" replace />} /> */}
               <Route index path="/" element={<WelcomePage />} />
               <Route path="testnet-limit-order-book" element={<TestnetLimitOrderBookPage />} />
-              <Route path="faucets" element={<Faucets/>} />
+              <Route path="tokenomics" element={<TokenomicsPage/>} />
             </Route>
           </Routes>
         </BrowserRouter>

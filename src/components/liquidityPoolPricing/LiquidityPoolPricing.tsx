@@ -56,10 +56,10 @@ interface PoolReserves {
     poolAddress: string;
 }
 
-async function getPoolReserves(poolAddress: string): Promise<PoolReserves> {
+export default async function getPoolReserves(poolAddress: string): Promise<PoolReserves> {
     try {
         // Create contract instances
-        const provider = new ethers.JsonRpcProvider('https://sepolia.unichain.org');
+        const provider = new ethers.JsonRpcProvider('https://sepolia.base.org');
         const poolContract = new ethers.Contract(poolAddress, POOL_ABI, provider);
         
         // Get token addresses
@@ -120,7 +120,7 @@ async function getPoolReserves(poolAddress: string): Promise<PoolReserves> {
         throw error;
     }
 }
-
+/* 
 export default async function GetReserves() {
     // Sepolia testnet addresses
     const FACTORY_ADDRESS = "0x1F98431c8aD98523631AE4a59f267346ea31F984";
@@ -152,6 +152,6 @@ export default async function GetReserves() {
         token0Reserve: reserves.token0,
         token1Reserve: reserves.token1,
     };
-}
+} */
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.

@@ -4,11 +4,11 @@ import Box from '@mui/material/Box';
 import CommonPageBackground from '../../components/surfaces/CommonPageBackground';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import Faucets from '../../components/faucets/Faucets';
+import Faucets from '../../components/uniswapPool/UniswapPool';
 
 
 
-export default function FaucetsPage() {
+export default function TokenomicsPage() {
 
 
 
