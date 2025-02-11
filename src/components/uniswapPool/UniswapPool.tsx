@@ -1,32 +1,45 @@
 import Grid from '@mui/material/Grid2';
-import { useBalance, useAccount, useReadContract } from 'wagmi'
-import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
-import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
 import { Typography, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
-import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing';
 
 export default function UniswapPool() {
 
-    const ethBalance = useBalance('ETH')
+    interface TokenInfo {
+        address: string;
+        symbol: string;
+        reserve: string;
+    }
 
-    const { address: connectedWalletAddress } = useAccount()
+    const [currencyReserves, setCurrencyReserves] = useState<TokenInfo>();
+    const [assetReserves, setAssetReserves] = useState<TokenInfo>();
 
-    const [currencyReserves, setCurrencyReserves] = useState<any | null>(null);
-    const [assetReserves, setAssetReserves] = useState<any | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
 
-    getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2").then((reserves) => {
-        setCurrencyReserves(reserves.token0);
-        setAssetReserves(reserves.token1);
-        console.log(reserves)
-        console.log(reserves)
+    useEffect(() => {
+        const fetchPoolReserves = async () => {
+            try {
+                const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
+                setCurrencyReserves(reserves.token0);
+                setAssetReserves(reserves.token1);
+            } catch (err) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError(String(err));
+                }
+            } finally {
+                setLoading(false);
+            }
+        };
 
-    });
+        fetchPoolReserves();
+    }, []);
 
-    
+
 
 
     const formatNumber = (number: number, digits: number) => {
@@ -44,7 +57,8 @@ export default function UniswapPool() {
 
     };
 
-
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
     return (
 
         <Box>
@@ -59,10 +73,10 @@ export default function UniswapPool() {
 
                 <Grid container >
                     <Grid size={4}>
-                        <Typography variant="body2" color='#1e163b'> {currencyReserves?.symbol ||'loading'}</Typography>
+                        <Typography variant="body2" color='#1e163b'> {currencyReserves?.symbol || 'loading'}</Typography>
                     </Grid>
                     <Grid size={4}>
-                        <Typography variant="body2" color='#1e163b'>{assetReserves?.symbol||'loading'}</Typography>
+                        <Typography variant="body2" color='#1e163b'>{assetReserves?.symbol || 'loading'}</Typography>
                     </Grid>
                     <Grid size={4}>
                         <Typography variant="body2" color='#1e163b'>PRICE (RESERVES RATIO)</Typography>
@@ -70,29 +84,29 @@ export default function UniswapPool() {
                 </Grid>
                 <Grid container>
                     <Grid size={4}>
-                        <Typography 
-                        color='#1e163b' 
-                        variant="body2" 
-                        sx={{ fontWeight: 700 }}>
-                            {formatNumber(Number(currencyReserves?.reserve )|| 0,2)}
-                            </Typography>
+                        <Typography
+                            color='#1e163b'
+                            variant="body2"
+                            sx={{ fontWeight: 700 }}>
+                            {formatNumber(Number(currencyReserves?.reserve) || 0, 2)}
+                        </Typography>
                     </Grid>
 
                     <Grid size={4}>
-                        <Typography 
-                        color='#1e163b' 
-                        variant="body2" 
-                        sx={{ fontWeight: 700 }}>
-                            {formatNumber(Number(assetReserves?.reserve) || 0,2)}
-                            </Typography>
+                        <Typography
+                            color='#1e163b'
+                            variant="body2"
+                            sx={{ fontWeight: 700 }}>
+                            {formatNumber(Number(assetReserves?.reserve) || 0, 2)}
+                        </Typography>
                     </Grid>
                     <Grid size={4}>
-                        <Typography 
-                        color='#1e163b' 
-                        variant="body2" 
-                        sx={{ fontWeight: 700 }}>
-                            {formatNumber(Number(currencyReserves?.reserve) / Number(assetReserves?.reserve),2)} {currencyReserves?.symbol}
-                            </Typography>
+                        <Typography
+                            color='#1e163b'
+                            variant="body2"
+                            sx={{ fontWeight: 700 }}>
+                            {formatNumber(Number(currencyReserves?.reserve) / Number(assetReserves?.reserve), 2)} {currencyReserves?.symbol}
+                        </Typography>
                     </Grid>
                 </Grid>
                 <Grid container marginTop="10vh">

@@ -19,7 +19,7 @@ import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
-import GetReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
+import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 
 
 
@@ -128,9 +128,23 @@ export default function OrderBook(): JSX.Element {
     const [snackBarOpen, setSnackBarOpen] = React.useState(false);
     const [message, setMessage] = React.useState('');
 
+
+
     const [currencyReserves, setCurrencyReserves] = useState<any | null>(null);
     const [assetReserves, setAssetReserves] = useState<any | null>(null);
-    const [stoxPrice, setStoxPrice] = useState<any | null>(null);
+    const [stoxPrice, setStoxPrice] = useState<number>(0);
+
+
+   /* getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2").then((reserves) => {
+        setCurrencyReserves(reserves.token0);
+        setAssetReserves(reserves.token1);
+        setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
+        console.log(reserves)
+
+    });*/
+
+   
+
 
     const handleSnackBarOpen = (message: string) => {
         setMessage(message);
@@ -180,7 +194,7 @@ export default function OrderBook(): JSX.Element {
         setSortedBuySideOrderBook(sortedBuySideOrderBook);
     }, [sellSideOrderBook, buySideOrderBook]);
 
-    useEffect(() => {
+   /*  useEffect(() => {
         const interval = setInterval(() => {
             GetReserves().then((reserves) => {
                 setCurrencyReserves(reserves.token0Reserve);
@@ -192,7 +206,7 @@ export default function OrderBook(): JSX.Element {
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, []); */
     const {
         data: hash,
         error,

@@ -142,11 +142,11 @@ export default function Executions(): JSX.Element {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      GetReserves().then((reserves) => {
+     /* GetReserves().then((reserves) => {
         setCurrencyReserves(reserves.token0Reserve);
         setAssetReserves(reserves.token1Reserve);
         setStoxPrice(Number(reserves.token0Reserve.reserve) / Number(reserves.token1Reserve.reserve));
-      });
+      });*/
     }, 5000);
 
     return () => {

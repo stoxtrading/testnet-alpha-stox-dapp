@@ -48,7 +48,7 @@ const RealTimePrice = () => {
         };
     },[] );
 
-    useEffect(() => {
+    /* useEffect(() => {
         const interval = setInterval(() => {
             GetReserves().then((reserves) => {
                 setCurrencyReserves(reserves.token0Reserve);
@@ -61,7 +61,7 @@ const RealTimePrice = () => {
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, []); */
 
     const getColor = () => {
         if (previousPrice === null || price === null) {

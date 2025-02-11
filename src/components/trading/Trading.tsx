@@ -18,7 +18,7 @@ import { ButtonProps } from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
-import GetReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
+import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 
 
 export default function Trading() {
@@ -28,9 +28,7 @@ export default function Trading() {
   const [quantity, setQuantity] = useState('0');
 
 
-  const [currencyReserves, setCurrencyReserves] = useState<any | null>(null);
-  const [assetReserves, setAssetReserves] = useState<any | null>(null);
-  const [stoxPrice, setStoxPrice] = useState<any | null>(null);
+ 
 
   const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -248,19 +246,16 @@ export default function Trading() {
     }
   }, [sellOrderError])
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      GetReserves().then((reserves) => {
-        setCurrencyReserves(reserves.token0Reserve);
-        setAssetReserves(reserves.token1Reserve);
-        setStoxPrice(Number(reserves.token0Reserve.reserve) / Number(reserves.token1Reserve.reserve));
-      });
-    }, 5000);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  const [currencyReserves, setCurrencyReserves] = useState<any | null>(null);
+  const [assetReserves, setAssetReserves] = useState<any | null>(null);
+  const [stoxPrice, setStoxPrice] = useState<any | null>(null);
+  /*getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2").then((reserves) => {
+          setCurrencyReserves(reserves.token0);
+          setAssetReserves(reserves.token1);
+          setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
+          console.log("Pool reserves fetched",reserves)
+      });*/
 
   async function placeSellOrder() {
     // 1. Deposit NVIDIA as collateral 
