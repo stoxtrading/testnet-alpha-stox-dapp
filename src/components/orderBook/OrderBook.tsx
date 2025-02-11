@@ -130,9 +130,8 @@ export default function OrderBook(): JSX.Element {
 
 
 
-    const [currencyReserves, setCurrencyReserves] = useState<any | null>(null);
-    const [assetReserves, setAssetReserves] = useState<any | null>(null);
-    const [stoxPrice, setStoxPrice] = useState<number>(0);
+    /*const [currencyReserves, setCurrencyReserves] = useState<any | null>(null);
+    const [assetReserves, setAssetReserves] = useState<any | null>(null);*/
 
 
    /* getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2").then((reserves) => {
@@ -142,6 +141,45 @@ export default function OrderBook(): JSX.Element {
         console.log(reserves)
 
     });*/
+
+
+    interface TokenInfo {
+            address: string;
+            symbol: string;
+            reserve: string;
+        }
+    
+        const [currencyReserves, setCurrencyReserves] = useState<TokenInfo>();
+        const [assetReserves, setAssetReserves] = useState<TokenInfo>();
+        const [stoxPrice, setStoxPrice] = useState<number>(0);
+
+    
+        const [loading, setLoading] = useState<boolean>(true);
+        const [poolError, setPoolError] = useState<string | null>(null);
+    
+    
+        useEffect(() => {
+            const fetchPoolReserves = async () => {
+                try {
+                    const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
+                    setCurrencyReserves(reserves.token0);
+                    setAssetReserves(reserves.token1);
+                    setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
+                    console.log("reserves Price", reserves)
+                    console.log("STOX PRICE", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))
+                } catch (err) {
+                    if (err instanceof Error) {
+                        setPoolError(err.message);
+                    } else {
+                        setPoolError(String(err));
+                    }
+                } finally {
+                    setLoading(false);
+                }
+            };
+    
+            fetchPoolReserves();
+        }, []);
 
    
 
@@ -207,6 +245,8 @@ export default function OrderBook(): JSX.Element {
             clearInterval(interval);
         };
     }, []); */
+
+
     const {
         data: hash,
         error,
