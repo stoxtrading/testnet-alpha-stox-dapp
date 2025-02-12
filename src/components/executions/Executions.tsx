@@ -23,10 +23,23 @@ const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
 }));
 
 const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
-  borderRadius: 0,
+  borderTopLeftRadius :6,
+  borderBottomLeftRadius :6,
   backgroundColor: '#FFFFFF',
   ...theme.typography.body2,
   textAlign: 'left',
+  color: '#1e163b',
+  alignContent: 'center',
+  height: 28,
+  paddingLeft: 6,
+}));
+
+const GridQty = styled(Grid)(({ theme }: { theme: any }) => ({
+  borderTopRightRadius :6,
+  borderBottomRightRadius :6,
+  backgroundColor: '#FFFFFF',
+  ...theme.typography.body2,
+  textAlign: 'center',
   color: '#1e163b',
   alignContent: 'center',
   height: 28,
@@ -191,7 +204,9 @@ export default function Executions(): JSX.Element {
 
         {executionsEvents.map((event, index) => (
           <Grid container key={index} columns={12}>
-            <GridAsksAddr size={4}>
+            <GridAsksAddr 
+            
+            size={4}>
               <span>
                 {truncateTxHash(event.transactionHash)}
               </span>
@@ -208,11 +223,11 @@ export default function Executions(): JSX.Element {
             <GridAsksNb size={2}> <span >
               {(Number(formatEthValue((event.args.amount1)))).toFixed(2)}
             </span></GridAsksNb>
-            <GridAsksNb size={2}>
+            <GridQty size={2}>
               <span >
                 {formatEthValue(event.args.amount2)}
               </span>
-            </GridAsksNb>
+            </GridQty>
 
           </Grid>
         ))}
