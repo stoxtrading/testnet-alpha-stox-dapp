@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import TestnetLimitOrderBookPage from './pages/testnetLimitOrderBookPage/TestnetLimitOrderBookPage';
 import TokenomicsPage from './pages/TokenomicsPage/TokenomicsPage';
-import WelcomePage from './pages/welcomePage/WelcomPage';
+import WelcomePage from './pages/welcomePage/WelcomePage';
 import CryptoWrapper from './components/cryptoWapper/CryptoWrapper';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './App.css';
