@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { createChart, ColorType, ISeriesApi, CandlestickData } from 'lightweight-charts';
+import { createChart, ISeriesApi, CandlestickData } from 'lightweight-charts';
 import {  CandlestickSeries } from 'lightweight-charts';
 
 import Box from '@mui/material/Box';
