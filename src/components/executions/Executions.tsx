@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import { CopyIcon } from "../../assets/icons/CopyIcon";
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
+import { Link, Tooltip, Typography } from '@mui/material';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 
@@ -23,8 +23,8 @@ const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
 }));
 
 const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
-  borderTopLeftRadius :6,
-  borderBottomLeftRadius :6,
+  borderTopLeftRadius: 6,
+  borderBottomLeftRadius: 6,
   backgroundColor: '#FFFFFF',
   ...theme.typography.body2,
   textAlign: 'left',
@@ -35,8 +35,8 @@ const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
 }));
 
 const GridQty = styled(Grid)(({ theme }: { theme: any }) => ({
-  borderTopRightRadius :6,
-  borderBottomRightRadius :6,
+  borderTopRightRadius: 6,
+  borderBottomRightRadius: 6,
   backgroundColor: '#FFFFFF',
   ...theme.typography.body2,
   textAlign: 'center',
@@ -154,30 +154,30 @@ export default function Executions(): JSX.Element {
   },);
 
   useEffect(() => {
-            const fetchPoolReserves = async () => {
-                try {
-                    const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
-                    setCurrencyReserves(reserves.token0);
-                    setAssetReserves(reserves.token1);
-                    setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
-                    console.log("fetching STOX reserves", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))
-                } catch (err) {
-                    if (err instanceof Error) {
-                        setError(err.message);
-                    } else {
-                        setError(String(err));
-                    }
-                } finally {
-                    setLoading(false);
-                }
-            };
-           
-            fetchPoolReserves();
-        }, []);
+    const fetchPoolReserves = async () => {
+      try {
+        const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
+        setCurrencyReserves(reserves.token0);
+        setAssetReserves(reserves.token1);
+        setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
+        console.log("fetching STOX reserves", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError(String(err));
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPoolReserves();
+  }, []);
 
   return (
     <Box >
-            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2}}  >
+      <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }}  >
 
 
 
@@ -204,15 +204,26 @@ export default function Executions(): JSX.Element {
 
         {executionsEvents.map((event, index) => (
           <Grid container key={index} columns={12}>
-            <GridAsksAddr 
-            
-            size={4}>
+            <GridAsksAddr
+
+              size={4}>
               <span>
-                {truncateTxHash(event.transactionHash)}
+
+
+                <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/tx/${event.transactionHash}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                  <Stack>
+                    <Tooltip title={nvidiaOrderBookContractConfig.address} placement="top">
+                      <Typography variant="caption" sx={{
+                        color: '#1e163b', wordBreak: 'break-all', fontWeight: 'bold', cursor: 'pointer',
+                        '&:hover': {
+                          color: '#3f51b5',
+                          textDecoration: 'underline',
+                        },
+                      }}>{truncateTxHash(nvidiaOrderBookContractConfig.address)}</Typography></Tooltip>
+                  </Stack>
+                </Link>
               </span>
-              <IconButton size="small">
-                <CopyIcon size={15} color="white" />
-              </IconButton>
+
             </GridAsksAddr>
             <GridAsksNb size={2}> <span >
               {event.timestamp}

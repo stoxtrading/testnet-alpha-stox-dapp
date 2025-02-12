@@ -84,7 +84,7 @@ const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
     backgroundColor: 'rgba(263, 263, 263, 0.9)',
     ...theme.typography.body2,
     textAlign: 'left',
-    color: 'red',
+
     alignContent: 'center',
     height: 28,
     paddingLeft: 6,
