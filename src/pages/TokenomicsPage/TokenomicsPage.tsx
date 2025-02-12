@@ -11,11 +11,6 @@ import UniswapPool from '../../components/uniswapPool/UniswapPool';
 export default function TokenomicsPage() {
 
 
-
-
-
-
-
     return (
 
         <CommonPageBackground>

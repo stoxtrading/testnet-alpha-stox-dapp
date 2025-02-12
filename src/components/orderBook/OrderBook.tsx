@@ -15,7 +15,7 @@ import {
     useWriteContract
 } from 'wagmi'
 import './OrderBook.css'
-import { Typography } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
@@ -46,6 +46,13 @@ const GridBidsAddr = styled(Grid)(({ theme }: { theme: any }) => ({
     alignContent: 'center',
     height: 28,
     paddingLeft: 6,
+    wordBreak: 'break-all',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    '&:hover': {
+        color: '#3f51b5',
+        textDecoration: 'underline',
+    },
 
 }));
 
@@ -81,7 +88,13 @@ const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
     alignContent: 'center',
     height: 28,
     paddingLeft: 6,
-
+    wordBreak: 'break-all',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    '&:hover': {
+        color: '#3f51b5',
+        textDecoration: 'underline',
+    },
 }));
 
 
@@ -134,54 +147,54 @@ export default function OrderBook(): JSX.Element {
     const [assetReserves, setAssetReserves] = useState<any | null>(null);*/
 
 
-   /* getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2").then((reserves) => {
-        setCurrencyReserves(reserves.token0);
-        setAssetReserves(reserves.token1);
-        setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
-        console.log(reserves)
-
-    });*/
+    /* getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2").then((reserves) => {
+         setCurrencyReserves(reserves.token0);
+         setAssetReserves(reserves.token1);
+         setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
+         console.log(reserves)
+ 
+     });*/
 
 
     interface TokenInfo {
-            address: string;
-            symbol: string;
-            reserve: string;
-        }
-    
-        const [currencyReserves, setCurrencyReserves] = useState<TokenInfo>();
-        const [assetReserves, setAssetReserves] = useState<TokenInfo>();
-        const [stoxPrice, setStoxPrice] = useState<number>(0);
+        address: string;
+        symbol: string;
+        reserve: string;
+    }
 
-    
-        const [loading, setLoading] = useState<boolean>(true);
-        const [poolError, setPoolError] = useState<string | null>(null);
-    
-    
-        useEffect(() => {
-            const fetchPoolReserves = async () => {
-                try {
-                    const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
-                    setCurrencyReserves(reserves.token0);
-                    setAssetReserves(reserves.token1);
-                    setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
-                    console.log("reserves Price", reserves)
-                    console.log("STOX PRICE", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))
-                } catch (err) {
-                    if (err instanceof Error) {
-                        setPoolError(err.message);
-                    } else {
-                        setPoolError(String(err));
-                    }
-                } finally {
-                    setLoading(false);
+    const [currencyReserves, setCurrencyReserves] = useState<TokenInfo>();
+    const [assetReserves, setAssetReserves] = useState<TokenInfo>();
+    const [stoxPrice, setStoxPrice] = useState<number>(0);
+
+
+    const [loading, setLoading] = useState<boolean>(true);
+    const [poolError, setPoolError] = useState<string | null>(null);
+
+
+    useEffect(() => {
+        const fetchPoolReserves = async () => {
+            try {
+                const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
+                setCurrencyReserves(reserves.token0);
+                setAssetReserves(reserves.token1);
+                setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
+                console.log("reserves Price", reserves)
+                console.log("STOX PRICE", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))
+            } catch (err) {
+                if (err instanceof Error) {
+                    setPoolError(err.message);
+                } else {
+                    setPoolError(String(err));
                 }
-            };
-    
-            fetchPoolReserves();
-        }, []);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-   
+        fetchPoolReserves();
+    }, []);
+
+
 
 
     const handleSnackBarOpen = (message: string) => {
@@ -232,19 +245,19 @@ export default function OrderBook(): JSX.Element {
         setSortedBuySideOrderBook(sortedBuySideOrderBook);
     }, [sellSideOrderBook, buySideOrderBook]);
 
-   /*  useEffect(() => {
-        const interval = setInterval(() => {
-            GetReserves().then((reserves) => {
-                setCurrencyReserves(reserves.token0Reserve);
-                setAssetReserves(reserves.token1Reserve);
-                setStoxPrice(Number(reserves.token0Reserve.reserve) / Number(reserves.token1Reserve.reserve));
-            });
-        }, 5000);
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, []); */
+    /*  useEffect(() => {
+         const interval = setInterval(() => {
+             GetReserves().then((reserves) => {
+                 setCurrencyReserves(reserves.token0Reserve);
+                 setAssetReserves(reserves.token1Reserve);
+                 setStoxPrice(Number(reserves.token0Reserve.reserve) / Number(reserves.token1Reserve.reserve));
+             });
+         }, 5000);
+ 
+         return () => {
+             clearInterval(interval);
+         };
+     }, []); */
 
 
     const {
@@ -310,18 +323,40 @@ export default function OrderBook(): JSX.Element {
         }).format(number);
     };
 
+
+    const orderbookOnblockExplorerUrl = `${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${nvidiaOrderBookContractConfig.address}`;
+
+
     return (
         <Box sx={{
 
         }}>
             <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }} height={500}>
 
+
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1, }}>
-                    <Grid  >
+                    <Grid size={12}>
                         <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Order Book</Typography>
                     </Grid>
 
+                    <Grid container size={12}>
 
+                        <Link href={orderbookOnblockExplorerUrl} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                            <Stack>
+                                <Typography variant="caption" sx={{ color: '#3f51b5' }}>
+                                    Smart Contract Address:
+                                </Typography>
+                                <Typography variant="caption" sx={{
+                                    color: 'black', wordBreak: 'break-all', fontWeight: 'bold', cursor: 'pointer',
+                                    '&:hover': {
+                                        color: '#3f51b5',
+                                        textDecoration: 'underline',
+                                    },
+                                }}>{nvidiaOrderBookContractConfig.address}</Typography>
+                            </Stack>
+                        </Link>
+
+                    </Grid>
 
                 </Grid>
 
@@ -343,9 +378,11 @@ export default function OrderBook(): JSX.Element {
                     <Grid container key={order.address} columns={12}>
                         <GridAsksAddr size={4}>
                             <Tooltip title={order.address} placement="top">
-                                <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                    {truncateAddress(order.address)}
-                                </Typography>
+                                <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${order.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                                    <Typography color="red" variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
+                                        {truncateAddress(order.address)}
+                                    </Typography>
+                                </Link>
                             </Tooltip>
 
                         </GridAsksAddr>
@@ -382,9 +419,13 @@ export default function OrderBook(): JSX.Element {
                         <Grid container key={order.address} columns={12}>
                             <GridBidsAddr size={4}>
                                 <Tooltip title={order.address} placement="top">
-                                    <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                        {truncateAddress(order.address)}
-                                    </Typography>
+                                    <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${order.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+
+                                        <Typography color='#27AE60' variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
+                                            {truncateAddress(order.address)}
+
+                                        </Typography>
+                                    </Link>
                                 </Tooltip>
 
                             </GridBidsAddr>
