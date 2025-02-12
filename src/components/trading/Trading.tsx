@@ -405,6 +405,16 @@ export default function Trading() {
               color="success"
               variant="contained"
               size="small"
+              sx={{
+                padding: '10px 20px',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                backgroundColor: '#4caf50',
+                '&:hover': {
+                    backgroundColor: '#45a049',
+                },
+                textTransform: 'none',
+            }}
             >
               {buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming ? 'Pending...' : <>
                 BUY
@@ -418,6 +428,16 @@ export default function Trading() {
               color="error"
               variant="contained"
               size="small"
+              sx={{
+                padding: '10px 20px',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                backgroundColor: '#f44336', // Red color for the button
+                '&:hover': {
+                    backgroundColor: '#d32f2f', // Darker red color for hover state
+                },
+                textTransform: 'none',
+            }}
             >
               {buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming ? 'Pending...' : <>
                 SELL

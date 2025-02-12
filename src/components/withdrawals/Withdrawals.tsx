@@ -21,10 +21,14 @@ const WithdrawButton = styled(Button)<ButtonProps>(() => ({
     width: 100,
 
     height: 24,
-    backgroundColor: '#ECF0F1',
+    padding: '10px 20px',
+    fontSize: '0.75rem',
+    fontWeight: 'bold',
+    backgroundColor: '#ff9800', // Orange color for the button
     '&:hover': {
-        backgroundColor: '#ECF0F1',
+        backgroundColor: '#fb8c00', // Darker orange color for hover state
     },
+    textTransform: 'none',
 }));
 
 
@@ -159,7 +163,7 @@ export default function Withdrawals() {
 
 
 
-           <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2}} height={120}>
+            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }} height={120}>
 
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid size={1} >
