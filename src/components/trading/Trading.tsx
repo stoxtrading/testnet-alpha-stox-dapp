@@ -250,16 +250,32 @@ export default function Trading() {
   const [currencyReserves, setCurrencyReserves] = useState<any | null>(null);
   const [assetReserves, setAssetReserves] = useState<any | null>(null);
   const [stoxPrice, setStoxPrice] = useState<any | null>(null);
-  /*getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2").then((reserves) => {
-          setCurrencyReserves(reserves.token0);
-          setAssetReserves(reserves.token1);
-          setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
-          console.log("Pool reserves fetched",reserves)
-      });*/
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+          const fetchPoolReserves = async () => {
+              try {
+                  const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
+                  setCurrencyReserves(reserves.token0);
+                  setAssetReserves(reserves.token1);
+                  setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
+                  console.log("fetching STOX reserves", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))
+              } catch (err) {
+                  if (err instanceof Error) {
+                      setError(err.message);
+                  } else {
+                      setError(String(err));
+                  }
+              } finally {
+                  setLoading(false);
+              }
+          };
+         
+          fetchPoolReserves();
+      }, []);
 
   async function placeSellOrder() {
-    // 1. Deposit NVIDIA as collateral 
-
 
     const quantityFN = ethers.FixedNumber.fromString(quantity)
 
