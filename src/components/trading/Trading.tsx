@@ -256,7 +256,7 @@ export default function Trading() {
   useEffect(() => {
           const fetchPoolReserves = async () => {
               try {
-                  const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
+                  const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
                   setCurrencyReserves(reserves.token0);
                   setAssetReserves(reserves.token1);
                   setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));

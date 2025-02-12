@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
+import { DiscordIcon } from '../../assets/icons/DiscordIcon';
 import GetReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 
 const RealTimePrice = () => {
@@ -46,7 +47,7 @@ const RealTimePrice = () => {
         return () => {
             ws.close();
         };
-    },[] );
+    }, []);
 
     /* useEffect(() => {
         const interval = setInterval(() => {
@@ -85,8 +86,8 @@ const RealTimePrice = () => {
 
     return (
         <Box >
-            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2}}  >
-            <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
+            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }}  >
+                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid>
                         <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Live Data</Typography>
                     </Grid>
@@ -116,25 +117,33 @@ const RealTimePrice = () => {
                         </Typography>
                     </Grid>
 
-                   {/*  <Grid container offset='auto' sx={{ marginRight: 2 }} alignItems={'center'}>
-                        <img src='./stox_logo.png' width="40" height="40" />
-                        <Typography variant="subtitle1" sx={{ color: "#2C3E50", fontWeight: 600 }}>
-                            STOX
-                        </Typography>
-                        <Typography variant="subtitle1" sx={{ color: getStoxColor(), fontWeight: 600 }}>
-                            {stoxPrice !== null ? `$${(stoxPrice).toExponential(8)}` : 'Loading...'}
-                        </Typography>
-                        <Typography variant="button" sx={{ color: "#2C3E50", fontWeight: 600 }}>
-                            Reserves:
-                        </Typography>
-                        <Typography variant="button" sx={{ color: "#2C3E50", fontWeight: 600 }}>
-                            {assetReserves !== null ? `${(assetReserves.symbol)} ${formatNumber(Number(assetReserves.reserve), 2)}` : 'Loading...'}
-                        </Typography>
-                        <Typography variant="button" sx={{ color: "#2C3E50", fontWeight: 600 }}>
-                            {currencyReserves !== null ? `${(currencyReserves.symbol)} ${formatNumber(Number(currencyReserves.reserve), 6)}` : 'Loading...'}
-                        </Typography>
+                    <Grid container offset='auto' sx={{ marginRight: 2 }} justifyItems={'center'}>
+                        <Stack justifyContent={'center'} alignContent={'center'} alignItems={'center'} direction={'column'}>
 
-                    </Grid> */}
+                            <Typography variant="caption" sx={{ color: "#2C3E50", fontWeight: 600 }}>
+                                CLAIM TESTNET TOKENS ON DISCORD
+                            </Typography>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                endIcon={<DiscordIcon />}
+                                sx={{
+                                    marginLeft: 2,
+                                    backgroundColor: '#7289da',
+                                    '&:hover': {
+                                        backgroundColor: '#5e6bae',
+                                    },
+                                    textTransform: 'none',
+                                }}
+                                component="a"
+                                href="https://discordapp.com/channels/1328711049347862548/1339175575037673582"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Discord Channel
+                            </Button>
+                        </Stack>
+                    </Grid>
 
                 </Grid>
             </Stack>

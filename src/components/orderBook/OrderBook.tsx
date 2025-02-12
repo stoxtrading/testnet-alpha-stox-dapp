@@ -352,7 +352,7 @@ export default function OrderBook(): JSX.Element {
 
                         <GridAsksNb size={4}>
                             <Typography display={{ xs: "none", md: "flex" }} variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves !== null ? `${(assetReserves.symbol)} ` : 'Loading ccy...'})
+                                {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'} )
                             </Typography>
                             <Typography display={{ xs: "flex", md: "none" }} variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                 {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;
@@ -391,7 +391,7 @@ export default function OrderBook(): JSX.Element {
 
                             <GridBidsNb size={4} display={{ xs: "none", md: "flex" }}>
                                 <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                    {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;( {Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves !== null ? `${(assetReserves.symbol)} ` : 'Loading ccy...'})
+                                    {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;( {Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'})
                                 </Typography>
                             </GridBidsNb>
 

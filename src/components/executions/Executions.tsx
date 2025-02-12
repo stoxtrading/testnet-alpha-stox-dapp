@@ -8,7 +8,7 @@ import { CopyIcon } from "../../assets/icons/CopyIcon";
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
-import GetReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
+import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 
 
 const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
@@ -81,7 +81,7 @@ export default function Executions(): JSX.Element {
     eventName: string
   ): Promise<ContractEvent[]> {
     // Connect to Ethereum provider
-    const provider = new ethers.JsonRpcProvider('https://sepolia.unichain.org');
+    const provider = new ethers.JsonRpcProvider(`${import.meta.env.VITE_APP_HTTP_RPC_ENDPOINT}`);
 
     // Create typed contract instance
     const contract = new ethers.Contract(contractAddress, contractABI, provider);
@@ -141,18 +141,26 @@ export default function Executions(): JSX.Element {
   },);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-     /* GetReserves().then((reserves) => {
-        setCurrencyReserves(reserves.token0Reserve);
-        setAssetReserves(reserves.token1Reserve);
-        setStoxPrice(Number(reserves.token0Reserve.reserve) / Number(reserves.token1Reserve.reserve));
-      });*/
-    }, 5000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+            const fetchPoolReserves = async () => {
+                try {
+                    const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
+                    setCurrencyReserves(reserves.token0);
+                    setAssetReserves(reserves.token1);
+                    setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
+                    console.log("fetching STOX reserves", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))
+                } catch (err) {
+                    if (err instanceof Error) {
+                        setError(err.message);
+                    } else {
+                        setError(String(err));
+                    }
+                } finally {
+                    setLoading(false);
+                }
+            };
+           
+            fetchPoolReserves();
+        }, []);
 
   return (
     <Box >
@@ -168,8 +176,8 @@ export default function Executions(): JSX.Element {
         <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
           <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>TX HASH</GridAsksHeader>
           <GridAsksHeader size={2}>TIMESTAMP</GridAsksHeader>
-          <GridAsksHeader size={2}>{currencyReserves !== null ? `${(currencyReserves.symbol)} ` : 'Loading ccy...'} PRICE</GridAsksHeader>
-          <GridAsksHeader size={2}>{assetReserves !== null ? `${(assetReserves.symbol)} ` : 'Loading ccy...'} PRICE</GridAsksHeader>
+          <GridAsksHeader size={2}>{currencyReserves?.symbol || 'loading'} PRICE</GridAsksHeader>
+          <GridAsksHeader size={2}>{assetReserves?.symbol || 'loading'} PRICE</GridAsksHeader>
           <GridAsksHeader size={2}>QUANTITY</GridAsksHeader>
         </Grid>
 
@@ -214,3 +222,11 @@ export default function Executions(): JSX.Element {
 
   )
 }
+function setError(message: string) {
+  throw new Error('Function not implemented.');
+}
+
+function setLoading(arg0: boolean) {
+  throw new Error('Function not implemented.');
+}
+

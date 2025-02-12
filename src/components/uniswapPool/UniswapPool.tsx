@@ -22,7 +22,7 @@ export default function UniswapPool() {
     useEffect(() => {
         const fetchPoolReserves = async () => {
             try {
-                const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
+                const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
                 setCurrencyReserves(reserves.token0);
                 setAssetReserves(reserves.token1);
             } catch (err) {
@@ -35,12 +35,8 @@ export default function UniswapPool() {
                 setLoading(false);
             }
         };
-
         fetchPoolReserves();
     }, []);
-
-
-
 
     const formatNumber = (number: number, digits: number) => {
         try {

@@ -30,7 +30,7 @@ interface PoolReserves {
 export default async function getPoolReserves(poolAddress: string): Promise<PoolReserves> {
     try {
         // Create contract instances
-        const provider = new ethers.JsonRpcProvider('https://sepolia.base.org');
+        const provider = new ethers.JsonRpcProvider(`${import.meta.env.VITE_APP_HTTP_RPC_ENDPOINT}`);
         const poolContract = new ethers.Contract(poolAddress, POOL_ABI, provider);
         
         // Get token addresses
