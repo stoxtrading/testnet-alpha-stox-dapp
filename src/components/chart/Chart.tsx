@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import { Typography } from '@mui/material';
+import RealTimePrice from '../../components/realTimePrice/RealTimePrice';
 
 const Chart = () => {
     const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -137,10 +138,11 @@ const Chart = () => {
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1}}>
                     <Grid>
                         <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">
-                            Chart {price ? `- Last Price: $${price.toFixed(2)}` : ''}
+                            US STOCK EXCHANGE
                         </Typography>
                     </Grid>
                 </Grid>
+                <RealTimePrice />
                 <div 
                     ref={chartContainerRef} 
                     style={{ 

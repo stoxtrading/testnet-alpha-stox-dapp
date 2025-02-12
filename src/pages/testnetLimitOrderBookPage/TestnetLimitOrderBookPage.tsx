@@ -10,9 +10,8 @@ import Stack from '@mui/material/Stack';
 import Trading from '../../components/trading/Trading';
 import Withdrawals from '../../components/withdrawals/Withdrawals';
 import StoxEcosystem from '../../components/stoxEcosystem/StoxEcosystem';
-import RealTimePrice from '../../components/realTimePrice/RealTimePrice';
 import Executions from '../../components/executions/Executions';
-
+import TradingTokens from '../../components/tradingTokens/TradingTokens';
 
 export default function TestnetLimitOrderBookPage() {
 
@@ -29,7 +28,7 @@ export default function TestnetLimitOrderBookPage() {
                 <Stack rowGap={2}>
                     <Grid container columnSpacing={2} rowSpacing={2}>
                         <Grid size={12}>
-                            <RealTimePrice />
+                            <TradingTokens />
                         </Grid>
                     </Grid>
 

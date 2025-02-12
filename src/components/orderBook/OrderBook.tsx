@@ -339,24 +339,7 @@ export default function OrderBook(): JSX.Element {
                         <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Order Book</Typography>
                     </Grid>
 
-                    <Grid container size={12}>
-
-                        <Link href={orderbookOnblockExplorerUrl} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                            <Stack>
-                                <Typography variant="caption" sx={{ color: '#3f51b5' }}>
-                                    Smart Contract Address:
-                                </Typography>
-                                <Typography variant="caption" sx={{
-                                    color: 'black', wordBreak: 'break-all', fontWeight: 'bold', cursor: 'pointer',
-                                    '&:hover': {
-                                        color: '#3f51b5',
-                                        textDecoration: 'underline',
-                                    },
-                                }}>{nvidiaOrderBookContractConfig.address}</Typography>
-                            </Stack>
-                        </Link>
-
-                    </Grid>
+                    
 
                 </Grid>
 

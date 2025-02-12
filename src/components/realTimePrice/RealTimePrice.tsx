@@ -86,23 +86,19 @@ const RealTimePrice = () => {
 
     return (
         <Box >
-            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }}  >
-                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
-                    <Grid>
-                        <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Live Data</Typography>
-                    </Grid>
-                </Grid>
+            <Stack sx={{ padding: 1, paddingLeft:2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }}  >
+                
                 <Grid container columnSpacing={2} alignItems="center">
                     <Grid>
                         <img src='./nvda.png' width="40" height="40" />
                     </Grid>
                     <Grid>
-                        <Typography variant="subtitle1" sx={{ color: "#2C3E50", fontWeight: 600 }}>
+                        <Typography variant="button" sx={{ color: "#2C3E50", fontWeight: 600 }}>
                             NVIDIA Corp.
                         </Typography>
                     </Grid>
                     <Grid>
-                        <Typography variant="subtitle1" sx={{ color: getColor(), fontWeight: 600 }}>
+                        <Typography variant="button" sx={{ color: getColor(), fontWeight: 600 }}>
                             {price !== null ? `$${price.toFixed(2)}` : 'Loading...'}
                         </Typography>
                     </Grid>
@@ -117,33 +113,7 @@ const RealTimePrice = () => {
                         </Typography>
                     </Grid>
 
-                    <Grid container offset='auto' sx={{ marginRight: 2 }} justifyItems={'center'}>
-                        <Stack justifyContent={'center'} alignContent={'center'} alignItems={'center'} direction={'column'}>
-
-                            <Typography variant="caption" sx={{ color: "#2C3E50", fontWeight: 600 }}>
-                                CLAIM TESTNET TOKENS ON DISCORD
-                            </Typography>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                endIcon={<DiscordIcon />}
-                                sx={{
-                                    marginLeft: 2,
-                                    backgroundColor: '#7289da',
-                                    '&:hover': {
-                                        backgroundColor: '#5e6bae',
-                                    },
-                                    textTransform: 'none',
-                                }}
-                                component="a"
-                                href="https://discordapp.com/channels/1328711049347862548/1339175575037673582"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Discord Channel
-                            </Button>
-                        </Stack>
-                    </Grid>
+                    
 
                 </Grid>
             </Stack>
