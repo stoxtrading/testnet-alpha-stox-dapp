@@ -30,9 +30,6 @@ export default function LiquidityCreation() {
     const { mintLiquidity, isLoading: liquidityMintingLoading, isSuccess: liquidityMintingSuccess, isError: liquidityMintingIsError, error: liquidityMintingError } = useMintLiquidity();
 
 
-    const [usdtTransferApproved, setUsdtTransferApproved] = useState(false);
-    const [stoxTransferApproved, setStoxTransferApproved] = useState(false);
-
      const { address: connectedWalletAddress } = useAccount()
 
     const handleAddLiquidity = async () => {
