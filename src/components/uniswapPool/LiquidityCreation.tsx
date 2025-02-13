@@ -1,5 +1,5 @@
 import Grid from '@mui/material/Grid2';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AmountTextField from '../../assets/elements/CustomTextFields';
 import SubSectionTitleTypography from '../../assets/elements/CustomTypography';
 import { useApproveTokenTransfer, ApprovalConfig, useMintLiquidity, LiquidityMintingConfig } from '../liquidityPoolPricing/Operations';
@@ -27,7 +27,7 @@ export default function LiquidityCreation() {
     const [isMinting, setIsMinting] = useState(false);
     const { approve, isLoading, isSuccess, isError, error } = useApproveTokenTransfer();
 
-    const { mintLiquidity, isLoading: liquidityMintingLoading, isSuccess: liquidityMintingSuccess, isError: liquidityMintingIsError, error: liquidityMintingError } = useMintLiquidity();
+    const { mintLiquidity, isLoading: isLiquidityMintingLoading, isSuccess: isLiquidityMintingSuccess, isError: isLiquidityMintingError, error: liquidityMintingError } = useMintLiquidity();
 
 
      const { address: connectedWalletAddress } = useAccount()
@@ -172,7 +172,7 @@ export default function LiquidityCreation() {
                     <Button
                         variant='contained'
                         onClick={() => handleAddLiquidity()}
-                        disabled={isApproving || isLoading}
+                        disabled={isApproving || isLoading ||isMinting || isLiquidityMintingLoading}
                         
                     >
                         {isLoading ? 'Approving...' : 'Mint'}
