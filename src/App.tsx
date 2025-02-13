@@ -18,7 +18,7 @@ function App() {
               {/*   <Route index element={<Navigate to="/" replace />} /> */}
               <Route index path="/" element={<WelcomePage />} />
               <Route path="testnet-limit-order-book" element={<TestnetLimitOrderBookPage />} />
-              <Route path="tokenomics" element={<TokenomicsPage/>} />
+              <Route path="liquidity" element={<TokenomicsPage/>} />
             </Route>
           </Routes>
         </BrowserRouter>

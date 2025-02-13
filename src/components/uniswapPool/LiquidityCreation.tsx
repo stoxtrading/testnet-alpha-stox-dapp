@@ -65,21 +65,11 @@ export default function LiquidityCreation() {
             amount1Min: 0,
             recipient: String(connectedWalletAddress),
             deadline:  Math.floor(Date.now() / 1000) + 60 * 10
-
-
         };
 
-        try {
-            setIsMinting(true);
-            await mintLiquidity(liquidityMintingConfig);
-            console.log(`Liquidity Minting successful`);
-        } catch (error) {
-            console.error('Liquidity Minting failed:', error);
-        } finally {
-            setIsMinting(false);
-        }
+        
 
-        /* try {
+        try {
             setIsApproving(true);
             await approve(stoxApprovalConfig);
             console.log(`Approval successful for token: ${stoxApprovalConfig.tokenAddress}`);
@@ -98,8 +88,16 @@ export default function LiquidityCreation() {
             console.error('Approval failed:', error);
         } finally {
             setIsApproving(false);
-        } */
-
+        }
+        try {
+            setIsMinting(true);
+            await mintLiquidity(liquidityMintingConfig);
+            console.log(`Liquidity Minting successful`);
+        } catch (error) {
+            console.error('Liquidity Minting failed:', error);
+        } finally {
+            setIsMinting(false);
+        }
 
     };
 
@@ -178,8 +176,9 @@ export default function LiquidityCreation() {
                         variant='contained'
                         onClick={() => handleAddLiquidity()}
                         disabled={isApproving || isLoading}
+                        
                     >
-                        {isLoading ? 'Approving...' : 'Add Liquidity'}
+                        {isLoading ? 'Approving...' : 'Mint'}
                     </Button>
                 </Grid>
             </Grid>

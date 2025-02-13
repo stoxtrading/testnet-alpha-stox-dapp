@@ -102,8 +102,8 @@ const Header: React.FC<HeaderProps> = () => {
                     <HeaderMenuButton redirectTo="/testnet-limit-order-book">
                         <HeaderMenuTypography>Testnet Order Book</HeaderMenuTypography>
                     </HeaderMenuButton>
-                    <HeaderMenuButton redirectTo="/tokenomics">
-                        <HeaderMenuTypography>Tokenomics</HeaderMenuTypography>
+                    <HeaderMenuButton redirectTo="/liquidity">
+                        <HeaderMenuTypography>Liquidity</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/white-paper">
                         <HeaderMenuTypography>White Paper</HeaderMenuTypography>

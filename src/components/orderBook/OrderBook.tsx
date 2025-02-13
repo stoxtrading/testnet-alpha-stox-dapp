@@ -331,7 +331,7 @@ export default function OrderBook(): JSX.Element {
         <Box sx={{
 
         }}>
-            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }} height={500}>
+            <Stack sx={{ padding: 2, backgroundColor: 'rgb(224,228,241)', borderRadius: 2 }} height={500}>
 
 
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1, }}>

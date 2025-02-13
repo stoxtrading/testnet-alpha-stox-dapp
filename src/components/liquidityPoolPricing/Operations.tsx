@@ -54,8 +54,7 @@ export const useMintLiquidity = () => {
         try {
             // Make sure we have the 0x prefix
             const formattedAddressNonFungiblePoolManagerAddress = nonFungiblePoolManagerAddress.startsWith('0x') ? nonFungiblePoolManagerAddress : `0x${nonFungiblePoolManagerAddress}`;
-            console.log('Calling writeContract with')
-            return await writeContract({
+            console.log('Calling writeContract with',{
                 address: formattedAddressNonFungiblePoolManagerAddress as `0x${string}`,
                 abi: nonFungiblePoolManagerAbi,
                 functionName: 'mint',
@@ -69,8 +68,30 @@ export const useMintLiquidity = () => {
                     amount0Min,
                     amount1Min,
                     recipient,
-                    deadline]
+                    deadline] 
+            })
+            const response =  await writeContract({
+                address: formattedAddressNonFungiblePoolManagerAddress as `0x${string}`,
+                abi: nonFungiblePoolManagerAbi,
+                functionName: 'mint',
+                args: [[token0,
+                    token1,
+                    fee,
+                    tickLower ,
+                    tickUpper,
+                    amount0Desired,
+                    amount1Desired,
+                    amount0Min,
+                    amount1Min,
+                    recipient,
+                    deadline],],
             });
+
+            console.log('Response from mintLiquidity:', response);
+
+            return response;
+
+
         } catch (err) {
             console.error('Error in Liquidity Minting function:', err);
             throw err;
