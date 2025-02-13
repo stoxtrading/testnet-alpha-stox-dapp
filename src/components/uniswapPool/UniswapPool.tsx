@@ -22,6 +22,7 @@ export default function UniswapPool() {
 
     const [currencyReserves, setCurrencyReserves] = useState<TokenInfo>();
     const [assetReserves, setAssetReserves] = useState<TokenInfo>();
+    const [fee, setFee] = useState<number>(0);
 
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -33,6 +34,7 @@ export default function UniswapPool() {
                 const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
                 setCurrencyReserves(reserves.token0);
                 setAssetReserves(reserves.token1);
+                setFee(reserves.fee);
             } catch (err) {
                 if (err instanceof Error) {
                     setError(err.message);
@@ -176,18 +178,21 @@ export default function UniswapPool() {
                     </Grid>
                     <Grid >
                         <Grid container >
-                            <Grid size={4}>
+                            <Grid size={3}>
                                 <Typography variant="body2" color='#1e163b'> {currencyReserves?.symbol || 'loading'} LIQUIDITY</Typography>
                             </Grid>
-                            <Grid size={4}>
+                            <Grid size={3}>
                                 <Typography variant="body2" color='#1e163b'>{assetReserves?.symbol || 'loading'} LIQUIDITY</Typography>
                             </Grid>
-                            <Grid size={4}>
+                            <Grid size={3}>
+                                <Typography variant="body2" color='#1e163b'>  FEE</Typography>
+                            </Grid>
+                            <Grid size={3}>
                                 <Typography variant="body2" color='#1e163b'>PRICE (LIQUIDITIES RATIO)</Typography>
                             </Grid>
                         </Grid>
                         <Grid container>
-                            <Grid size={4}>
+                            <Grid size={3}>
                                 <Typography
                                     color='#1e163b'
                                     variant="body2"
@@ -196,7 +201,7 @@ export default function UniswapPool() {
                                 </Typography>
                             </Grid>
 
-                            <Grid size={4}>
+                            <Grid size={3}>
                                 <Typography
                                     color='#1e163b'
                                     variant="body2"
@@ -204,7 +209,15 @@ export default function UniswapPool() {
                                     {formatNumber(Number(assetReserves?.reserve) || 0, 2)}
                                 </Typography>
                             </Grid>
-                            <Grid size={4}>
+                            <Grid size={3}>
+                                <Typography
+                                    color='#1e163b'
+                                    variant="body2"
+                                    sx={{ fontWeight: 700 }}>
+                                    {formatNumber(Number(fee) || 0, 2)}
+                                </Typography>
+                            </Grid>
+                            <Grid size={3}>
                                 <Typography
                                     color='#1e163b'
                                     variant="body2"

@@ -1,12 +1,8 @@
 import { ethers } from 'ethers';
+import {liquidityPoolContractConfig} from '../../assets/contracts/dev/LiquidityPool';
 
 // The ABIs we need
-const POOL_ABI = [
-    "function slot0() external view returns (uint160 sqrtPriceX96, int24 tick, uint16 observationIndex, uint16 observationCardinality, uint16 observationCardinalityNext, uint8 feeProtocol, bool unlocked)",
-    "function liquidity() external view returns (uint128)",
-    "function token0() external view returns (address)",
-    "function token1() external view returns (address)"
-];
+const POOL_ABI = liquidityPoolContractConfig.abi;
 
 const ERC20_ABI = [
     "function decimals() external view returns (uint8)",
@@ -25,6 +21,7 @@ interface PoolReserves {
     token0: TokenInfo;
     token1: TokenInfo;
     poolAddress: string;
+    fee:number;
 }
 
 export default async function getPoolReserves(poolAddress: string): Promise<PoolReserves> {
@@ -36,6 +33,9 @@ export default async function getPoolReserves(poolAddress: string): Promise<Pool
         // Get token addresses
         const token0Address: string = await poolContract.token0();
         const token1Address: string = await poolContract.token1();
+
+        // Get the fee
+        const fee: number = await poolContract.fee();
         
         const token0Contract = new ethers.Contract(token0Address, ERC20_ABI, provider);
         const token1Contract = new ethers.Contract(token1Address, ERC20_ABI, provider);
@@ -84,7 +84,8 @@ export default async function getPoolReserves(poolAddress: string): Promise<Pool
                 symbol: token1Symbol,
                 reserve: ethers.formatUnits(token1Reserve.toString(), token1Decimals),
             },
-            poolAddress
+            poolAddress,
+            fee
         };
     } catch (error) {
         console.error('Error getting pool reserves:', error);
