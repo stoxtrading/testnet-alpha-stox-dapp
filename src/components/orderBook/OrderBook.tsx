@@ -7,7 +7,6 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
 import { useAccount } from 'wagmi'
-import { CopyIcon } from "../../assets/icons/CopyIcon";
 import { CancelIcon } from "../../assets/icons/CancelIcon";
 import {
 
@@ -25,10 +24,10 @@ import { ClickableAddressTypography, TableTitleTypography, NumbersTypography } f
 import StackTitle from '../buildingBlocks/StackTitle';
 
 
-const GridBidsNb = styled(Grid)(({ theme }: { theme: any }) => ({
+const GridBidsNb = styled(Grid)(() => ({
     borderRadius: 0,
     backgroundColor: 'rgba(263, 263, 263, 0.9)',
-    ...theme.typography.body2,
+
     textAlign: 'center',
     color: '#27AE60',
     alignContent: 'center',
@@ -38,11 +37,10 @@ const GridBidsNb = styled(Grid)(({ theme }: { theme: any }) => ({
 
 }));
 
-const GridBidsAddr = styled(Grid)(({ theme }: { theme: any }) => ({
+const GridBidsAddr = styled(Grid)(() => ({
     borderTopLeftRadius: 6,
     borderBottomLeftRadius: 6,
     backgroundColor: 'rgba(263, 263, 263, 0.9)',
-    ...theme.typography.body2,
     textAlign: 'left',
     color: '#27AE60',
     alignContent: 'center',
@@ -59,9 +57,8 @@ const GridBidsAddr = styled(Grid)(({ theme }: { theme: any }) => ({
 }));
 
 
-const GridAsksHeader = styled(Grid)(({ theme }: { theme: any }) => ({
+const GridAsksHeader = styled(Grid)(() => ({
     borderRadius: 0,
-    ...theme.typography.body2,
     textAlign: 'center',
     color: '#1e163b',
     paddingLeft: 2,
@@ -69,10 +66,9 @@ const GridAsksHeader = styled(Grid)(({ theme }: { theme: any }) => ({
     alignContent: 'center',
 }));
 
-const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
+const GridAsksNb = styled(Grid)(() => ({
     borderRadius: 0,
     backgroundColor: 'rgba(263, 263, 263, 0.9)',
-    ...theme.typography.body2,
     textAlign: 'center',
     color: 'red',
     alignContent: 'center',
@@ -80,11 +76,10 @@ const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
 
 }));
 
-const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
+const GridAsksAddr = styled(Grid)(() => ({
     borderTopLeftRadius: 6,
     borderBottomLeftRadius: 6,
     backgroundColor: 'rgba(263, 263, 263, 0.9)',
-    ...theme.typography.body2,
     textAlign: 'left',
 
     alignContent: 'center',
@@ -100,11 +95,10 @@ const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
 }));
 
 
-const GridAction = styled(Grid)(({ theme }: { theme: any }) => ({
+const GridAction = styled(Grid)(() => ({
     borderTopRightRadius: 6,
     borderBottomRightRadius: 6,
     backgroundColor: 'rgba(263, 263, 263, 0.9)',
-    ...theme.typography.body2,
     textAlign: 'center',
     color: '#1e163b',
     alignContent: 'center',
@@ -164,7 +158,6 @@ export default function OrderBook(): JSX.Element {
         reserve: string;
     }
 
-    const [currencyReserves, setCurrencyReserves] = useState<TokenInfo>();
     const [assetReserves, setAssetReserves] = useState<TokenInfo>();
     const [stoxPrice, setStoxPrice] = useState<number>(0);
 
@@ -177,7 +170,6 @@ export default function OrderBook(): JSX.Element {
         const fetchPoolReserves = async () => {
             try {
                 const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
-                setCurrencyReserves(reserves.token0);
                 setAssetReserves(reserves.token1);
                 setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
                 console.log("reserves Price", reserves)
@@ -326,7 +318,6 @@ export default function OrderBook(): JSX.Element {
     };
 
 
-    const orderbookOnblockExplorerUrl = `${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${nvidiaOrderBookContractConfig.address}`;
 
 
     return (
@@ -349,7 +340,7 @@ export default function OrderBook(): JSX.Element {
                     <GridAsksHeader size={2}>ACTION</GridAsksHeader>
                 </Grid>
  */}
-                {sortedSellSideOrderBook.map((order, _index) => (
+                {sortedSellSideOrderBook.map((order) => (
                     <Grid container key={order.address} columns={12}>
                         <GridAsksAddr size={4}>
                             <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${order.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
@@ -389,7 +380,7 @@ export default function OrderBook(): JSX.Element {
                 ))}
 
                 <Grid sx={{ marginTop: 1 }} >
-                    {sortedBuySideOrderBook.map((order, _index) => (
+                    {sortedBuySideOrderBook.map((order) => (
                         <Grid container key={order.address} columns={12}>
                             <GridBidsAddr size={4}>
                                 <Tooltip title={order.address} placement="top">
