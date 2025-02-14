@@ -249,7 +249,6 @@ export default function Trading() {
   }, [sellOrderError])
 
 
-  const [currencyReserves, setCurrencyReserves] = useState<any | null>(null);
   const [assetReserves, setAssetReserves] = useState<any | null>(null);
   const [stoxPrice, setStoxPrice] = useState<any | null>(null);
   const [loading, setLoading] = useState(true);
@@ -259,7 +258,6 @@ export default function Trading() {
           const fetchPoolReserves = async () => {
               try {
                   const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
-                  setCurrencyReserves(reserves.token0);
                   setAssetReserves(reserves.token1);
                   setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
                   console.log("fetching STOX reserves", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))

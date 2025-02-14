@@ -1,15 +1,10 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import {
- 
-  ListItemText,
- 
-} from '@mui/material';
 
 
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { HeaderMenuTypography } from '../../assets/elements/CustomTypography';
 
 
 interface LeftSideMenuProps {
@@ -26,9 +21,11 @@ export default function LeftSideMenu({ anchorEl, setAnchorEl }: LeftSideMenuProp
   };
 
   const menuItems = [
-    { path: '/test1', label: 'My test1'},
-    { path: '/test2', label: 'My test2'  },
-    { path: '/test3', label: 'My test3'  },
+    { path: '/', label: 'Home'},
+    { path: '/testnet-limit-order-book', label: 'Testnet Order Book'  },
+    { path: '/liquidity', label: 'Liquidity'  },
+    { path: '/white-paper', label: 'Whitepaper'  },
+    { path: '/roadmap', label: 'Roadmap'  },
   ];
 
 
@@ -45,8 +42,8 @@ export default function LeftSideMenu({ anchorEl, setAnchorEl }: LeftSideMenuProp
     >
       {menuItems.map((item) => (
         <MenuItem key={item.path} component={Link} to={item.path} onClick={handleClose}>
-          <img src='./crown.png'  style={{ width: '5%', height: '5%',}}  ></img>
-          <ListItemText primary={item.label} />
+             <HeaderMenuTypography> {item.label} </HeaderMenuTypography>
+         
         </MenuItem>
       ))}
      

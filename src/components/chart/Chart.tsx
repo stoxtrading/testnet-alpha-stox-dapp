@@ -3,19 +3,23 @@ import { createChart, ISeriesApi, CandlestickData } from 'lightweight-charts';
 import {  CandlestickSeries } from 'lightweight-charts';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid2';
-import Stack from '@mui/material/Stack';
-import { Typography } from '@mui/material';
 import RealTimePrice from '../../components/realTimePrice/RealTimePrice';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
 
+interface TimeSeriesDataPoint {
+    time: string;
+    first: number;
+    high: number;
+    low: number;
+    last: number;
+}
 
 const Chart = () => {
     const chartContainerRef = useRef<HTMLDivElement>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const chartRef = useRef<any>(null);
     const candlestickSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
-    const [price, setPrice] = useState<number | null>(null);
     const [historicalData, setHistoricalData] = useState<CandlestickData[]>([]);
 
     // Fetch historical data and set up chart
@@ -43,7 +47,7 @@ const Chart = () => {
             fetch('https://api.universe-bank.com/time-series/timeseries?instrument-id=NVDA&price-source=cboe&start-date=2023-05-24T22:00&end-date=2030-12-25T23:00&granularity=1d')
                 .then(response => response.json())
                 .then(data => {
-                    const candlestickData = data.map((item: any) => ({
+                    const candlestickData = data.map((item: TimeSeriesDataPoint) => ({
                         time: item.time.split(' ')[0],
                         open: item.first,
                         high: item.high,
@@ -81,7 +85,6 @@ const Chart = () => {
             const data = JSON.parse(event.data);
             if (data.body?.NVDA_cboe?.last) {
                 const newPrice = data.body.NVDA_cboe.last;
-                setPrice(newPrice);
 
                 // Update the last candle or create a new one
                 if (candlestickSeriesRef.current && historicalData.length > 0) {

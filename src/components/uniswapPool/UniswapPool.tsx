@@ -1,9 +1,8 @@
 import Grid from '@mui/material/Grid2';
-import { Typography, Stack } from '@mui/material';
+import {  Stack } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useEffect, useState } from 'react';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing';
-import LiquidityCreation from './LiquidityCreation';
 /*import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia'; */
 import { Button, Link } from '@mui/material';
@@ -14,9 +13,20 @@ import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
 import { TableTitleTypography } from '../../assets/elements/CustomTypography';
 import { ClickableTxHashTypography, SubtitleTypography, NumbersTypography, } from '../../assets/elements/CustomTypography';
+import CustomBackdrop from '../../assets/elements/CustomBackdrop';
 
 
 export default function UniswapPool() {
+
+    const [backDropOpen, setBackDropOpen] = useState(false);
+
+    const handleBackDropOpen = () => {
+        setBackDropOpen(true);
+    };
+
+    const handleBackDropClose = () => {
+        setBackDropOpen(false);
+    };
 
     interface TokenInfo {
         address: string;
@@ -28,13 +38,13 @@ export default function UniswapPool() {
     const [assetReserves, setAssetReserves] = useState<TokenInfo>();
     const [fee, setFee] = useState<number>(0);
 
-    const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
 
     useEffect(() => {
         const fetchPoolReserves = async () => {
             try {
+                handleBackDropOpen();
                 const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
                 setCurrencyReserves(reserves.token0);
                 setAssetReserves(reserves.token1);
@@ -46,7 +56,7 @@ export default function UniswapPool() {
                     setError(String(err));
                 }
             } finally {
-                setLoading(false);
+                handleBackDropClose();
             }
         };
         fetchPoolReserves();
@@ -68,7 +78,7 @@ export default function UniswapPool() {
     };
 
    
-    if (error) return <div>Error: {error}</div>;
+    if (error) return <div color="white">Error: {error}</div>;
     return (
 
         <Box>
@@ -192,6 +202,7 @@ export default function UniswapPool() {
                         </Grid>
                     </Grid>
                 </SingleComponentStack>
+                <CustomBackdrop open={backDropOpen} handleClose={handleBackDropClose} />
 
             </Stack>
         </Box>
