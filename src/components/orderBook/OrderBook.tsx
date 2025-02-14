@@ -21,7 +21,7 @@ import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
-import {SingleComponentStackTitleTypography} from '../../assets/elements/CustomTypography';
+import { SingleComponentStackTitleTypography } from '../../assets/elements/CustomTypography';
 import StackTitle from '../buildingBlocks/StackTitle';
 
 
@@ -333,12 +333,8 @@ export default function OrderBook(): JSX.Element {
         <Box sx={{
 
         }}>
-            <SingleComponentStack  height={500}>
-
-
-            <StackTitle
-                title='Trading'  />
-
+            <SingleComponentStack height={500}>
+                <StackTitle title='Order Book' />
                 <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
                     <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>ADDRESS</GridAsksHeader>
                     <GridAsksHeader size={4}>PRICE</GridAsksHeader>

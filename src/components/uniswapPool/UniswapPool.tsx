@@ -10,6 +10,8 @@ import { Button, Link } from '@mui/material';
 import { DiscordIcon } from '../../assets/icons/DiscordIcon';
 import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
 import { mockUsdtContractConfig } from '../../assets/contracts/dev/MockUsdt';
+import SingleComponentStack from '../../assets/elements/CustomStack';
+import StackTitle from '../buildingBlocks/StackTitle';
 
 export default function UniswapPool() {
 
@@ -70,17 +72,8 @@ export default function UniswapPool() {
             <Stack rowGap={2} >
 
 
-                <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }} >
-                    <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
-                        <Grid container columnGap={1}>
-                            <Grid>
-                                <Typography sx={{ fontWeight: 700 }} color='red' variant="overline">TESTNET</Typography>
-                            </Grid>
-                            <Grid>
-                                <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Contracts</Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                <SingleComponentStack >
+                <StackTitle title='Contracts' />
                     <Grid container columnSpacing={2} alignItems="center">
                         <Grid container size={9}>
                             <Grid container size={4}>
@@ -163,18 +156,9 @@ export default function UniswapPool() {
                         </Grid>
 
                     </Grid>
-                </Stack>
-                <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }} >
-                    <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
-                        <Grid container columnGap={1}>
-                            <Grid>
-                                <Typography sx={{ fontWeight: 700 }} color='red' variant="overline">TESTNET</Typography>
-                            </Grid>
-                            <Grid>
-                                <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">V3 POOL</Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                </SingleComponentStack>
+                <SingleComponentStack >
+                <StackTitle title='V3 Pool' />
                     <Grid >
                         <Grid container >
                             <Grid size={3}>
@@ -243,7 +227,7 @@ export default function UniswapPool() {
                             </Grid>
                         </Grid> *
                     </Grid>
-                </Stack>
+                </SingleComponentStack>
 
             </Stack>
         </Box>

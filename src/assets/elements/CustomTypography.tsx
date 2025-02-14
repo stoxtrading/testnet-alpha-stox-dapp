@@ -15,7 +15,7 @@ interface CustomTypographyProps extends TypographyProps {
 const SingleComponentStackTitleTypography: React.FC<CustomTypographyProps> = ({ children,  ...props }) => {
     return (
         <Typography
-            sx={{ fontWeight: 300, fontFamily: 'Michroma' }} 
+            sx={{ fontWeight: 700, fontFamily: 'Michroma', letterSpacing: '0.2em' }} 
             color='#1e163b' 
             variant="overline"
             {...props}

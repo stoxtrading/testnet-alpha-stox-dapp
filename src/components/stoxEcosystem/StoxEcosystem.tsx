@@ -5,6 +5,7 @@ import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
 import { Typography, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
 import SingleComponentStack from '../../assets/elements/CustomStack';
+import StackTitle from '../buildingBlocks/StackTitle';
 
 
 export default function StoxEcosystem() {
@@ -47,12 +48,8 @@ export default function StoxEcosystem() {
         <Box>
 
             <SingleComponentStack height={120}>
-                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
-                    <Grid size={1} >
-                        <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Balances</Typography>
-                    </Grid>
-
-                </Grid>
+            <StackTitle
+                title='Balances'  />
 
                 <Grid container >
                     <Grid size={6}>

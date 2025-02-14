@@ -10,6 +10,7 @@ import { Link, Tooltip, Typography } from '@mui/material';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
+import StackTitle from '../buildingBlocks/StackTitle';
 
 
 const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
@@ -180,13 +181,8 @@ export default function Executions(): JSX.Element {
     <Box >
       <SingleComponentStack  >
 
-
-
-        <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
-          <Grid  >
-            <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Executions</Typography>
-          </Grid>
-        </Grid>
+      <StackTitle
+                title='Executions'  />
         <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
           <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>TX HASH</GridAsksHeader>
           <GridAsksHeader size={2}>TIMESTAMP</GridAsksHeader>

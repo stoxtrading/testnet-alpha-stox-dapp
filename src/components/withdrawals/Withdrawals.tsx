@@ -16,6 +16,7 @@ import React, { useState, useEffect, } from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import SingleComponentStack from '../../assets/elements/CustomStack';
+import StackTitle from '../buildingBlocks/StackTitle';
 
 const WithdrawButton = styled(Button)<ButtonProps>(() => ({
     color: '#1e163b',
@@ -166,12 +167,8 @@ export default function Withdrawals() {
 
             <SingleComponentStack height={120}>
 
-                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
-                    <Grid size={1} >
-                        <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Withdrawals</Typography>
-                    </Grid>
-
-                </Grid>
+            <StackTitle
+                title='Withdrawals'  />
 
 
                 <Grid container >
