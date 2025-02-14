@@ -13,7 +13,7 @@ import { mockUsdtContractConfig } from '../../assets/contracts/dev/MockUsdt';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
 import { TableTitleTypography } from '../../assets/elements/CustomTypography';
-import { ClickableTxHashTypography, SubtitleTypography } from '../../assets/elements/CustomTypography';
+import { ClickableTxHashTypography, SubtitleTypography, NumbersTypography, } from '../../assets/elements/CustomTypography';
 
 
 export default function UniswapPool() {
@@ -67,7 +67,7 @@ export default function UniswapPool() {
 
     };
 
-    if (loading) return <div>Loading...</div>;
+   
     if (error) return <div>Error: {error}</div>;
     return (
 
@@ -81,33 +81,33 @@ export default function UniswapPool() {
                         <Grid container size={9}>
                             <Grid container size={4}>
                                 <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${import.meta.env.VITE_APP_POOL_ADDRESS}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                                    <Stack>
+                                    <Grid container direction="column" rowGap={1}>
                                         <SubtitleTypography>
-                                            Uniswap V3 Pool
+                                            UNISWAP V3 POOL
                                         </SubtitleTypography>
                                         <ClickableTxHashTypography>{import.meta.env.VITE_APP_POOL_ADDRESS}</ClickableTxHashTypography>
-                                    </Stack>
+                                    </Grid>
                                 </Link>
                             </Grid>
 
                             <Grid container size={4}>
                                 <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${mockUsdtContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                                    <Stack>
+                                    <Grid container direction="column" rowGap={1}>
                                         <SubtitleTypography>
-                                            MOCK USDT Token
+                                            MOCK USDT TOKEN
                                         </SubtitleTypography>
                                         <ClickableTxHashTypography>{mockUsdtContractConfig.address}</ClickableTxHashTypography>
-                                    </Stack>
+                                    </Grid>
                                 </Link>
                             </Grid>
                             <Grid container size={4}>
                                 <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${stoxContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                                    <Stack>
+                                    <Grid container direction="column" rowGap={1}>
                                         <SubtitleTypography>
-                                            STOX Token
+                                            STOX TOKEN
                                         </SubtitleTypography>
                                         <ClickableTxHashTypography>{stoxContractConfig.address}</ClickableTxHashTypography>
-                                    </Stack>
+                                    </Grid>
                                 </Link>
                             </Grid>
                         </Grid>
@@ -143,62 +143,44 @@ export default function UniswapPool() {
                 <StackTitle title='V3 Pool' />
                     <Grid >
                         <Grid container >
-                            <Grid size={3}>
-                                <TableTitleTypography> {currencyReserves?.symbol || 'loading'} LIQUIDITY</TableTitleTypography>
-                            </Grid>
-                            <Grid size={3}>
-                                <TableTitleTypography>{assetReserves?.symbol || 'loading'} LIQUIDITY</TableTitleTypography>
-                            </Grid>
-                            <Grid size={3}>
-                                <TableTitleTypography>  FEE</TableTitleTypography>
-                            </Grid>
-                            <Grid size={3}>
-                                <TableTitleTypography>PRICE (LIQUIDITIES RATIO)</TableTitleTypography>
-                            </Grid>
-                        </Grid>
-                        <Grid container>
-                            <Grid size={3}>
-                                <Typography
-                                    color='#1e163b'
-                                    variant="body2"
-                                    sx={{ fontWeight: 700 }}>
+                            <Grid container direction="column" rowGap={1} size={3}>
+                                <SubtitleTypography> {currencyReserves?.symbol || 'loading'} LIQUIDITY</SubtitleTypography>
+                                <NumbersTypography sx={{ fontWeight: 700 }}>
                                     {formatNumber(Number(currencyReserves?.reserve) || 0, 2)}
-                                </Typography>
+                                </NumbersTypography>
                             </Grid>
-
-                            <Grid size={3}>
-                                <Typography
-                                    color='#1e163b'
-                                    variant="body2"
+                            <Grid container direction="column" rowGap={1} size={3}>
+                                <SubtitleTypography>{assetReserves?.symbol || 'loading'} LIQUIDITY</SubtitleTypography>
+                                <NumbersTypography
                                     sx={{ fontWeight: 700 }}>
                                     {formatNumber(Number(assetReserves?.reserve) || 0, 2)}
-                                </Typography>
+                                </NumbersTypography>
                             </Grid>
-                            <Grid size={3}>
-                                <Typography
-                                    color='#1e163b'
-                                    variant="body2"
+                            <Grid container direction="column" rowGap={1} size={3}>
+                                <SubtitleTypography>  FEE</SubtitleTypography>
+                                <NumbersTypography
                                     sx={{ fontWeight: 700 }}>
                                     {formatNumber(Number(fee) || 0, 2)}
-                                </Typography>
+                                </NumbersTypography>
                             </Grid>
-                            <Grid size={3}>
-                                <Typography
-                                    color='#1e163b'
-                                    variant="body2"
+                            <Grid container direction="column" rowGap={1} size={3}>
+                                <SubtitleTypography>PRICE (LIQUIDITIES RATIO)</SubtitleTypography>
+                                <NumbersTypography
                                     sx={{ fontWeight: 700 }}>
                                     1 {assetReserves?.symbol || 'loading'} = {formatNumber(Number(currencyReserves?.reserve) / Number(assetReserves?.reserve), 2)} {currencyReserves?.symbol}
-                                </Typography>
+                                </NumbersTypography>
                             </Grid>
                         </Grid>
+                       
                          <Grid container marginTop="4vh" justifyContent={"center"}>
                 
-                            <Grid container size={6} justifyContent={"center"} >
-                                <Grid container justifyContent={"center"} size={12}>
-                                    <TableTitleTypography >MINT LIQUIDITY</TableTitleTypography>
+                            <Grid container size={6} justifyContent={"left"} >
+                                <Grid container justifyContent={"left"} size={12}>
+                                    <TableTitleTypography >MINT LIQUIDITY - COMING SOON</TableTitleTypography>
                                 </Grid>
                                 <Grid container justifyContent={"center"} size={12}>
-                                    <LiquidityCreation />
+
+                                    {/* <LiquidityCreation /> */}
                                 </Grid>
                             </Grid>
                             <Grid container size={6} justifyContent={"center"} >

@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import { Button, Link, Typography } from '@mui/material';
+import { Button, Link,} from '@mui/material';
 import { DiscordIcon } from '../../assets/icons/DiscordIcon';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
@@ -24,7 +24,7 @@ const TradingTokens = () => {
                         <Grid container size={3}>
                             <Stack>
                                 <SubtitleTypography>
-                                    Order Book Smart Contract
+                                    Order Book Contract
                                 </SubtitleTypography>
                                 <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${nvidiaOrderBookContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                                     <ClickableTxHashTypography>{nvidiaOrderBookContractConfig.address}</ClickableTxHashTypography>

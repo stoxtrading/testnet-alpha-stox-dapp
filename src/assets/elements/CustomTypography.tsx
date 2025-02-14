@@ -138,8 +138,10 @@ const SubtitleTypography: React.FC<SubtitleTypographyProps> = ( {color = '#3f51b
     return (
         <Typography
             {...props}
+            
             color={color}
             sx={{
+                textTransform: 'uppercase',
                 fontWeight: 500,
                 fontFamily: 'Michroma',
                 fontSize: '0.7rem',
