@@ -8,6 +8,8 @@ import Stack from '@mui/material/Stack';
 import { Typography } from '@mui/material';
 import RealTimePrice from '../../components/realTimePrice/RealTimePrice';
 import SingleComponentStack from '../../assets/elements/CustomStack';
+import StackTitle from '../buildingBlocks/StackTitle';
+
 
 const Chart = () => {
     const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -22,7 +24,7 @@ const Chart = () => {
             const chartOptions = {
                 layout: {
                     textColor: 'black',
-                    background: {  color:  'rgba(153, 184, 237, 0.9)' },
+                    
                     borderRadius: 3,
                 },
             };
@@ -135,13 +137,8 @@ const Chart = () => {
         }}>
             <SingleComponentStack height={500}
             >
-                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1}}>
-                    <Grid>
-                        <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">
-                            US STOCK EXCHANGE
-                        </Typography>
-                    </Grid>
-                </Grid>
+                <StackTitle
+                title='Market'  />
                 <RealTimePrice />
                 <div 
                     ref={chartContainerRef} 

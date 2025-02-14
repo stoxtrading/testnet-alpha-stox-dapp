@@ -7,7 +7,7 @@ import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/Nvidia
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
 import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
 import SingleComponentStack from '../../assets/elements/CustomStack';
-
+import StackTitle from '../buildingBlocks/StackTitle';
 
 const TradingTokens = () => {
   
@@ -16,16 +16,8 @@ const TradingTokens = () => {
     return (
         <Box >
             <SingleComponentStack >
-                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
-                    <Grid container columnGap={1}>
-                        <Grid>
-                            <Typography sx={{ fontWeight: 700 }} color='red' variant="overline">TESTNET</Typography>
-                        </Grid>
-                        <Grid>
-                            <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Tokens</Typography>
-                        </Grid>
-                    </Grid>
-                </Grid>
+                <StackTitle
+                title='tokens'  />
                 <Grid container columnSpacing={2} alignItems="center">
                     <Grid container size={9}>
                         <Grid container size={4}>

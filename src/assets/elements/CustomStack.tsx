@@ -8,8 +8,8 @@ const SingleComponentStack: React.FC<StackProps> = ({ children, ...props }) => {
         <Stack
             sx={{
                 padding: 2,
-                backgroundColor: 'rgba(224, 228, 241, 0.9)',
-                borderRadius: 2,
+                backgroundColor: 'white',
+                borderRadius: 1,
                 ...props.sx,
             }}
             {...props}

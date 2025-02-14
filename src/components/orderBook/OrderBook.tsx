@@ -21,6 +21,8 @@ import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
+import {SingleComponentStackTitleTypography} from '../../assets/elements/CustomTypography';
+import StackTitle from '../buildingBlocks/StackTitle';
 
 
 const GridBidsNb = styled(Grid)(({ theme }: { theme: any }) => ({
@@ -334,14 +336,8 @@ export default function OrderBook(): JSX.Element {
             <SingleComponentStack  height={500}>
 
 
-                <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1, }}>
-                    <Grid size={12}>
-                        <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Order Book</Typography>
-                    </Grid>
-
-                    
-
-                </Grid>
+            <StackTitle
+                title='Trading'  />
 
                 <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
                     <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>ADDRESS</GridAsksHeader>

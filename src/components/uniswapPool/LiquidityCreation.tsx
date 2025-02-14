@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid2';
 import { useState } from 'react';
 import AmountTextField from '../../assets/elements/CustomTextFields';
-import SubSectionTitleTypography from '../../assets/elements/CustomTypography';
+import {SubSectionTitleTypography} from '../../assets/elements/CustomTypography';
 import { useApproveTokenTransfer, ApprovalConfig, useMintLiquidity, LiquidityMintingConfig } from '../liquidityPoolPricing/Operations';
 import { mockUsdtContractConfig } from '../../assets/contracts/dev/MockUsdt';
 import { stoxContractConfig } from '../../assets/contracts/dev/Stox';

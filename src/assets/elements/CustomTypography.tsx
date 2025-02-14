@@ -7,4 +7,24 @@ const SubSectionTitleTypography = styled(Typography)<TypographyProps>(() => ({
     
 }));
 
-export default SubSectionTitleTypography;
+
+interface CustomTypographyProps extends TypographyProps {
+    // Add any additional props if needed
+}
+
+const SingleComponentStackTitleTypography: React.FC<CustomTypographyProps> = ({ children,  ...props }) => {
+    return (
+        <Typography
+            sx={{ fontWeight: 300, fontFamily: 'Michroma' }} 
+            color='#1e163b' 
+            variant="overline"
+            {...props}
+        >
+            {children}
+        </Typography>
+    );
+};
+
+
+export { SubSectionTitleTypography };
+export { SingleComponentStackTitleTypography };
