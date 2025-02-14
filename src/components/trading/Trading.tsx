@@ -21,6 +21,7 @@ import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
 import { TableTitleTypography, NumbersTypography, ButtonTypography } from '../../assets/elements/CustomTypography';
+import CustomBackdrop from '../../assets/elements/CustomBackdrop';
 
 
 export default function Trading() {
@@ -29,6 +30,15 @@ export default function Trading() {
   const [priceInStox, setPriceInStox] = useState(0);
   const [quantity, setQuantity] = useState('0');
 
+  const [backDropOpen, setBackDropOpen] = useState(false);
+
+    const handleBackDropOpen = () => {
+        setBackDropOpen(true);
+    };
+
+    const handleBackDropClose = () => {
+        setBackDropOpen(false);
+    };
 
  
 
@@ -251,12 +261,12 @@ export default function Trading() {
 
   const [assetReserves, setAssetReserves] = useState<any | null>(null);
   const [stoxPrice, setStoxPrice] = useState<any | null>(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
           const fetchPoolReserves = async () => {
               try {
+                handleBackDropOpen();
                   const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
                   setAssetReserves(reserves.token1);
                   setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
@@ -268,7 +278,8 @@ export default function Trading() {
                       setError(String(err));
                   }
               } finally {
-                  setLoading(false);
+                handleBackDropClose();
+
               }
           };
          
@@ -314,6 +325,7 @@ export default function Trading() {
       maximumFractionDigits: digits,
     }).format(number);
   };
+  if (error) return <div color="white">Error: {error}</div>;
 
 
   return (
@@ -453,6 +465,8 @@ export default function Trading() {
 
         </Grid>
       </SingleComponentStack>
+      <CustomBackdrop open={backDropOpen} handleClose={handleBackDropClose} />
+
       <Snackbar
         open={snackBarOpen}
         autoHideDuration={3000}

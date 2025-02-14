@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import {Typography } from '@mui/material';
 import { TableTitleTypography } from '../../assets/elements/CustomTypography';
 
 
@@ -10,7 +9,6 @@ const RealTimePrice = () => {
     const [price, setPrice] = useState<number | null>(null);
     const [priceChange, setPriceChange] = useState<number | null>(null);
     const [priceChangeAbs, setPriceChangeAbs] = useState<number | null>(null);
-    const [previousPrice, setPreviousPrice] = useState<number | null>(null);
 
 
     useEffect(() => {
@@ -25,7 +23,6 @@ const RealTimePrice = () => {
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             if (data.body && data.body.NVDA_cboe && data.body.NVDA_cboe.last) {
-                setPreviousPrice(price);
                 setPrice(data.body.NVDA_cboe.last);
                 setPriceChange(data.body.NVDA_cboe['24hPercChg']);
                 setPriceChangeAbs(data.body.NVDA_cboe['24hPxChg']);
@@ -46,13 +43,6 @@ const RealTimePrice = () => {
     }, []);
 
 
-
-    const getColor = () => {
-        if (previousPrice === null || price === null) {
-            return '#1e163b'; // Default color
-        }
-        return price > previousPrice ? '#27AE60' : '#E74C3C';
-    };
 
 
     return (

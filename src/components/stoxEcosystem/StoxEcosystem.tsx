@@ -2,7 +2,6 @@ import Grid from '@mui/material/Grid2';
 import { useAccount, useReadContract } from 'wagmi'
 import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
-import { Typography, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';

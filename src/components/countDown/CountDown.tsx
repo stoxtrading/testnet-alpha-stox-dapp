@@ -38,7 +38,7 @@ export default function CountDown() {
     return (
         <Stack spacing={2} marginTop="5vh" >
             <Grid container justifyContent="center" spacing={2}>
-            <Typography variant="h3" sx={{ fontWeight: 'bold', fontFamily: 'Roboto, sans-serif', marginBottom: '20px' }}>
+            <Typography color='white' variant="h3" sx={{ fontWeight: 'bold', fontFamily: 'Roboto, sans-serif', marginBottom: '20px' }}>
                 PRESALES STARTS IN
             </Typography>
             </Grid>
