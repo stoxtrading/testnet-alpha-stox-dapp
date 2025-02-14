@@ -29,7 +29,7 @@ const HeaderMenuTypography: React.FC<TypographyProps> = (props,) => {
             
             sx={{
                 textTransform: 'uppercase',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.15em',
                 fontWeight: 700,
                 fontFamily: 'Michroma',
                 fontSize: '0.9rem',
@@ -94,7 +94,9 @@ const ClickableTxHashTypography: React.FC<TypographyProps> = (props) => {
                 },
                 fontWeight: 700,
                 fontFamily: 'Michroma',
-                fontSize: '0.7rem',
+                fontSize: '0.6rem',
+                letterSpacing: '0.05em',
+
                 ...props.sx, // Allow overriding styles
             }}
         >
@@ -128,6 +130,27 @@ const ClickableAddressTypography: React.FC<ClickableAddressTypographyProps> = ({
 };
 
 
+interface SubtitleTypographyProps extends TypographyProps {
+    color?: string;
+}
+
+const SubtitleTypography: React.FC<SubtitleTypographyProps> = ( {color = '#3f51b5', ...props}) => {
+    return (
+        <Typography
+            {...props}
+            color={color}
+            sx={{
+                fontWeight: 500,
+                fontFamily: 'Michroma',
+                fontSize: '0.7rem',
+                ...props.sx, // Allow overriding styles
+            }}
+        >
+            {props.children}
+        </Typography>
+    );
+};
+
 
 export { SubSectionTitleTypography };
 export { SingleComponentStackTitleTypography };
@@ -136,3 +159,4 @@ export { TableTitleTypography };
 export { NumbersTypography }
 export { ClickableTxHashTypography }
 export { ClickableAddressTypography }
+export { SubtitleTypography }

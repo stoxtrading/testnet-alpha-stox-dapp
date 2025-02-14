@@ -211,9 +211,7 @@ export default function Executions(): JSX.Element {
                 <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/tx/${event.transactionHash}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                   <Stack>
                     <Tooltip title={event.transactionHash} placement="top">
-                      <ClickableTxHashTypography sx={{
-                        
-                      }}>{truncateTxHash(event.transactionHash)}</ClickableTxHashTypography></Tooltip>
+                      <ClickableTxHashTypography >{truncateTxHash(event.transactionHash)}</ClickableTxHashTypography></Tooltip>
                   </Stack>
                 </Link>
               </span>

@@ -13,6 +13,7 @@ import { mockUsdtContractConfig } from '../../assets/contracts/dev/MockUsdt';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
 import { TableTitleTypography } from '../../assets/elements/CustomTypography';
+import { ClickableTxHashTypography, SubtitleTypography } from '../../assets/elements/CustomTypography';
 
 
 export default function UniswapPool() {
@@ -81,16 +82,10 @@ export default function UniswapPool() {
                             <Grid container size={4}>
                                 <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${import.meta.env.VITE_APP_POOL_ADDRESS}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                                     <Stack>
-                                        <Typography variant="caption" sx={{ color: '#3f51b5' }}>
-                                            UniswapV3Pool:
-                                        </Typography>
-                                        <Typography variant="caption" sx={{
-                                            color: 'black', wordBreak: 'break-all', fontWeight: 'bold', cursor: 'pointer',
-                                            '&:hover': {
-                                                color: '#3f51b5',
-                                                textDecoration: 'underline',
-                                            },
-                                        }}>{import.meta.env.VITE_APP_POOL_ADDRESS}</Typography>
+                                        <SubtitleTypography>
+                                            Uniswap V3 Pool
+                                        </SubtitleTypography>
+                                        <ClickableTxHashTypography>{import.meta.env.VITE_APP_POOL_ADDRESS}</ClickableTxHashTypography>
                                     </Stack>
                                 </Link>
                             </Grid>
@@ -98,63 +93,48 @@ export default function UniswapPool() {
                             <Grid container size={4}>
                                 <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${mockUsdtContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                                     <Stack>
-                                        <Typography variant="caption" sx={{ color: '#3f51b5' }}>
-                                            MOCK USDT Token:
-                                        </Typography>
-                                        <Typography variant="caption" sx={{
-                                            color: 'black', wordBreak: 'break-all', fontWeight: 'bold', cursor: 'pointer',
-                                            '&:hover': {
-                                                color: '#3f51b5',
-                                                textDecoration: 'underline',
-                                            },
-                                        }}>{mockUsdtContractConfig.address}</Typography>
+                                        <SubtitleTypography>
+                                            MOCK USDT Token
+                                        </SubtitleTypography>
+                                        <ClickableTxHashTypography>{mockUsdtContractConfig.address}</ClickableTxHashTypography>
                                     </Stack>
                                 </Link>
                             </Grid>
                             <Grid container size={4}>
                                 <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${stoxContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                                     <Stack>
-                                        <Typography variant="caption" sx={{ color: '#3f51b5' }}>
-                                            STOX Token:
-                                        </Typography>
-                                        <Typography variant="caption" sx={{
-                                            color: 'black', wordBreak: 'break-all', fontWeight: 'bold', cursor: 'pointer',
-                                            '&:hover': {
-                                                color: '#3f51b5',
-                                                textDecoration: 'underline',
-                                            },
-                                        }}>{stoxContractConfig.address}</Typography>
+                                        <SubtitleTypography>
+                                            STOX Token
+                                        </SubtitleTypography>
+                                        <ClickableTxHashTypography>{stoxContractConfig.address}</ClickableTxHashTypography>
                                     </Stack>
                                 </Link>
                             </Grid>
                         </Grid>
 
-                        <Grid container offset='auto' sx={{ marginRight: 2 }} justifyItems={'center'}>
-                            <Stack justifyContent={'center'} alignContent={'center'} alignItems={'center'} direction={'column'}>
+                        <Grid container offset='auto'  justifyItems={'center'} size={3}>
 
-                                <Typography variant="caption" sx={{ color: "#2C3E50", fontWeight: 600 }}>
-                                    GET TESTNET TOKENS ON DISCORD
-                                </Typography>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    endIcon={<DiscordIcon />}
-                                    sx={{
-                                        marginLeft: 2,
-                                        backgroundColor: '#7289da',
-                                        '&:hover': {
-                                            backgroundColor: '#5e6bae',
-                                        },
-                                        textTransform: 'none',
-                                    }}
-                                    component="a"
-                                    href="https://discordapp.com/channels/1328711049347862548/1339175575037673582"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Discord Channel
-                                </Button>
-                            </Stack>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                endIcon={<DiscordIcon />}
+                                sx={{
+                                    marginLeft: 2,
+                                    backgroundColor: '#7289da',
+                                    '&:hover': {
+                                        backgroundColor: '#5e6bae',
+                                    },
+                                    textTransform: 'none',
+                                }}
+                                component="a"
+                                href="https://discordapp.com/channels/1328711049347862548/1339175575037673582"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <SubtitleTypography sx={{ fontWeight: 600, color: 'white' }}>
+                                    GET TESTNET TOKENS
+                                </SubtitleTypography>
+                            </Button>
                         </Grid>
 
                     </Grid>

@@ -6,13 +6,12 @@ import { MenuIcon } from "../../assets/icons/MenuIcon"
 import Grid from '@mui/material/Grid2';
 import './Header.css';
 import LeftSideMenu from './LeftSideMenu';
-import { Typography, TypographyProps } from '@mui/material';
 import { GridProps } from '@mui/material';
 //import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
 import { useAccount } from 'wagmi'
 import { truncateAddress } from '../../tools/Tools';
-import {HeaderMenuTypography} from '../../assets/elements/CustomTypography';
+import {HeaderMenuTypography,} from '../../assets/elements/CustomTypography';
 
 interface RedirectGridProps extends GridProps {
     redirectTo: string;
