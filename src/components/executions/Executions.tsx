@@ -11,6 +11,7 @@ import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/Nvidia
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
+import {NumbersTypography, ClickableTxHashTypography, TableTitleTypography} from '../../assets/elements/CustomTypography';
 
 
 const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
@@ -184,19 +185,19 @@ export default function Executions(): JSX.Element {
       <StackTitle
                 title='Executions'  />
         <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
-          <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>TX HASH</GridAsksHeader>
-          <GridAsksHeader size={2}>TIMESTAMP</GridAsksHeader>
-          <GridAsksHeader size={2}>{currencyReserves?.symbol || 'loading'} PRICE</GridAsksHeader>
-          <GridAsksHeader size={2}>{assetReserves?.symbol || 'loading'} PRICE</GridAsksHeader>
-          <GridAsksHeader size={2}>QUANTITY</GridAsksHeader>
+          <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>TX HASH</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader size={2}><TableTitleTypography>TIMESTAMP</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader size={2}><TableTitleTypography>{currencyReserves?.symbol || 'loading'} PRICE</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader size={2}><TableTitleTypography>{assetReserves?.symbol || 'loading'} PRICE</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader size={2}><TableTitleTypography>QUANTITY</TableTitleTypography></GridAsksHeader>
         </Grid>
 
         <Grid container columns={12} display={{ xs: 'flex', sm: 'none' }} >
           <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>TX HASH</GridAsksHeader>
-          <GridAsksHeader size={2}>BLOCK</GridAsksHeader>
-          <GridAsksHeader size={2}>{currencyReserves !== null ? `${(currencyReserves.symbol)} ` : 'Loading ccy...'} PX</GridAsksHeader>
-          <GridAsksHeader size={2}>{assetReserves !== null ? `${(assetReserves.symbol)} ` : 'Loading ccy...'} PRICE</GridAsksHeader>
-          <GridAsksHeader size={2}>QTY</GridAsksHeader>
+          <GridAsksHeader size={2}><TableTitleTypography>TIMESTAMP</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader size={2}><TableTitleTypography>{currencyReserves?.symbol || 'loading'} PX</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader size={2}><TableTitleTypography>{assetReserves?.symbol || 'loading'} PRICE</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader size={2}><TableTitleTypography>QTY</TableTitleTypography></GridAsksHeader>
         </Grid>
 
         {executionsEvents.map((event, index) => (
@@ -209,32 +210,28 @@ export default function Executions(): JSX.Element {
 
                 <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/tx/${event.transactionHash}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                   <Stack>
-                    <Tooltip title={nvidiaOrderBookContractConfig.address} placement="top">
-                      <Typography variant="caption" sx={{
-                        color: '#1e163b', wordBreak: 'break-all', fontWeight: 'bold', cursor: 'pointer',
-                        '&:hover': {
-                          color: '#3f51b5',
-                          textDecoration: 'underline',
-                        },
-                      }}>{truncateTxHash(nvidiaOrderBookContractConfig.address)}</Typography></Tooltip>
+                    <Tooltip title={event.transactionHash} placement="top">
+                      <ClickableTxHashTypography sx={{
+                        
+                      }}>{truncateTxHash(event.transactionHash)}</ClickableTxHashTypography></Tooltip>
                   </Stack>
                 </Link>
               </span>
 
             </GridAsksAddr>
-            <GridAsksNb size={2}> <span >
+            <GridAsksNb size={2}> <NumbersTypography >
               {event.timestamp}
-            </span></GridAsksNb>
-            <GridAsksNb size={2}> <span >
+            </NumbersTypography></GridAsksNb>
+            <GridAsksNb size={2}> <NumbersTypography >
               {(Number(formatEthValue((event.args.amount1))) * stoxPrice).toFixed(4)}
-            </span></GridAsksNb>
-            <GridAsksNb size={2}> <span >
+            </NumbersTypography></GridAsksNb>
+            <GridAsksNb size={2}> <NumbersTypography >
               {(Number(formatEthValue((event.args.amount1)))).toFixed(2)}
-            </span></GridAsksNb>
+            </NumbersTypography></GridAsksNb>
             <GridQty size={2}>
-              <span >
+              <NumbersTypography >
                 {formatEthValue(event.args.amount2)}
-              </span>
+              </NumbersTypography>
             </GridQty>
 
           </Grid>

@@ -17,6 +17,8 @@ import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
+import { TableTitleTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
+
 
 const WithdrawButton = styled(Button)<ButtonProps>(() => ({
     color: '#1e163b',
@@ -158,13 +160,7 @@ export default function Withdrawals() {
 
 
     return (
-        <Box
-
-
-        >
-
-
-
+        <Box >
             <SingleComponentStack height={120}>
 
             <StackTitle
@@ -173,21 +169,21 @@ export default function Withdrawals() {
 
                 <Grid container >
                     <Grid size={6}>
-                        <Typography color='#1e163b' variant="body2" >STOX</Typography>
+                        <TableTitleTypography>STOX</TableTitleTypography>
                     </Grid>
 
                     <Grid size={6}>
 
-                        <Typography color='#1e163b' variant="body2">NVIDIA</Typography>
+                        <TableTitleTypography>NVIDIA</TableTitleTypography>
                     </Grid>
 
                 </Grid>
                 <Grid container>
                     <Grid size={6} >
-                        <Typography variant="body2" color='#1e163b' sx={{ fontWeight: 700 }}>{withdrawalbleCurrenciesFormatted?.toString()}</Typography>
+                        <NumbersTypography sx={{ fontWeight: 700 }}>{withdrawalbleCurrenciesFormatted?.toString()}</NumbersTypography>
                     </Grid>
                     <Grid size={6}>
-                        <Typography variant="body2" color='#1e163b' sx={{ fontWeight: 700 }}>{withdrawalbleSecuritiesFormatted?.toString()}</Typography>
+                        <NumbersTypography  sx={{ fontWeight: 700 }}>{withdrawalbleSecuritiesFormatted?.toString()}</NumbersTypography>
                     </Grid>
                 </Grid>
                 <Grid container sx={{ marginTop: 1 }}>

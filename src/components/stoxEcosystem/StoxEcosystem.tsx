@@ -6,6 +6,8 @@ import { Typography, Stack } from '@mui/material';
 import Box from '@mui/material/Box';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
+import { TableTitleTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
+
 
 
 export default function StoxEcosystem() {
@@ -53,19 +55,19 @@ export default function StoxEcosystem() {
 
                 <Grid container >
                     <Grid size={6}>
-                        <Typography variant="body2" color='#1e163b'>STOX </Typography>
+                    <TableTitleTypography>STOX</TableTitleTypography>
                     </Grid>
                     <Grid size={6}>
-                        <Typography variant="body2" color='#1e163b'>NVIDIA</Typography>
+                    <TableTitleTypography>NVIDIA</TableTitleTypography>
                     </Grid>
 
                 </Grid>
                 <Grid container>
                     <Grid size={6}>
-                        <Typography color='#1e163b' variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(Number(stoxBalanceFormatted), 2)}</Typography>
+                        <NumbersTypography sx={{ fontWeight: 700 }}>{formatNumber(Number(stoxBalanceFormatted), 2)}</NumbersTypography>
                     </Grid>
                     <Grid size={6}>
-                        <Typography color='#1e163b' variant="body2" sx={{ fontWeight: 700 }}>{formatNumber(Number(nvidiaBalanceFormatted), 2)}</Typography>
+                        <NumbersTypography sx={{ fontWeight: 700 }}>{formatNumber(Number(nvidiaBalanceFormatted), 2)}</NumbersTypography>
                     </Grid>
                 </Grid>
             </SingleComponentStack>

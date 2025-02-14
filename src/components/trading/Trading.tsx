@@ -21,6 +21,7 @@ import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
+import { TableTitleTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
 
 
 export default function Trading() {
@@ -346,23 +347,27 @@ export default function Trading() {
                 },
                 '& .MuiOutlinedInput-input': {
                     padding: '10px 14px', // Adjust padding to vertically center the text
-                     // Smaller text size
+                    fontFamily: 'Michroma',
+                    fontSize: '0.6rem', 
+                    letterSpacing: '0.1em', 
                 },
                 '& .MuiInputAdornment-root': {
                     height: '25px',
+                    
                 },
+                 
             }}
             />
           </Grid>
 
           <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
             <Stack alignContent={"center"} justifyContent={"center"} alignItems={"center"} spacing={1}>
-              <Typography variant="caption" color='#1e163b'>
+            <TableTitleTypography>
                 {assetReserves !== null ? `Price in ${(assetReserves.symbol)} ` : 'Loading ccy...'}
-              </Typography>
-              <Typography variant="caption" color='#1e163b'>
+              </TableTitleTypography>
+              <NumbersTypography>
                 {formatNumber(priceInStox, 2)}
-              </Typography>
+              </NumbersTypography>
             </Stack>
 
           </Grid>
@@ -382,7 +387,9 @@ export default function Trading() {
                 },
                 '& .MuiOutlinedInput-input': {
                     padding: '10px 14px', // Adjust padding to vertically center the text
-                     // Smaller text size
+                    fontFamily: 'Michroma',
+                    fontSize: '0.6rem', 
+                    letterSpacing: '0.1em', 
                 },
                 '& .MuiInputAdornment-root': {
                     height: '25px',

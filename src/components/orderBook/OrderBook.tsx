@@ -21,7 +21,7 @@ import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
-import { SingleComponentStackTitleTypography } from '../../assets/elements/CustomTypography';
+import { ClickableAddressTypography, TableTitleTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
 import StackTitle from '../buildingBlocks/StackTitle';
 
 
@@ -31,7 +31,7 @@ const GridBidsNb = styled(Grid)(({ theme }: { theme: any }) => ({
     ...theme.typography.body2,
     textAlign: 'center',
     color: '#27AE60',
-    alignItems: 'center',
+    alignContent: 'center',
     height: 28,
 
 
@@ -336,10 +336,10 @@ export default function OrderBook(): JSX.Element {
             <SingleComponentStack height={500}>
                 <StackTitle title='Order Book' />
                 <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
-                    <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>ADDRESS</GridAsksHeader>
-                    <GridAsksHeader size={4}>PRICE</GridAsksHeader>
-                    <GridAsksHeader size={2}>QUANTITY</GridAsksHeader>
-                    <GridAsksHeader size={2}>ACTION</GridAsksHeader>
+                    <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>ADDRESS</TableTitleTypography></GridAsksHeader>
+                    <GridAsksHeader size={4}><TableTitleTypography>PRICE</TableTitleTypography></GridAsksHeader>
+                    <GridAsksHeader size={2}><TableTitleTypography>QUANTITY</TableTitleTypography></GridAsksHeader>
+                    <GridAsksHeader size={2}><TableTitleTypography>ACTION</TableTitleTypography></GridAsksHeader>
                 </Grid>
 
                 {/*   <Grid container columns={10} display={{ xs: 'flex', sm: 'none' }} >
@@ -352,28 +352,27 @@ export default function OrderBook(): JSX.Element {
                 {sortedSellSideOrderBook.map((order, _index) => (
                     <Grid container key={order.address} columns={12}>
                         <GridAsksAddr size={4}>
-                            <Tooltip title={order.address} placement="top">
-                                <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${order.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                                    <Typography color="red" variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                        {truncateAddress(order.address)}
-                                    </Typography>
-                                </Link>
-                            </Tooltip>
+                            <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${order.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                                <Stack>
+                                    <Tooltip title={order.address} placement="top">
+                                        <ClickableAddressTypography color="red" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
+                                            {truncateAddress(order.address)}
+                                        </ClickableAddressTypography>
+                                    </Tooltip>
+                                </Stack>
+                            </Link>
 
                         </GridAsksAddr>
 
                         <GridAsksNb size={4}>
-                            <Typography display={{ xs: "none", md: "flex" }} variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
+                            <NumbersTypography color="red" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                 {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'} )
-                            </Typography>
-                            <Typography display={{ xs: "flex", md: "none" }} variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;
-                            </Typography>
+                            </NumbersTypography>
                         </GridAsksNb>
                         <GridAsksNb size={2}>
-                            <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
+                            <NumbersTypography color="red" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                 {Number(order.quantity.toString()) / (1_000_000_000_000_000_000.0)}
-                            </Typography>
+                            </NumbersTypography>
                         </GridAsksNb>
                         <GridAction size={2}>
                             <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
@@ -396,30 +395,26 @@ export default function OrderBook(): JSX.Element {
                                 <Tooltip title={order.address} placement="top">
                                     <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${order.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
 
-                                        <Typography color='#27AE60' variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
+                                        <ClickableAddressTypography color='#27AE60' style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                             {truncateAddress(order.address)}
 
-                                        </Typography>
+                                        </ClickableAddressTypography>
                                     </Link>
                                 </Tooltip>
 
                             </GridBidsAddr>
 
-                            <GridBidsNb size={4} display={{ xs: "none", md: "flex" }}>
-                                <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
+                            <GridBidsNb size={4} >
+                                <NumbersTypography color='#27AE60' style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                     {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;( {Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'})
-                                </Typography>
+                                </NumbersTypography>
                             </GridBidsNb>
 
-                            <GridBidsNb size={4} display={{ xs: "flex", md: "none" }} alignItems={"center"} >
-                                <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                    {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;
-                                </Typography>
-                            </GridBidsNb>
+
                             <GridBidsNb size={2}>
-                                <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
+                                <NumbersTypography color='#27AE60' style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                     {Number(order.quantity.toString()) / (1_000_000_000_000_000_000.0)}
-                                </Typography>
+                                </NumbersTypography>
                             </GridBidsNb>
                             <GridAction size={2}>
                                 <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>

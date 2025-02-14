@@ -12,6 +12,8 @@ import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
 import { mockUsdtContractConfig } from '../../assets/contracts/dev/MockUsdt';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
+import { TableTitleTypography } from '../../assets/elements/CustomTypography';
+
 
 export default function UniswapPool() {
 
@@ -162,16 +164,16 @@ export default function UniswapPool() {
                     <Grid >
                         <Grid container >
                             <Grid size={3}>
-                                <Typography variant="body2" color='#1e163b'> {currencyReserves?.symbol || 'loading'} LIQUIDITY</Typography>
+                                <TableTitleTypography> {currencyReserves?.symbol || 'loading'} LIQUIDITY</TableTitleTypography>
                             </Grid>
                             <Grid size={3}>
-                                <Typography variant="body2" color='#1e163b'>{assetReserves?.symbol || 'loading'} LIQUIDITY</Typography>
+                                <TableTitleTypography>{assetReserves?.symbol || 'loading'} LIQUIDITY</TableTitleTypography>
                             </Grid>
                             <Grid size={3}>
-                                <Typography variant="body2" color='#1e163b'>  FEE</Typography>
+                                <TableTitleTypography>  FEE</TableTitleTypography>
                             </Grid>
                             <Grid size={3}>
-                                <Typography variant="body2" color='#1e163b'>PRICE (LIQUIDITIES RATIO)</Typography>
+                                <TableTitleTypography>PRICE (LIQUIDITIES RATIO)</TableTitleTypography>
                             </Grid>
                         </Grid>
                         <Grid container>
@@ -213,7 +215,7 @@ export default function UniswapPool() {
                 
                             <Grid container size={6} justifyContent={"center"} >
                                 <Grid container justifyContent={"center"} size={12}>
-                                    <Typography >MINT LIQUIDITY</Typography>
+                                    <TableTitleTypography >MINT LIQUIDITY</TableTitleTypography>
                                 </Grid>
                                 <Grid container justifyContent={"center"} size={12}>
                                     <LiquidityCreation />
@@ -225,7 +227,7 @@ export default function UniswapPool() {
                                 <Grid container justifyContent={"center"} size={12}>
                                 </Grid>
                             </Grid>
-                        </Grid> *
+                        </Grid>
                     </Grid>
                 </SingleComponentStack>
 
