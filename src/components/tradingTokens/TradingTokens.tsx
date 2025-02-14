@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import { Button, Link,} from '@mui/material';
+import { Button, Link, } from '@mui/material';
 import { DiscordIcon } from '../../assets/icons/DiscordIcon';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
@@ -21,41 +21,32 @@ const TradingTokens = () => {
                     title='tokens' />
                 <Grid container columnSpacing={2} alignItems="center">
                     <Grid container size={12}>
-                        <Grid container size={3}>
-                            <Stack>
-                                <SubtitleTypography>
-                                    Order Book Contract
-                                </SubtitleTypography>
-                                <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${nvidiaOrderBookContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                                    <ClickableTxHashTypography>{nvidiaOrderBookContractConfig.address}</ClickableTxHashTypography>
-                                </Link>
-
-                            </Stack>
+                        <Grid container direction="column" rowGap={1} size={3}>
+                            <SubtitleTypography>
+                                Order Book Contract
+                            </SubtitleTypography>
+                            <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${nvidiaOrderBookContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                                <ClickableTxHashTypography>{nvidiaOrderBookContractConfig.address}</ClickableTxHashTypography>
+                            </Link>
                         </Grid>
-
-                        <Grid container size={3}>
-                            <Stack>
-                                <SubtitleTypography>
-                                    NVIDIA Token
-                                </SubtitleTypography>
-                                <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${nvidiaContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                                    <ClickableTxHashTypography>{nvidiaContractConfig.address}</ClickableTxHashTypography>
-                                </Link>
-
-                            </Stack>
+                        <Grid container direction="column" rowGap={1} size={3}>
+                            <SubtitleTypography>
+                                NVIDIA Token
+                            </SubtitleTypography>
+                            <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${nvidiaContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                                <ClickableTxHashTypography>{nvidiaContractConfig.address}</ClickableTxHashTypography>
+                            </Link>
                         </Grid>
-                        <Grid container size={3}>
-                            <Stack>
-                                <SubtitleTypography>
-                                    STOX Token
-                                </SubtitleTypography>
-                                <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${stoxContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                                    <ClickableTxHashTypography>{stoxContractConfig.address}</ClickableTxHashTypography>
-                                </Link>
+                        <Grid container direction="column" rowGap={1} size={3}>
 
-                            </Stack>
+                            <SubtitleTypography>
+                                STOX Token
+                            </SubtitleTypography>
+                            <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${stoxContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                                <ClickableTxHashTypography>{stoxContractConfig.address}</ClickableTxHashTypography>
+                            </Link>
                         </Grid>
-                        <Grid container offset='auto'  justifyItems={'center'} size={3}>
+                        <Grid container offset='auto' justifyItems={'center'} size={3}>
 
                             <Button
                                 variant="contained"

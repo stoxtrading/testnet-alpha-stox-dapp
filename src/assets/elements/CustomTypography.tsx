@@ -158,7 +158,7 @@ interface ButtonTypographyProps extends TypographyProps {
     color?: string;
 }
 
-const ButtonTypography: React.FC<ButtonTypographyProps> = ( {color = '#3f51b5', ...props}) => {
+const ButtonTypography: React.FC<ButtonTypographyProps> = ( {color = '#1e163b', ...props}) => {
     return (
         <Typography
             {...props}
@@ -166,7 +166,7 @@ const ButtonTypography: React.FC<ButtonTypographyProps> = ( {color = '#3f51b5', 
             color={color}
             sx={{
                 textTransform: 'uppercase',
-                fontWeight: 500,
+                fontWeight: 900,
                 fontFamily: 'Michroma',
                 fontSize: '0.5rem',
                 ...props.sx, // Allow overriding styles
@@ -186,3 +186,4 @@ export { NumbersTypography }
 export { ClickableTxHashTypography }
 export { ClickableAddressTypography }
 export { SubtitleTypography }
+export {ButtonTypography}

@@ -4,7 +4,6 @@ import {
   useWriteContract
 } from 'wagmi'
 import { styled } from '@mui/material/styles';
-import { Typography } from '@mui/material';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
@@ -21,7 +20,7 @@ import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
-import { TableTitleTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
+import { TableTitleTypography, NumbersTypography, ButtonTypography } from '../../assets/elements/CustomTypography';
 
 
 export default function Trading() {
@@ -422,7 +421,9 @@ export default function Trading() {
             }}
             >
               {buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming ? 'Pending...' : <>
-                BUY
+                <ButtonTypography
+                color='white'
+                >BUY</ButtonTypography>
               </>}
             </BuyButton>
           </Grid>
@@ -445,7 +446,9 @@ export default function Trading() {
             }}
             >
               {buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming ? 'Pending...' : <>
-                SELL
+                <ButtonTypography
+                color='white'
+                >SELL</ButtonTypography>
               </>}
             </SellButton>
           </Grid>

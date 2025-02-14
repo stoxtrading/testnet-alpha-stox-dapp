@@ -196,7 +196,8 @@ export default function Withdrawals() {
                             size="small"
                         >
                             {withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'Pending...' : <>
-                                WITHDRAW
+                                <ButtonTypography
+                                >WITHDRAW</ButtonTypography>
                             </>}
                         </WithdrawButton>
                     </Grid>
