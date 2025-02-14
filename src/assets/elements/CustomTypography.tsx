@@ -25,6 +25,27 @@ const SingleComponentStackTitleTypography: React.FC<CustomTypographyProps> = ({ 
     );
 };
 
+const HeaderMenuTypography: React.FC<TypographyProps> = (props) => {
+    return (
+        <Typography
+            {...props}
+            color='#1e163b' 
+            sx={{
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                fontWeight: 700,
+                fontFamily: 'Michroma',
+                fontSize: '0.9rem',
+                
+                ...props.sx, // Allow overriding styles
+            }}
+        >
+            {props.children}
+        </Typography>
+    );
+};
+
 
 export { SubSectionTitleTypography };
 export { SingleComponentStackTitleTypography };
+export { HeaderMenuTypography };

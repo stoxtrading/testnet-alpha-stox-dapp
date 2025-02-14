@@ -12,7 +12,7 @@ import { GridProps } from '@mui/material';
 import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
 import { useAccount } from 'wagmi'
 import { truncateAddress } from '../../tools/Tools';
-
+import {HeaderMenuTypography} from '../../assets/elements/CustomTypography';
 
 interface RedirectGridProps extends GridProps {
     redirectTo: string;
@@ -23,21 +23,6 @@ interface HeaderProps {
     onClick: () => void;
 }
 
-const HeaderMenuTypography: React.FC<TypographyProps> = (props) => {
-    return (
-        <Typography
-            {...props}
-            color="#99b8ed"
-            sx={{
-                fontFamily: 'Anta',
-                fontSize: '1.2rem',
-                ...props.sx, // Allow overriding styles
-            }}
-        >
-            {props.children}
-        </Typography>
-    );
-};
 
 const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo, children, ...gridProps }) => {
     const navigate = useNavigate();
@@ -87,7 +72,7 @@ const Header: React.FC<HeaderProps> = () => {
 
 
     return (
-        <AppBar position="fixed" className="appBar" sx={{ backgroundColor: "#1e163b" }} >
+        <AppBar position="fixed" className="appBar" sx={{ backgroundColor: "white" }} >
             <Grid container >
                 <Grid size={2} alignItems='center' justifyContent="center" alignContent="center" justifyItems="center" display={{ xs: 'flex', sm: 'flex', md: 'none', }}>
                     <IconButton size="small" onClickCapture={handleClick}>
