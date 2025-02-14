@@ -154,6 +154,30 @@ const SubtitleTypography: React.FC<SubtitleTypographyProps> = ( {color = '#3f51b
 };
 
 
+interface ButtonTypographyProps extends TypographyProps {
+    color?: string;
+}
+
+const ButtonTypography: React.FC<ButtonTypographyProps> = ( {color = '#3f51b5', ...props}) => {
+    return (
+        <Typography
+            {...props}
+            
+            color={color}
+            sx={{
+                textTransform: 'uppercase',
+                fontWeight: 500,
+                fontFamily: 'Michroma',
+                fontSize: '0.5rem',
+                ...props.sx, // Allow overriding styles
+            }}
+        >
+            {props.children}
+        </Typography>
+    );
+};
+
+
 export { SubSectionTitleTypography };
 export { SingleComponentStackTitleTypography };
 export { HeaderMenuTypography };

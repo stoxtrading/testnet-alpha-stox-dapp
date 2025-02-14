@@ -2,7 +2,6 @@ import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/Nvidia
 import { useReadContract } from 'wagmi';
 import { useAccount } from 'wagmi'
 import Grid from '@mui/material/Grid2';
-import { Typography, Stack, } from '@mui/material';
 import {
 
     useWaitForTransactionReceipt,
@@ -17,7 +16,7 @@ import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
-import { TableTitleTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
+import { TableTitleTypography, NumbersTypography, ButtonTypography } from '../../assets/elements/CustomTypography';
 
 
 const WithdrawButton = styled(Button)<ButtonProps>(() => ({
@@ -216,7 +215,7 @@ export default function Withdrawals() {
 
                         >
                             {withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'Pending...' : <>
-                                WITHDRAW
+                                <ButtonTypography>WITHDRAW</ButtonTypography>
                             </>}</WithdrawButton>
 
 
