@@ -22,6 +22,7 @@ import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import { ClickableAddressTypography, TableTitleTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
 import StackTitle from '../buildingBlocks/StackTitle';
+import CustomBackdrop from '../../assets/elements/CustomBackdrop';
 
 
 const GridBidsNb = styled(Grid)(() => ({
@@ -115,13 +116,22 @@ const GridAction = styled(Grid)(() => ({
 
 
 
-
-
 const truncateAddress = (address: string) => {
     return `${address.slice(0, 6)}...${address.slice(-4)}`;
 };
 
 export default function OrderBook(): JSX.Element {
+
+    const [backDropOpen, setBackDropOpen] = useState(false);
+
+    const handleBackDropOpen = () => {
+        setBackDropOpen(true);
+    };
+
+    const handleBackDropClose = () => {
+        setBackDropOpen(false);
+    };
+
 
     interface Order {
         address: string;
@@ -139,19 +149,6 @@ export default function OrderBook(): JSX.Element {
 
 
 
-    /*const [currencyReserves, setCurrencyReserves] = useState<any | null>(null);
-    const [assetReserves, setAssetReserves] = useState<any | null>(null);*/
-
-
-    /* getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2").then((reserves) => {
-         setCurrencyReserves(reserves.token0);
-         setAssetReserves(reserves.token1);
-         setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
-         console.log(reserves)
- 
-     });*/
-
-
     interface TokenInfo {
         address: string;
         symbol: string;
@@ -162,13 +159,13 @@ export default function OrderBook(): JSX.Element {
     const [stoxPrice, setStoxPrice] = useState<number>(0);
 
 
-    const [loading, setLoading] = useState<boolean>(true);
     const [poolError, setPoolError] = useState<string | null>(null);
 
 
     useEffect(() => {
         const fetchPoolReserves = async () => {
             try {
+                handleBackDropOpen();
                 const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
                 setAssetReserves(reserves.token1);
                 setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
@@ -181,7 +178,7 @@ export default function OrderBook(): JSX.Element {
                     setPoolError(String(err));
                 }
             } finally {
-                setLoading(false);
+                handleBackDropClose();
             }
         };
 
@@ -317,6 +314,7 @@ export default function OrderBook(): JSX.Element {
         }).format(number);
     };
 
+    if (poolError) return <div color="white">Error: {poolError}</div>;
 
 
 
@@ -343,15 +341,16 @@ export default function OrderBook(): JSX.Element {
                 {sortedSellSideOrderBook.map((order) => (
                     <Grid container key={order.address} columns={12}>
                         <GridAsksAddr size={4}>
-                            <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${order.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                                 <Stack>
                                     <Tooltip title={order.address} placement="top">
+                                    <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${order.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                                         <ClickableAddressTypography color="red" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                             {truncateAddress(order.address)}
                                         </ClickableAddressTypography>
+                                        </Link>
+
                                     </Tooltip>
                                 </Stack>
-                            </Link>
 
                         </GridAsksAddr>
 
@@ -423,6 +422,8 @@ export default function OrderBook(): JSX.Element {
 
 
             </SingleComponentStack>
+            <CustomBackdrop open={backDropOpen} handleClose={handleBackDropClose} />
+
             <Snackbar
                 open={snackBarOpen}
                 autoHideDuration={3000}
