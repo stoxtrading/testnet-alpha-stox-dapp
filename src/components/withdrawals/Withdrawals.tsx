@@ -15,6 +15,7 @@ import React, { useState, useEffect, } from 'react';
 
 import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
+import SingleComponentStack from '../../assets/elements/CustomStack';
 
 const WithdrawButton = styled(Button)<ButtonProps>(() => ({
     color: '#1e163b',
@@ -163,7 +164,7 @@ export default function Withdrawals() {
 
 
 
-            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }} height={120}>
+            <SingleComponentStack height={120}>
 
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid size={1} >
@@ -230,7 +231,7 @@ export default function Withdrawals() {
 
                 </Grid>
 
-            </Stack>
+            </SingleComponentStack>
             <Snackbar
                 open={snackBarOpen}
                 autoHideDuration={3000}

@@ -19,6 +19,7 @@ import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
+import SingleComponentStack from '../../assets/elements/CustomStack';
 
 
 export default function Trading() {
@@ -322,7 +323,7 @@ export default function Trading() {
 
 
     }}>
-      <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2}} height={{ xs: 180, md: 120 }}>
+      <SingleComponentStack height={{ xs: 180, md: 120 }}>
         <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
           <Grid size={1} >
             <Typography sx={{ fontWeight: 700 }} color='#1e163b' variant="overline">Trading</Typography>
@@ -446,7 +447,7 @@ export default function Trading() {
           </Grid>
 
         </Grid>
-      </Stack>
+      </SingleComponentStack>
       <Snackbar
         open={snackBarOpen}
         autoHideDuration={3000}

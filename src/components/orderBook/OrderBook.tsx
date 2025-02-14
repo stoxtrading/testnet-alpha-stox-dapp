@@ -20,7 +20,7 @@ import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
-
+import SingleComponentStack from '../../assets/elements/CustomStack';
 
 
 const GridBidsNb = styled(Grid)(({ theme }: { theme: any }) => ({
@@ -331,7 +331,7 @@ export default function OrderBook(): JSX.Element {
         <Box sx={{
 
         }}>
-            <Stack sx={{ padding: 2, backgroundColor: 'rgb(224,228,241)', borderRadius: 2 }} height={500}>
+            <SingleComponentStack  height={500}>
 
 
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1, }}>
@@ -444,7 +444,7 @@ export default function OrderBook(): JSX.Element {
                 </Grid>
 
 
-            </Stack>
+            </SingleComponentStack>
             <Snackbar
                 open={snackBarOpen}
                 autoHideDuration={3000}

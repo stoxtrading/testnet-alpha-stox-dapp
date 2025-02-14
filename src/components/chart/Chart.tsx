@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import { Typography } from '@mui/material';
 import RealTimePrice from '../../components/realTimePrice/RealTimePrice';
+import SingleComponentStack from '../../assets/elements/CustomStack';
 
 const Chart = () => {
     const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -132,8 +133,7 @@ const Chart = () => {
         <Box sx={{
             
         }}>
-            <Stack sx={{ padding: 2, backgroundColor:  'rgba(153, 184, 237, 0.9)', borderRadius: 2,
-             }} height={500}
+            <SingleComponentStack height={500}
             >
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1}}>
                     <Grid>
@@ -155,7 +155,7 @@ const Chart = () => {
                         
                     }} 
                 />
-            </Stack>
+            </SingleComponentStack>
         </Box>
     );
 };

@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import { Link, Tooltip, Typography } from '@mui/material';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
+import SingleComponentStack from '../../assets/elements/CustomStack';
 
 
 const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
@@ -177,7 +178,7 @@ export default function Executions(): JSX.Element {
 
   return (
     <Box >
-      <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }}  >
+      <SingleComponentStack  >
 
 
 
@@ -242,7 +243,7 @@ export default function Executions(): JSX.Element {
 
           </Grid>
         ))}
-      </Stack>
+      </SingleComponentStack>
 
     </Box>
 

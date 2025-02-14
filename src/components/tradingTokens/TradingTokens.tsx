@@ -6,6 +6,7 @@ import { DiscordIcon } from '../../assets/icons/DiscordIcon';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
 import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
+import SingleComponentStack from '../../assets/elements/CustomStack';
 
 
 const TradingTokens = () => {
@@ -14,7 +15,7 @@ const TradingTokens = () => {
 
     return (
         <Box >
-            <Stack sx={{ padding: 2, backgroundColor: 'rgba(153, 184, 237, 0.9)', borderRadius: 2 }}  >
+            <SingleComponentStack >
                 <Grid container sx={{ marginBottom: 0.1, marginTop: -2.5, marginLeft: -1 }}>
                     <Grid container columnGap={1}>
                         <Grid>
@@ -82,7 +83,7 @@ const TradingTokens = () => {
                         <Stack justifyContent={'center'} alignContent={'center'} alignItems={'center'} direction={'column'}>
 
                             <Typography variant="caption" sx={{ color: "#2C3E50", fontWeight: 600 }}>
-                                GET TESTNET TOKENS ON DISCORD
+                                GET TESTNET TOKENS
                             </Typography>
                             <Button
                                 variant="contained"
@@ -107,7 +108,7 @@ const TradingTokens = () => {
                     </Grid>
 
                 </Grid>
-            </Stack>
+            </SingleComponentStack>
         </Box>
     );
 };
