@@ -106,7 +106,7 @@ const Header: React.FC<HeaderProps> = () => {
                             onClick={openAccountModal}
 
                             sx={{
-                                
+                                backgroundColor: '#1e163b',
                                 transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
                                 '&:hover': {
                                     backgroundColor: '#5e6bae',
@@ -117,7 +117,7 @@ const Header: React.FC<HeaderProps> = () => {
                                 paddingTop: "8px",
                                 paddingBottom: "5px",
                             }}>
-                            <HeaderMenuTypography>{truncateAddress(connectedWalletAddress)}</HeaderMenuTypography>
+                            <HeaderMenuTypography color = "white">{truncateAddress(connectedWalletAddress)}</HeaderMenuTypography>
                         </Grid>
                     ) : (
                         <Grid
@@ -129,6 +129,8 @@ const Header: React.FC<HeaderProps> = () => {
                             justifyItems="center"
                             onClick={openConnectModal}
                             sx={{
+                                
+                                backgroundColor: '#1e163b',
                                 transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
                                 '&:hover': {
                                     backgroundColor: '#5e6bae',
@@ -139,7 +141,7 @@ const Header: React.FC<HeaderProps> = () => {
                                 paddingTop: "8px",
                                 paddingBottom: "5px",
                             }}>
-                            <HeaderMenuTypography>Connect Wallet</HeaderMenuTypography>
+                            <HeaderMenuTypography color = "white">Connect Wallet</HeaderMenuTypography>
                         </Grid>
                     )}
                 </Grid>
