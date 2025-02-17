@@ -3,10 +3,8 @@ import { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import { CopyIcon } from "../../assets/icons/CopyIcon";
 import Box from '@mui/material/Box';
-import { Link, Tooltip, Typography } from '@mui/material';
+import { Link, Tooltip, } from '@mui/material';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
@@ -14,10 +12,9 @@ import StackTitle from '../buildingBlocks/StackTitle';
 import {NumbersTypography, ClickableTxHashTypography, TableTitleTypography} from '../../assets/elements/CustomTypography';
 
 
-const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
+const GridAsksNb = styled(Grid)(() => ({
   borderRadius: 0,
   backgroundColor: '#FFFFFF',
-  ...theme.typography.body2,
   textAlign: 'center',
   color: '#1e163b',
   alignContent: 'center',
@@ -25,11 +22,10 @@ const GridAsksNb = styled(Grid)(({ theme }: { theme: any }) => ({
 
 }));
 
-const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
+const GridAsksAddr = styled(Grid)(() => ({
   borderTopLeftRadius: 6,
   borderBottomLeftRadius: 6,
   backgroundColor: '#FFFFFF',
-  ...theme.typography.body2,
   textAlign: 'left',
   color: '#1e163b',
   alignContent: 'center',
@@ -37,11 +33,10 @@ const GridAsksAddr = styled(Grid)(({ theme }: { theme: any }) => ({
   paddingLeft: 6,
 }));
 
-const GridQty = styled(Grid)(({ theme }: { theme: any }) => ({
+const GridQty = styled(Grid)(() => ({
   borderTopRightRadius: 6,
   borderBottomRightRadius: 6,
   backgroundColor: '#FFFFFF',
-  ...theme.typography.body2,
   textAlign: 'center',
   color: '#1e163b',
   alignContent: 'center',
@@ -49,9 +44,8 @@ const GridQty = styled(Grid)(({ theme }: { theme: any }) => ({
 
 }));
 
-const GridAsksHeader = styled(Grid)(({ theme }: { theme: any }) => ({
+const GridAsksHeader = styled(Grid)(() => ({
   borderRadius: 0,
-  ...theme.typography.body2,
   textAlign: 'center',
   color: '#1e163b',
   paddingLeft: 2,
