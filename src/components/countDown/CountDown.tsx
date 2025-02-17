@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 import { HomePageAnnoucementTypography, CountdownNumbersTypography } from '../../assets/elements/CustomTypography';
 
 // filepath: /media/philippe/C0CE77BCCE77A974/github-2/testnet-alpha-stox-dapp/src/components/countDown/CountDown.tsx
