@@ -221,7 +221,7 @@ const CountdownNumbersTypography: React.FC<CountdownNumbersTypographyProps> = ({
                 fontFamily: 'Michroma',
                 ...props.sx, // Allow overriding styles
                 letterSpacing: '0.1em',
-                fontSize: '1.2rem',
+                fontSize: '1.5rem',
 
             }}
         >
@@ -229,6 +229,7 @@ const CountdownNumbersTypography: React.FC<CountdownNumbersTypographyProps> = ({
         </Typography>
     );
 };
+
 
 export { SubSectionTitleTypography };
 export { SingleComponentStackTitleTypography };
