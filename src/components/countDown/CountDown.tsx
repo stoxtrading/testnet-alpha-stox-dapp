@@ -28,11 +28,10 @@ const renderTime = (dimension, time) => {
     );
 };
 
-const getTimeSeconds = (time) => time % minuteSeconds;
-const getTimeMinutes = (time) => Math.floor((time % hourSeconds) / minuteSeconds);
-const getTimeHours = (time) => Math.floor((time % daySeconds) / hourSeconds);
-const getTimeDays = (time) => Math.floor(time / daySeconds);
-
+const getTimeSeconds = (time) => (time % minuteSeconds).toString().padStart(2, '0');
+const getTimeMinutes = (time) => Math.floor((time % hourSeconds) / minuteSeconds).toString().padStart(2, '0');
+const getTimeHours = (time) => Math.floor((time % daySeconds) / hourSeconds).toString().padStart(2, '0');
+const getTimeDays = (time) => Math.floor(time / daySeconds).toString().padStart(2, '0');
 export default function CountDown() {
     const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
     const endTime = stratTime + 2629743; // 1 month in seconds
