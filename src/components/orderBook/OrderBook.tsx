@@ -22,7 +22,6 @@ import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import { ClickableAddressTypography, TableTitleTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
 import StackTitle from '../buildingBlocks/StackTitle';
-import CustomBackdrop from '../../assets/elements/CustomBackdrop';
 
 
 const GridBidsNb = styled(Grid)(() => ({
@@ -122,15 +121,7 @@ const truncateAddress = (address: string) => {
 
 export default function OrderBook(): JSX.Element {
 
-    const [backDropOpen, setBackDropOpen] = useState(false);
-
-    const handleBackDropOpen = () => {
-        setBackDropOpen(true);
-    };
-
-    const handleBackDropClose = () => {
-        setBackDropOpen(false);
-    };
+ 
 
 
     interface Order {
@@ -165,7 +156,7 @@ export default function OrderBook(): JSX.Element {
     useEffect(() => {
         const fetchPoolReserves = async () => {
             try {
-                handleBackDropOpen();
+                
                 const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
                 setAssetReserves(reserves.token1);
                 setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
@@ -177,9 +168,9 @@ export default function OrderBook(): JSX.Element {
                 } else {
                     setPoolError(String(err));
                 }
-            } finally {
-                handleBackDropClose();
-            }
+            } /* finally {
+
+            } */
         };
 
         fetchPoolReserves();
@@ -422,7 +413,6 @@ export default function OrderBook(): JSX.Element {
 
 
             </SingleComponentStack>
-            <CustomBackdrop open={backDropOpen} handleClose={handleBackDropClose} />
 
             <Snackbar
                 open={snackBarOpen}

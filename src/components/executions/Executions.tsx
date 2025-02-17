@@ -1,57 +1,18 @@
-import { ethers } from 'ethers';
-import { useEffect, useState } from 'react';
+import { ethers, Interface, InterfaceAbi } from 'ethers';
+import { JSX, useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import { styled } from '@mui/material/styles';
+import { CircularProgress, } from '@mui/material';
+
 import Box from '@mui/material/Box';
 import { Link, Tooltip, } from '@mui/material';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
-import {NumbersTypography, ClickableTxHashTypography, TableTitleTypography} from '../../assets/elements/CustomTypography';
+import { NumbersTypography, ClickableTxHashTypography, TableTitleTypography } from '../../assets/elements/CustomTypography';
+import { GridAsksHeader, GridAsksAddr, GridAsksNb, GridQty } from '../../assets/elements/CustomGrid';
 
-
-const GridAsksNb = styled(Grid)(() => ({
-  borderRadius: 0,
-  backgroundColor: '#FFFFFF',
-  textAlign: 'center',
-  color: '#1e163b',
-  alignContent: 'center',
-  height: 28,
-
-}));
-
-const GridAsksAddr = styled(Grid)(() => ({
-  borderTopLeftRadius: 6,
-  borderBottomLeftRadius: 6,
-  backgroundColor: '#FFFFFF',
-  textAlign: 'left',
-  color: '#1e163b',
-  alignContent: 'center',
-  height: 28,
-  paddingLeft: 6,
-}));
-
-const GridQty = styled(Grid)(() => ({
-  borderTopRightRadius: 6,
-  borderBottomRightRadius: 6,
-  backgroundColor: '#FFFFFF',
-  textAlign: 'center',
-  color: '#1e163b',
-  alignContent: 'center',
-  height: 28,
-
-}));
-
-const GridAsksHeader = styled(Grid)(() => ({
-  borderRadius: 0,
-  textAlign: 'center',
-  color: '#1e163b',
-  paddingLeft: 2,
-  height: 30,
-  alignContent: 'center',
-}));
 
 interface ContractEvent {
   transactionHash: string;
@@ -60,7 +21,7 @@ interface ContractEvent {
   args: {
     amount1: bigint;
     amount2: bigint;
-    [key: string]: any;
+
   };
 }
 
@@ -75,19 +36,24 @@ const truncateTxHash = (address: string) => {
   return `${address.slice(0, 6)}...${address.slice(-6)}`;
 };
 
-
+interface TokenInfo {
+  address: string;
+  symbol: string;
+  reserve: string;
+}
 
 export default function Executions(): JSX.Element {
 
   const [executionsEvents, setExecutionsEvents] = useState<ContractEvent[]>([]);
 
-  const [currencyReserves, setCurrencyReserves] = useState<any | null>(null);
-  const [assetReserves, setAssetReserves] = useState<any | null>(null);
-  const [stoxPrice, setStoxPrice] = useState<any | null>(null);
+  const [currencyReserves, setCurrencyReserves] = useState<TokenInfo | null>(null);
+  const [assetReserves, setAssetReserves] = useState<TokenInfo | null>(null);
+  const [stoxPrice, setStoxPrice] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
 
   async function getContractEvents(
     contractAddress: string,
-    contractABI: any[],
+    contractABI: Interface | InterfaceAbi,
     eventName: string
   ): Promise<ContractEvent[]> {
     // Connect to Ethereum provider
@@ -152,6 +118,7 @@ export default function Executions(): JSX.Element {
 
   useEffect(() => {
     const fetchPoolReserves = async () => {
+      setLoading(true);
       try {
         const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
         setCurrencyReserves(reserves.token0);
@@ -172,12 +139,22 @@ export default function Executions(): JSX.Element {
     fetchPoolReserves();
   }, []);
 
+  if (loading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" >
+        <SingleComponentStack  >
+            <CircularProgress />
+        </SingleComponentStack>
+      </Box>
+    );
+  }
+
   return (
     <Box >
       <SingleComponentStack  >
 
-      <StackTitle
-                title='Executions'  />
+        <StackTitle
+          title='Executions' />
         <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
           <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>TX HASH</TableTitleTypography></GridAsksHeader>
           <GridAsksHeader size={2}><TableTitleTypography>TIMESTAMP</TableTitleTypography></GridAsksHeader>
@@ -235,10 +212,11 @@ export default function Executions(): JSX.Element {
   )
 }
 function setError(message: string) {
-  throw new Error('Function not implemented.');
+  return (
+    <div>
+      {message}
+    </div>
+  )
 }
 
-function setLoading(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
 

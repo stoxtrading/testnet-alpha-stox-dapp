@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid2';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AmountTextField from '../../assets/elements/CustomTextFields';
-import {SubSectionTitleTypography} from '../../assets/elements/CustomTypography';
+import { SubSectionTitleTypography } from '../../assets/elements/CustomTypography';
 import { useApproveTokenTransfer, ApprovalConfig, useMintLiquidity, LiquidityMintingConfig } from '../liquidityPoolPricing/Operations';
 import { mockUsdtContractConfig } from '../../assets/contracts/dev/MockUsdt';
 import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
@@ -13,6 +13,7 @@ import { ethers } from 'ethers';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useAccount } from 'wagmi';
+import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 
 export default function LiquidityCreation() {
 
@@ -29,8 +30,10 @@ export default function LiquidityCreation() {
 
     const { mintLiquidity, isLoading: isLiquidityMintingLoading, isSuccess: isLiquidityMintingSuccess, isError: isLiquidityMintingError, error: liquidityMintingError } = useMintLiquidity();
 
+    const [snackBarOpen, setSnackBarOpen] = useState(false);
+    const [snackbarMessage, setSnackbarMessage] = useState('');
 
-     const { address: connectedWalletAddress } = useAccount()
+    const { address: connectedWalletAddress } = useAccount()
 
     const handleAddLiquidity = async () => {
         const usdtApprovalConfig: ApprovalConfig = {
@@ -49,22 +52,22 @@ export default function LiquidityCreation() {
         };
 
         const liquidityMintingConfig: LiquidityMintingConfig = {
-            nonFungiblePoolManagerAddress:  nonFongiblePoolManagerContractConfig.address,
-            nonFungiblePoolManagerAbi:  nonFongiblePoolManagerContractConfig.abi,
+            nonFungiblePoolManagerAddress: nonFongiblePoolManagerContractConfig.address,
+            nonFungiblePoolManagerAbi: nonFongiblePoolManagerContractConfig.abi,
             token0: mockUsdtContractConfig.address,
             token1: stoxContractConfig.address,
             fee: 500,
             tickLower: 299300,
             tickUpper: 299400,
             amount0Desired: ethers.parseUnits("10000", 6),
-            amount1Desired: ethers.parseUnits("100000", 18), 
+            amount1Desired: ethers.parseUnits("100000", 18),
             amount0Min: 0,
             amount1Min: 0,
             recipient: String(connectedWalletAddress),
-            deadline:  Math.floor(Date.now() / 1000) + 60 * 10
+            deadline: Math.floor(Date.now() / 1000) + 60 * 10
         };
 
-        
+
 
         try {
             setIsApproving(true);
@@ -82,7 +85,7 @@ export default function LiquidityCreation() {
             console.log(`Approval successful for token: ${usdtApprovalConfig.tokenAddress}`);
 
         } catch (error) {
-            console.error('Approval failed:', error);
+            console.log('Approval failed: '+ String(error));
         } finally {
             setIsApproving(false);
         }
@@ -91,13 +94,56 @@ export default function LiquidityCreation() {
             await mintLiquidity(liquidityMintingConfig);
             console.log(`Liquidity Minting successful`);
         } catch (error) {
-            console.error('Liquidity Minting failed:', error);
+            console.log('Liquidity Minting failed: '+ String(error));
         } finally {
             setIsMinting(false);
         }
 
     };
 
+    useEffect(() => {
+        if (isSuccess) {
+            handleSnackBarOpen('Approval successful');
+        }
+    }, [isSuccess]);
+
+    useEffect(() => {
+        if (isError) {
+            handleSnackBarOpen('Approval failed: ' + String(error));
+        }
+    }, [isError]);
+
+    useEffect(() => {
+        if (isLiquidityMintingSuccess) {
+            handleSnackBarOpen('Liquidity Minting successful');
+        }
+    }, [isLiquidityMintingSuccess]);
+
+    useEffect(() => {
+        if (isLiquidityMintingError) {
+            handleSnackBarOpen('Liquidity Minting failed: ' + String(liquidityMintingError));
+        }
+    }, [isLiquidityMintingError]);
+
+    
+
+
+
+    const handleSnackBarOpen = (message: string) => {
+        setSnackbarMessage(message);
+        setSnackBarOpen(true);
+    };
+
+    const handleSnackBarClose = (
+        _event: React.SyntheticEvent | Event,
+        reason?: SnackbarCloseReason,
+    ) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setSnackBarOpen(false);
+    };
 
 
     return (
@@ -172,13 +218,20 @@ export default function LiquidityCreation() {
                     <Button
                         variant='contained'
                         onClick={() => handleAddLiquidity()}
-                        disabled={isApproving || isLoading ||isMinting || isLiquidityMintingLoading}
-                        
+                        disabled={isApproving || isLoading || isMinting || isLiquidityMintingLoading}
+
                     >
                         {isLoading ? 'Approving...' : 'Mint'}
                     </Button>
                 </Grid>
             </Grid>
+            <Snackbar
+                open={snackBarOpen}
+                autoHideDuration={3000}
+                onClose={handleSnackBarClose}
+                message={snackbarMessage}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            />
         </Stack>
 
     )
