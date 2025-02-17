@@ -15,7 +15,7 @@ export default function WelcomePage() {
     return (
 
         <CommonPageBackground>
-            <Box display="flex" flexDirection="column" marginTop="5vh" >
+            <Box display="flex" flexDirection="column"  >
             <CountDown/>
             </Box>
 

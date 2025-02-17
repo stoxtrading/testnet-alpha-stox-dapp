@@ -1,5 +1,5 @@
-import  { useState, useEffect } from 'react';
-import {  Stack } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { Stack } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { HomePageAnnoucementTypography, CountdownNumbersTypography } from '../../assets/elements/CustomTypography';
 
@@ -12,10 +12,10 @@ const daySeconds = 86400;
 
 
 
-const getTimeSeconds = (time : number) => (time % minuteSeconds).toString().padStart(2, '0');
-const getTimeMinutes = (time : number) => Math.floor((time % hourSeconds) / minuteSeconds).toString().padStart(2, '0');
-const getTimeHours = (time : number) => Math.floor((time % daySeconds) / hourSeconds).toString().padStart(2, '0');
-const getTimeDays = (time : number) => Math.floor(time / daySeconds).toString().padStart(2, '0');
+const getTimeSeconds = (time: number) => (time % minuteSeconds).toString().padStart(2, '0');
+const getTimeMinutes = (time: number) => Math.floor((time % hourSeconds) / minuteSeconds).toString().padStart(2, '0');
+const getTimeHours = (time: number) => Math.floor((time % daySeconds) / hourSeconds).toString().padStart(2, '0');
+const getTimeDays = (time: number) => Math.floor(time / daySeconds).toString().padStart(2, '0');
 export default function CountDown() {
     const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
     const endTime = stratTime + 2629743; // 1 month in seconds
@@ -38,13 +38,20 @@ export default function CountDown() {
 
     return (
         <Stack rowGap={5} alignItems={'center'} >
-            <Grid container justifyContent="center" spacing={4} paddingTop="10vh">
-                <HomePageAnnoucementTypography>
-                    STOX PRESALES 
-                </HomePageAnnoucementTypography>
-                <HomePageAnnoucementTypography>
-                    STARTS IN
-                </HomePageAnnoucementTypography>
+            <Grid container justifyContent="center" spacing={2} direction={'column'} >
+            <Grid container justifyContent="center" >
+                    <img src="./transparent-white-ring-logo.svg" alt="STOX" />
+                </Grid>
+                <Grid container justifyContent="center" >
+                    <HomePageAnnoucementTypography>
+                        STOX PRESALES
+                    </HomePageAnnoucementTypography>
+                </Grid>
+                <Grid container justifyContent="center" >
+                    <HomePageAnnoucementTypography>
+                        STARTS IN
+                    </HomePageAnnoucementTypography>
+                </Grid>
             </Grid>
             <Grid container justifyContent="center" >
                 <CountdownNumbersTypography>
