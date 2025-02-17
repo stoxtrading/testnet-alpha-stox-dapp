@@ -17,8 +17,11 @@ export default function WhitepaperPage() {
         <CommonPageBackground>
             <Box display="flex" flexDirection="column" marginTop="5vh" >
                 <Stack rowGap={2}>
-                    <Grid container columnSpacing={2} rowSpacing={2}>
+                    <Grid container columnSpacing={2} rowSpacing={2} textAlign="center">
                         <Grid size={12}>
+                            <HomePageAnnoucementTypography>
+                               White Paper 
+                            </HomePageAnnoucementTypography>
                             <HomePageAnnoucementTypography>
                                 Coming Soon...
                             </HomePageAnnoucementTypography>
