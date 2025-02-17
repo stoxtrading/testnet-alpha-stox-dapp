@@ -314,7 +314,7 @@ export default function OrderBook(): JSX.Element {
 
         }}>
             <SingleComponentStack height={500}>
-                <StackTitle title='Order Book' />
+                <StackTitle title='Limit Order Book' />
                 <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
                     <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>ADDRESS</TableTitleTypography></GridAsksHeader>
                     <GridAsksHeader size={4}><TableTitleTypography>PRICE</TableTitleTypography></GridAsksHeader>
