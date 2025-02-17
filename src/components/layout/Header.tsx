@@ -40,9 +40,11 @@ const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo, children, .
             alignContent="center"
             justifyItems="center"
             onClick={handleClick}
+            color= '#1e163b'
             sx={{
                 transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
                 '&:hover': {
+                    color: 'white',
                     backgroundColor: '#5e6bae',
                     cursor: 'pointer',
                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Add shadow on hover
@@ -81,19 +83,19 @@ const Header: React.FC<HeaderProps> = () => {
                 </Grid>
                 <Grid size={12} container alignItems='center' justifyContent="center" alignContent="center" justifyItems="center" display={{ xs: 'none', sm: 'none', md: 'flex', }}>
                     <HeaderMenuButton redirectTo="/">
-                        <HeaderMenuTypography>Home</HeaderMenuTypography>
+                        <HeaderMenuTypography color="inherit">Home</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/testnet-limit-order-book">
-                        <HeaderMenuTypography>Testnet Order Book</HeaderMenuTypography>
+                        <HeaderMenuTypography color="inherit">Testnet Order Book</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/liquidity">
-                        <HeaderMenuTypography>Liquidity</HeaderMenuTypography>
+                        <HeaderMenuTypography color="inherit">Liquidity</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/white-paper">
-                        <HeaderMenuTypography>White Paper</HeaderMenuTypography>
+                        <HeaderMenuTypography color="inherit">White Paper</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/roadmap">
-                        <HeaderMenuTypography>Roadmap</HeaderMenuTypography>
+                        <HeaderMenuTypography color="inherit">Roadmap</HeaderMenuTypography>
                     </HeaderMenuButton>
                     {connectedWalletAddress ? (
                         <Grid

@@ -21,18 +21,21 @@ const SingleComponentStackTitleTypography: React.FC<TypographyProps> = ({ childr
     );
 };
 
-const HeaderMenuTypography: React.FC<TypographyProps> = (props,) => {
+interface HeaderMenuTypographyProps extends TypographyProps {
+    color?: string;
+}
+
+const HeaderMenuTypography: React.FC<HeaderMenuTypographyProps> = ({ color = '#1e163b', ...props }) => {
     return (
         <Typography
-        color='#1e163b'
+            color={color}
             {...props}
-            
+variant='subtitle1'
             sx={{
                 textTransform: 'uppercase',
-                letterSpacing: '0.15em',
+                letterSpacing: '0.1em',
                 fontWeight: 700,
                 fontFamily: 'Michroma',
-                fontSize: '0.9rem',
 
                 ...props.sx, // Allow overriding styles
             }}
@@ -63,7 +66,7 @@ interface NumbersTypographyProps extends TypographyProps {
     color?: string;
 }
 
-const NumbersTypography: React.FC<NumbersTypographyProps> = ( {color = '#1e163b', ...props}) => {
+const NumbersTypography: React.FC<NumbersTypographyProps> = ({ color = '#1e163b', ...props }) => {
     return (
         <Typography
             {...props}
@@ -87,7 +90,7 @@ const ClickableTxHashTypography: React.FC<TypographyProps> = (props) => {
             {...props}
             color='#1e163b'
             sx={{
-                 wordBreak: 'break-all', cursor: 'pointer',
+                wordBreak: 'break-all', cursor: 'pointer',
                 '&:hover': {
                     color: '#3f51b5',
                     textDecoration: 'underline',
@@ -114,7 +117,7 @@ const ClickableAddressTypography: React.FC<ClickableAddressTypographyProps> = ({
             {...props}
             color={color}
             sx={{
-                 wordBreak: 'break-all', cursor: 'pointer',
+                wordBreak: 'break-all', cursor: 'pointer',
                 '&:hover': {
                     color: '#3f51b5',
                     textDecoration: 'underline',
@@ -134,11 +137,11 @@ interface SubtitleTypographyProps extends TypographyProps {
     color?: string;
 }
 
-const SubtitleTypography: React.FC<SubtitleTypographyProps> = ( {color = '#3f51b5', ...props}) => {
+const SubtitleTypography: React.FC<SubtitleTypographyProps> = ({ color = '#3f51b5', ...props }) => {
     return (
         <Typography
             {...props}
-            
+
             color={color}
             sx={{
                 textTransform: 'uppercase',
@@ -158,11 +161,11 @@ interface ButtonTypographyProps extends TypographyProps {
     color?: string;
 }
 
-const ButtonTypography: React.FC<ButtonTypographyProps> = ( {color = '#1e163b', ...props}) => {
+const ButtonTypography: React.FC<ButtonTypographyProps> = ({ color = '#1e163b', ...props }) => {
     return (
         <Typography
             {...props}
-            
+
             color={color}
             sx={{
                 textTransform: 'uppercase',
@@ -182,7 +185,7 @@ interface HomePageAnnoucementTypographyProps extends TypographyProps {
     color?: string;
 }
 
-const HomePageAnnoucementTypography: React.FC<HomePageAnnoucementTypographyProps> = ( {color = '#ffff', ...props}) => {
+const HomePageAnnoucementTypography: React.FC<HomePageAnnoucementTypographyProps> = ({ color = '#ffff', ...props }) => {
     return (
         <Typography
             {...props}
@@ -206,11 +209,11 @@ interface CountdownNumbersTypographyProps extends TypographyProps {
     color?: string;
 }
 
-const CountdownNumbersTypography: React.FC<CountdownNumbersTypographyProps> = ( {color = '#ffff', ...props}) => {
+const CountdownNumbersTypography: React.FC<CountdownNumbersTypographyProps> = ({ color = '#ffff', ...props }) => {
     return (
         <Typography
             {...props}
-            
+
             color={color}
             sx={{
                 textTransform: 'uppercase',
@@ -235,6 +238,6 @@ export { NumbersTypography }
 export { ClickableTxHashTypography }
 export { ClickableAddressTypography }
 export { SubtitleTypography }
-export {ButtonTypography}
-export {HomePageAnnoucementTypography}
-export {CountdownNumbersTypography}
+export { ButtonTypography }
+export { HomePageAnnoucementTypography }
+export { CountdownNumbersTypography }
