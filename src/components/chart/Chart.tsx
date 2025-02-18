@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createChart, ISeriesApi, CandlestickData } from 'lightweight-charts';
-import {  CandlestickSeries } from 'lightweight-charts';
+import { CandlestickSeries } from 'lightweight-charts';
 
 import Box from '@mui/material/Box';
 import RealTimePrice from '../../components/realTimePrice/RealTimePrice';
@@ -28,14 +28,14 @@ const Chart = () => {
             const chartOptions = {
                 layout: {
                     textColor: 'black',
-                    
+
                     borderRadius: 3,
                 },
             };
             const chart = createChart(chartContainerRef.current, chartOptions);
             chartRef.current = chart;
 
-            const candlestickSeries = chart.addSeries(CandlestickSeries,{
+            const candlestickSeries = chart.addSeries(CandlestickSeries, {
                 upColor: '#26a69a',
                 downColor: '#ef5350',
                 borderVisible: false,
@@ -55,7 +55,7 @@ const Chart = () => {
                         close: item.last,
                     }));
 
-                    candlestickData.sort((a: { time: string }, b: { time: string }) => 
+                    candlestickData.sort((a: { time: string }, b: { time: string }) =>
                         new Date(a.time).getTime() - new Date(b.time).getTime()
                     );
 
@@ -99,7 +99,7 @@ const Chart = () => {
                             high: Math.max(lastCandle.high, newPrice),
                             low: Math.min(lastCandle.low, newPrice)
                         };
-                        
+
                         const updatedData = [...historicalData.slice(0, -1), updatedCandle];
                         setHistoricalData(updatedData);
                         candlestickSeriesRef.current.update(updatedCandle);
@@ -112,7 +112,7 @@ const Chart = () => {
                             low: newPrice,
                             close: newPrice
                         };
-                        
+
                         const updatedData = [...historicalData, newCandle];
                         setHistoricalData(updatedData);
                         candlestickSeriesRef.current.update(newCandle);
@@ -132,28 +132,28 @@ const Chart = () => {
         return () => {
             ws.close();
         };
-    },[]);
+    }, [historicalData]);
 
     return (
         <Box sx={{
-            
+
         }}>
             <SingleComponentStack height={500}
             >
                 <StackTitle
-                title='Market'  />
+                    title='Market' />
                 <RealTimePrice />
-                <div 
-                    ref={chartContainerRef} 
-                    style={{ 
-                        display: 'flex', 
-                        justifyContent: 'right', 
-                        alignItems: 'center', 
-                        maxWidth: '90vw', 
-                        height: '100%' ,
+                <div
+                    ref={chartContainerRef}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'right',
+                        alignItems: 'center',
+                        maxWidth: '90vw',
+                        height: '100%',
                         marginTop: 8,
-                        
-                    }} 
+
+                    }}
                 />
             </SingleComponentStack>
         </Box>
