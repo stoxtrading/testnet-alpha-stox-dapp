@@ -337,6 +337,7 @@ export default function Trading() {
       <SingleComponentStack height={{ xs: 180, md: 120 }}>
       <StackTitle
                 title='Trading'  />
+                <Grid container direction={'column'} rowGap={1} >
         <Grid container display="flex" justifyContent="center" alignItems="center" spacing={1}  >
 
           <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
@@ -464,6 +465,8 @@ export default function Trading() {
           </Grid>
 
         </Grid>
+        </Grid>
+
       </SingleComponentStack>
       <CustomBackdrop open={backDropOpen} handleClose={handleBackDropClose} />
 

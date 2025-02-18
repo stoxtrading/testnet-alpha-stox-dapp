@@ -49,24 +49,25 @@ export default function StoxEcosystem() {
         <Box>
 
             <SingleComponentStack height={120}>
-            <StackTitle
-                title='Balances'  />
+                <StackTitle
+                    title='Wallet Balances' />
+                <Grid container direction={'column'} rowGap={1} >
+                    <Grid container >
+                        <Grid size={6} justifyItems={'center'} >
+                            <TableTitleTypography>STOX</TableTitleTypography>
+                        </Grid>
+                        <Grid size={6} justifyItems={'center'} >
+                            <TableTitleTypography>NVIDIA</TableTitleTypography>
+                        </Grid>
 
-                <Grid container >
-                    <Grid size={6}>
-                    <TableTitleTypography>STOX</TableTitleTypography>
                     </Grid>
-                    <Grid size={6}>
-                    <TableTitleTypography>NVIDIA</TableTitleTypography>
-                    </Grid>
-
-                </Grid>
-                <Grid container>
-                    <Grid size={6}>
-                        <NumbersTypography sx={{ fontWeight: 700 }}>{formatNumber(Number(stoxBalanceFormatted), 2)}</NumbersTypography>
-                    </Grid>
-                    <Grid size={6}>
-                        <NumbersTypography sx={{ fontWeight: 700 }}>{formatNumber(Number(nvidiaBalanceFormatted), 2)}</NumbersTypography>
+                    <Grid container>
+                        <Grid size={6} justifyItems={'center'} >
+                            <NumbersTypography sx={{ fontWeight: 700 }}>{formatNumber(Number(stoxBalanceFormatted), 2)}</NumbersTypography>
+                        </Grid>
+                        <Grid size={6} justifyItems={'center'} >
+                            <NumbersTypography sx={{ fontWeight: 700 }}>{formatNumber(Number(nvidiaBalanceFormatted), 2)}</NumbersTypography>
+                        </Grid>
                     </Grid>
                 </Grid>
             </SingleComponentStack>
