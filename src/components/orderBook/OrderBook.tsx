@@ -339,15 +339,13 @@ export default function OrderBook(): JSX.Element {
                                             {truncateAddress(order.address)}
                                         </ClickableAddressTypography>
                                         </Link>
-
                                     </Tooltip>
                                 </Stack>
-
                         </GridAsksAddr>
 
                         <GridAsksNb size={4}>
                             <NumbersTypography color="red" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'} )
+                                ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'} )
                             </NumbersTypography>
                         </GridAsksNb>
                         <GridAsksNb size={2}>
@@ -375,10 +373,8 @@ export default function OrderBook(): JSX.Element {
                             <GridBidsAddr size={4}>
                                 <Tooltip title={order.address} placement="top">
                                     <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${order.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-
                                         <ClickableAddressTypography color='#27AE60' style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                             {truncateAddress(order.address)}
-
                                         </ClickableAddressTypography>
                                     </Link>
                                 </Tooltip>
@@ -387,7 +383,7 @@ export default function OrderBook(): JSX.Element {
 
                             <GridBidsNb size={4} >
                                 <NumbersTypography color='#27AE60' style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                    {formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;( {Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'})
+                                    ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;( {Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'})
                                 </NumbersTypography>
                             </GridBidsNb>
 
