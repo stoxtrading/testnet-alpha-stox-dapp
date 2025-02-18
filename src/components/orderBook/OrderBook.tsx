@@ -322,13 +322,13 @@ export default function OrderBook(): JSX.Element {
                     <GridAsksHeader size={2}><TableTitleTypography>ACTION</TableTitleTypography></GridAsksHeader>
                 </Grid>
 
-                {/*   <Grid container columns={10} display={{ xs: 'flex', sm: 'none' }} >
-                    <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>ADDR</GridAsksHeader>
-                    <GridAsksHeader size={4}>PRICE</GridAsksHeader>
-                    <GridAsksHeader size={2}>QTY</GridAsksHeader>
-                    <GridAsksHeader size={2}>ACTION</GridAsksHeader>
+                  <Grid container columns={12} display={{ xs: 'flex', sm: 'none' }} >
+                   <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>ADDRESS</TableTitleTypography></GridAsksHeader>
+                    <GridAsksHeader size={5}><TableTitleTypography>PX</TableTitleTypography></GridAsksHeader>
+                    <GridAsksHeader size={2}><TableTitleTypography>QTY</TableTitleTypography></GridAsksHeader>
+                    <GridAsksHeader size={1}><TableTitleTypography></TableTitleTypography></GridAsksHeader>
                 </Grid>
- */}
+ 
                 {sortedSellSideOrderBook.map((order) => (
                     <Grid container key={order.address} columns={12}>
                         <GridAsksAddr size={4}>
@@ -343,9 +343,9 @@ export default function OrderBook(): JSX.Element {
                                 </Stack>
                         </GridAsksAddr>
 
-                        <GridAsksNb size={4}>
+                        <GridAsksNb size={{xs:5,sm:4}}>
                             <NumbersTypography color="red" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'} )
+                                ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'} )
                             </NumbersTypography>
                         </GridAsksNb>
                         <GridAsksNb size={2}>
@@ -353,7 +353,7 @@ export default function OrderBook(): JSX.Element {
                                 {Number(order.quantity.toString()) / (1_000_000_000_000_000_000.0)}
                             </NumbersTypography>
                         </GridAsksNb>
-                        <GridAction size={2}>
+                        <GridAction size={{xs:1,sm:2}}>
                             <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                 {order.address === connectedWalletAddress && (
                                     <Tooltip title="Cancel SELL order" placement="top">
@@ -381,9 +381,9 @@ export default function OrderBook(): JSX.Element {
 
                             </GridBidsAddr>
 
-                            <GridBidsNb size={4} >
+                            <GridBidsNb size={{xs:5,sm:4}} >
                                 <NumbersTypography color='#27AE60' style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                    ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&nbsp;( {Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'})
+                                    ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'})
                                 </NumbersTypography>
                             </GridBidsNb>
 
@@ -393,7 +393,7 @@ export default function OrderBook(): JSX.Element {
                                     {Number(order.quantity.toString()) / (1_000_000_000_000_000_000.0)}
                                 </NumbersTypography>
                             </GridBidsNb>
-                            <GridAction size={2}>
+                            <GridAction size={{xs:1,sm:2}}>
                                 <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                     {order.address === connectedWalletAddress && (
                                         <Tooltip title="Cancel BUY order" placement="top">
