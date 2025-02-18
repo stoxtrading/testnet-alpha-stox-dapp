@@ -374,7 +374,7 @@ export default function Trading() {
             />
           </Grid>
 
-          <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
+          <Grid display="flex" justifyContent="center" alignItems="center" >
             <Stack alignContent={"center"} justifyContent={"center"} alignItems={"center"} spacing={1}>
             <TableTitleTypography>
                 {assetReserves !== null ? `Price in ${(assetReserves?.symbol)} ` : 'Loading ccy...'}
@@ -417,7 +417,7 @@ export default function Trading() {
         </Grid>
         <Grid container display="flex" justifyContent="center" alignItems="center" spacing={1} sx={{ marginTop: 1 }} >
 
-          <Grid display="flex" justifyContent="center" alignItems="center" size={{ xs: 12, md: 4 }} >
+        <Grid container size={6} justifyContent={'center'} >
             <BuyButton
               disabled={buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming}
               onClick={placeBuyOrder}
@@ -442,7 +442,7 @@ export default function Trading() {
               </>}
             </BuyButton>
           </Grid>
-          <Grid display="flex" justifyContent="center" alignItems="center" size={{ xs: 12, md: 4 }}>
+          <Grid container size={6} justifyContent={'center'} >
             <SellButton
               disabled={buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming}
               onClick={placeSellOrder}

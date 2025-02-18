@@ -313,7 +313,7 @@ export default function OrderBook(): JSX.Element {
         <Box sx={{
 
         }}>
-            <SingleComponentStack height={500}>
+            <SingleComponentStack minHeight={250}>
                 <StackTitle title='Limit Order Book' />
                 <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
                     <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>ADDRESS</TableTitleTypography></GridAsksHeader>

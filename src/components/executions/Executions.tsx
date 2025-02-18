@@ -32,8 +32,8 @@ function formatEthValue(value: bigint): string {
 }
 
 
-const truncateTxHash = (address: string) => {
-  return `${address.slice(0, 6)}...${address.slice(-6)}`;
+const truncateTxHash = (address: string, displayedDigitsLeft: number, displayedDigitsRight: number) => {
+  return `${address.slice(0, displayedDigitsLeft)}...${address.slice(-displayedDigitsRight)}`;
 };
 
 interface TokenInfo {
@@ -46,7 +46,7 @@ export default function Executions(): JSX.Element {
 
   const [executionsEvents, setExecutionsEvents] = useState<ContractEvent[]>([]);
 
-  const [currencyReserves, setCurrencyReserves] = useState<TokenInfo | null>(null);
+  
   const [assetReserves, setAssetReserves] = useState<TokenInfo | null>(null);
   const [stoxPrice, setStoxPrice] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
@@ -121,7 +121,6 @@ export default function Executions(): JSX.Element {
       setLoading(true);
       try {
         const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
-        setCurrencyReserves(reserves.token0);
         setAssetReserves(reserves.token1);
         setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
         console.log("fetching STOX reserves", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))
@@ -143,7 +142,7 @@ export default function Executions(): JSX.Element {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" >
         <SingleComponentStack  >
-            <CircularProgress />
+          <CircularProgress />
         </SingleComponentStack>
       </Box>
     );
@@ -158,46 +157,40 @@ export default function Executions(): JSX.Element {
         <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
           <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>TX HASH</TableTitleTypography></GridAsksHeader>
           <GridAsksHeader size={2}><TableTitleTypography>TIMESTAMP</TableTitleTypography></GridAsksHeader>
-          <GridAsksHeader size={2}><TableTitleTypography>{currencyReserves?.symbol || 'loading'} PRICE</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader size={2}><TableTitleTypography>USD PRICE</TableTitleTypography></GridAsksHeader>
           <GridAsksHeader size={2}><TableTitleTypography>{assetReserves?.symbol || 'loading'} PRICE</TableTitleTypography></GridAsksHeader>
           <GridAsksHeader size={2}><TableTitleTypography>QUANTITY</TableTitleTypography></GridAsksHeader>
         </Grid>
 
         <Grid container columns={12} display={{ xs: 'flex', sm: 'none' }} >
-          <GridAsksHeader sx={{ textAlign: 'left' }} size={4}>TX HASH</GridAsksHeader>
-          <GridAsksHeader size={2}><TableTitleTypography>TIMESTAMP</TableTitleTypography></GridAsksHeader>
-          <GridAsksHeader size={2}><TableTitleTypography>{currencyReserves?.symbol || 'loading'} PX</TableTitleTypography></GridAsksHeader>
-          <GridAsksHeader size={2}><TableTitleTypography>{assetReserves?.symbol || 'loading'} PRICE</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>HASH</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader size={3}><TableTitleTypography>USD</TableTitleTypography></GridAsksHeader>
+          <GridAsksHeader size={3}><TableTitleTypography>{assetReserves?.symbol || 'loading'}</TableTitleTypography></GridAsksHeader>
           <GridAsksHeader size={2}><TableTitleTypography>QTY</TableTitleTypography></GridAsksHeader>
         </Grid>
 
         {executionsEvents.map((event, index) => (
           <Grid container key={index} columns={12}>
-            <GridAsksAddr
-
-              size={4}>
+            <GridAsksAddr size={{ xs: 4, md: 4 }}>
               <span>
-
-
                 <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/tx/${event.transactionHash}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                   <Stack>
                     <Tooltip title={event.transactionHash} placement="top">
-                      <ClickableTxHashTypography >{truncateTxHash(event.transactionHash)}</ClickableTxHashTypography></Tooltip>
+                      <ClickableTxHashTypography >{truncateTxHash(event.transactionHash,6,6)}</ClickableTxHashTypography></Tooltip>
                   </Stack>
                 </Link>
               </span>
-
             </GridAsksAddr>
-            <GridAsksNb size={2}> <NumbersTypography >
+            <GridAsksNb size={{ xs: 3, md: 2 }} display={{ xs: 'none', sm: 'flex', }}> <NumbersTypography >
               {event.timestamp}
             </NumbersTypography></GridAsksNb>
-            <GridAsksNb size={2}> <NumbersTypography >
-              {(Number(formatEthValue((event.args.amount1))) * stoxPrice).toFixed(4)}
+            <GridAsksNb size={{ xs: 3, md: 2 }}> <NumbersTypography >
+              {(Number(formatEthValue((event.args.amount1))) * stoxPrice).toFixed(2)}
             </NumbersTypography></GridAsksNb>
-            <GridAsksNb size={2}> <NumbersTypography >
+            <GridAsksNb size={{ xs: 3, md: 2 }}> <NumbersTypography >
               {(Number(formatEthValue((event.args.amount1)))).toFixed(2)}
             </NumbersTypography></GridAsksNb>
-            <GridQty size={2}>
+            <GridQty size={{ xs: 2, md: 2 }}>
               <NumbersTypography >
                 {formatEthValue(event.args.amount2)}
               </NumbersTypography>
