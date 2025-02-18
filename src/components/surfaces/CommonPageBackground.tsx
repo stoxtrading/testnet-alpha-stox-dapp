@@ -14,7 +14,7 @@ const CommonPageBackground: React.FC<CommonPageBackgroundProps> = ({ children })
         style={{
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
+            
             minHeight: '100vh',
             backgroundImage: 'url(./upscale-1.jpg)',
         }}

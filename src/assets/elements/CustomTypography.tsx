@@ -36,6 +36,7 @@ variant='subtitle1'
                 letterSpacing: '0.1em',
                 fontWeight: 700,
                 fontFamily: 'Michroma',
+                fontSize: '0.7rem',
 
                 ...props.sx, // Allow overriding styles
             }}
@@ -230,6 +231,30 @@ const CountdownNumbersTypography: React.FC<CountdownNumbersTypographyProps> = ({
     );
 };
 
+interface CountdownTextTypographyProps extends TypographyProps {
+    color?: string;
+}
+
+const CountdownTextTypography: React.FC<CountdownTextTypographyProps> = ({ color = '#ffff', ...props }) => {
+    return (
+        <Typography
+            {...props}
+
+            color={color}
+            sx={{
+                textTransform: 'uppercase',
+                fontWeight: 500,
+                fontFamily: 'Michroma',
+                ...props.sx, // Allow overriding styles
+                letterSpacing: '0.1em',
+                fontSize: '1rem',
+
+            }}
+        >
+            {props.children}
+        </Typography>
+    );
+};
 
 export { SubSectionTitleTypography };
 export { SingleComponentStackTitleTypography };
@@ -241,4 +266,4 @@ export { ClickableAddressTypography }
 export { SubtitleTypography }
 export { ButtonTypography }
 export { HomePageAnnoucementTypography }
-export { CountdownNumbersTypography }
+export { CountdownNumbersTypography, CountdownTextTypography }

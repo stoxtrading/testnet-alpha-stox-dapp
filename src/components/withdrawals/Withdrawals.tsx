@@ -165,28 +165,28 @@ export default function Withdrawals() {
             <StackTitle
                 title='Withdrawals'  />
 
-
+<Grid container direction={'column'} rowGap={1} >
                 <Grid container >
-                    <Grid size={6}>
+                    <Grid size={6} justifyItems={'center'}>
                         <TableTitleTypography>STOX</TableTitleTypography>
                     </Grid>
 
-                    <Grid size={6}>
+                    <Grid size={6} justifyItems={'center'}>
 
                         <TableTitleTypography>NVIDIA</TableTitleTypography>
                     </Grid>
 
                 </Grid>
                 <Grid container>
-                    <Grid size={6} >
+                    <Grid size={6} justifyItems={'center'} >
                         <NumbersTypography sx={{ fontWeight: 700 }}>{withdrawalbleCurrenciesFormatted?.toString()}</NumbersTypography>
                     </Grid>
-                    <Grid size={6}>
+                    <Grid size={6} justifyItems={'center'}>
                         <NumbersTypography  sx={{ fontWeight: 700 }}>{withdrawalbleSecuritiesFormatted?.toString()}</NumbersTypography>
                     </Grid>
                 </Grid>
                 <Grid container sx={{ marginTop: 1 }}>
-                    <Grid size={6} >
+                    <Grid container size={6} justifyContent={'center'} >
 
                         <WithdrawButton
                             disabled={withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming}
@@ -203,7 +203,7 @@ export default function Withdrawals() {
                     </Grid>
 
 
-                    <Grid size={6} >
+                    <Grid container size={6} justifyContent={'center'} >
 
 
 
@@ -222,6 +222,7 @@ export default function Withdrawals() {
 
                     </Grid>
 
+                </Grid>
                 </Grid>
 
             </SingleComponentStack>

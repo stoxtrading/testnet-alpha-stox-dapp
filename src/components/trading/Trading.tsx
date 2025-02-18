@@ -258,9 +258,13 @@ export default function Trading() {
     }
   }, [sellOrderError])
 
-
-  const [assetReserves, setAssetReserves] = useState<any | null>(null);
-  const [stoxPrice, setStoxPrice] = useState<any | null>(null);
+  interface TokenInfo {
+    address: string;
+    symbol: string;
+    reserve: string;
+}
+  const [assetReserves, setAssetReserves] = useState<TokenInfo>();
+  const [stoxPrice, setStoxPrice] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -337,6 +341,7 @@ export default function Trading() {
       <SingleComponentStack height={{ xs: 180, md: 120 }}>
       <StackTitle
                 title='Trading'  />
+                <Grid container direction={'column'} rowGap={1} >
         <Grid container display="flex" justifyContent="center" alignItems="center" spacing={1}  >
 
           <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
@@ -369,10 +374,10 @@ export default function Trading() {
             />
           </Grid>
 
-          <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
+          <Grid display="flex" justifyContent="center" alignItems="center" >
             <Stack alignContent={"center"} justifyContent={"center"} alignItems={"center"} spacing={1}>
             <TableTitleTypography>
-                {assetReserves !== null ? `Price in ${(assetReserves.symbol)} ` : 'Loading ccy...'}
+                {assetReserves !== null ? `Price in ${(assetReserves?.symbol)} ` : 'Loading ccy...'}
               </TableTitleTypography>
               <NumbersTypography>
                 {formatNumber(priceInStox, 2)}
@@ -412,7 +417,7 @@ export default function Trading() {
         </Grid>
         <Grid container display="flex" justifyContent="center" alignItems="center" spacing={1} sx={{ marginTop: 1 }} >
 
-          <Grid display="flex" justifyContent="center" alignItems="center" size={{ xs: 12, md: 4 }} >
+        <Grid container size={6} justifyContent={'center'} >
             <BuyButton
               disabled={buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming}
               onClick={placeBuyOrder}
@@ -437,7 +442,7 @@ export default function Trading() {
               </>}
             </BuyButton>
           </Grid>
-          <Grid display="flex" justifyContent="center" alignItems="center" size={{ xs: 12, md: 4 }}>
+          <Grid container size={6} justifyContent={'center'} >
             <SellButton
               disabled={buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming}
               onClick={placeSellOrder}
@@ -464,6 +469,8 @@ export default function Trading() {
           </Grid>
 
         </Grid>
+        </Grid>
+
       </SingleComponentStack>
       <CustomBackdrop open={backDropOpen} handleClose={handleBackDropClose} />
 
