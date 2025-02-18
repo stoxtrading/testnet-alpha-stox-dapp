@@ -258,9 +258,13 @@ export default function Trading() {
     }
   }, [sellOrderError])
 
-
-  const [assetReserves, setAssetReserves] = useState<any | null>(null);
-  const [stoxPrice, setStoxPrice] = useState<any | null>(null);
+  interface TokenInfo {
+    address: string;
+    symbol: string;
+    reserve: string;
+}
+  const [assetReserves, setAssetReserves] = useState<TokenInfo>();
+  const [stoxPrice, setStoxPrice] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -373,7 +377,7 @@ export default function Trading() {
           <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
             <Stack alignContent={"center"} justifyContent={"center"} alignItems={"center"} spacing={1}>
             <TableTitleTypography>
-                {assetReserves !== null ? `Price in ${(assetReserves.symbol)} ` : 'Loading ccy...'}
+                {assetReserves !== null ? `Price in ${(assetReserves?.symbol)} ` : 'Loading ccy...'}
               </TableTitleTypography>
               <NumbersTypography>
                 {formatNumber(priceInStox, 2)}
