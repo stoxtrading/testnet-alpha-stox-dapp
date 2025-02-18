@@ -13,8 +13,8 @@ export default function WhitepaperPage() {
 
         <CommonPageBackground>
 
-            <Box display="flex" flexDirection="column" alignItems={"center"} >
-                    <Whitepaper  />
+            <Box display="flex" flexDirection="column" alignItems={"center"} marginTop="5vh">
+                <Whitepaper />
 
             </Box>
 

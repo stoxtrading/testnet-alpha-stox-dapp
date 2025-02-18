@@ -39,17 +39,18 @@ export default function CountDown() {
     return (
         <Stack rowGap={5} alignItems={'center'} >
             <Grid container justifyContent="center" spacing={2} direction={'column'} >
-            <Grid container justifyContent="center" >
-                    <img src="./transparent-white-ring-logo.svg" alt="STOX" />
-                </Grid>
+
                 <Grid container justifyContent="center" >
-                    <HomePageAnnoucementTypography>
-                        STOX PRESALES
+                    <HomePageAnnoucementTypography sx={{fontSize: '4rem',}}>
+                        STOX
                     </HomePageAnnoucementTypography>
                 </Grid>
                 <Grid container justifyContent="center" >
-                    <HomePageAnnoucementTypography>
-                        STARTS IN
+                    <img src="./transparent-white-ring-logo.svg" alt="STOX" height="200" />
+                </Grid>
+                <Grid container justifyContent="center" >
+                    <HomePageAnnoucementTypography sx={{fontSize: '2rem',}}>
+                        PRESALES&#32;STARTS&nbsp;IN
                     </HomePageAnnoucementTypography>
                 </Grid>
             </Grid>
@@ -57,7 +58,9 @@ export default function CountDown() {
                 <CountdownNumbersTypography>
                     {`${remainingDays} days, ${remainingHours} hours, ${remainingMinutes} minutes, ${remainingSeconds} seconds`}
                 </CountdownNumbersTypography>
+                
             </Grid>
+
         </Stack>
     );
 }
