@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Grid2';
-import {  Stack } from '@mui/material';
-import Box from '@mui/material/Box';
+import { Stack } from '@mui/material';
+
 import { useEffect, useState } from 'react';
 import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing';
 /*import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
@@ -77,52 +77,49 @@ export default function UniswapPool() {
 
     };
 
-   
+
     if (error) return <div color="white">Error: {error}</div>;
     return (
 
-        <Box>
+        
             <Stack rowGap={2} >
 
 
                 <SingleComponentStack >
-                <StackTitle title='Contracts' />
-                    <Grid container columnSpacing={2} alignItems="center">
-                        <Grid container size={9}>
-                            <Grid container size={4}>
-                                <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${import.meta.env.VITE_APP_POOL_ADDRESS}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                                    <Grid container direction="column" rowGap={1}>
-                                        <SubtitleTypography>
-                                            UNISWAP V3 POOL
-                                        </SubtitleTypography>
-                                        <ClickableTxHashTypography>{import.meta.env.VITE_APP_POOL_ADDRESS}</ClickableTxHashTypography>
-                                    </Grid>
-                                </Link>
-                            </Grid>
-
-                            <Grid container size={4}>
-                                <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${mockUsdtContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                                    <Grid container direction="column" rowGap={1}>
-                                        <SubtitleTypography>
-                                            MOCK USDT TOKEN
-                                        </SubtitleTypography>
-                                        <ClickableTxHashTypography>{mockUsdtContractConfig.address}</ClickableTxHashTypography>
-                                    </Grid>
-                                </Link>
-                            </Grid>
-                            <Grid container size={4}>
-                                <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${stoxContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                                    <Grid container direction="column" rowGap={1}>
-                                        <SubtitleTypography>
-                                            STOX TOKEN
-                                        </SubtitleTypography>
-                                        <ClickableTxHashTypography>{stoxContractConfig.address}</ClickableTxHashTypography>
-                                    </Grid>
-                                </Link>
-                            </Grid>
+                    <StackTitle title='Contracts' />
+                    <Grid container rowGap={2}>
+                        <Grid container direction="column" size={{ sm: 12, md: 3 }}>
+                            <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${import.meta.env.VITE_APP_POOL_ADDRESS}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                                <Grid container direction="column" rowGap={1}>
+                                    <SubtitleTypography>
+                                        UNISWAP V3 POOL
+                                    </SubtitleTypography>
+                                    <ClickableTxHashTypography>{import.meta.env.VITE_APP_POOL_ADDRESS}</ClickableTxHashTypography>
+                                </Grid>
+                            </Link>
                         </Grid>
 
-                        <Grid container offset='auto'  justifyItems={'center'} size={3}>
+                        <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
+                            <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${mockUsdtContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                                <Grid container direction="column" rowGap={1}>
+                                    <SubtitleTypography>
+                                        MOCK USDT TOKEN
+                                    </SubtitleTypography>
+                                    <ClickableTxHashTypography>{mockUsdtContractConfig.address}</ClickableTxHashTypography>
+                                </Grid>
+                            </Link>
+                        </Grid>
+                        <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
+                            <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${stoxContractConfig.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                                <Grid container direction="column" rowGap={1}>
+                                    <SubtitleTypography>
+                                        STOX TOKEN
+                                    </SubtitleTypography>
+                                    <ClickableTxHashTypography>{stoxContractConfig.address}</ClickableTxHashTypography>
+                                </Grid>
+                            </Link>
+                        </Grid>
+                        <Grid container  justifyItems={'center'} size={{ sm: 12, md: 3 }}>
 
                             <Button
                                 variant="contained"
@@ -147,46 +144,50 @@ export default function UniswapPool() {
                             </Button>
                         </Grid>
 
+
+
                     </Grid>
                 </SingleComponentStack>
                 <SingleComponentStack >
-                <StackTitle title='V3 Pool' />
-                    <Grid >
-                        <Grid container >
-                            <Grid container direction="column" rowGap={1} size={3}>
+                    <StackTitle title='V3 Pool' />
+                    
+                        <Grid container rowGap={2}>
+                            <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
                                 <SubtitleTypography> {currencyReserves?.symbol || 'loading'} LIQUIDITY</SubtitleTypography>
                                 <NumbersTypography sx={{ fontWeight: 700 }}>
                                     {formatNumber(Number(currencyReserves?.reserve) || 0, 2)}
                                 </NumbersTypography>
                             </Grid>
-                            <Grid container direction="column" rowGap={1} size={3}>
+                            <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
                                 <SubtitleTypography>{assetReserves?.symbol || 'loading'} LIQUIDITY</SubtitleTypography>
                                 <NumbersTypography
                                     sx={{ fontWeight: 700 }}>
                                     {formatNumber(Number(assetReserves?.reserve) || 0, 2)}
                                 </NumbersTypography>
                             </Grid>
-                            <Grid container direction="column" rowGap={1} size={3}>
+                            <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
                                 <SubtitleTypography>  FEE</SubtitleTypography>
                                 <NumbersTypography
                                     sx={{ fontWeight: 700 }}>
                                     {formatNumber(Number(fee) || 0, 2)}
                                 </NumbersTypography>
                             </Grid>
-                            <Grid container direction="column" rowGap={1} size={3}>
-                                <SubtitleTypography>PRICE (LIQUIDITIES RATIO)</SubtitleTypography>
+                            <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
+                                <SubtitleTypography>PRICE (LIQUIDITY RATIO)</SubtitleTypography>
                                 <NumbersTypography
                                     sx={{ fontWeight: 700 }}>
                                     1 {assetReserves?.symbol || 'loading'} = {formatNumber(Number(currencyReserves?.reserve) / Number(assetReserves?.reserve), 2)} {currencyReserves?.symbol}
                                 </NumbersTypography>
                             </Grid>
                         </Grid>
-                       
-                         <Grid container marginTop="4vh" justifyContent={"center"}>
-                
+                        </SingleComponentStack>
+                        <SingleComponentStack>
+                        <StackTitle title='LIQUIDITY MINTING' />
+                        <Grid container marginTop="4vh" justifyContent={"center"}>
+
                             <Grid container size={6} justifyContent={"left"} >
                                 <Grid container justifyContent={"left"} size={12}>
-                                    <TableTitleTypography >MINT LIQUIDITY - COMING SOON</TableTitleTypography>
+                                    <TableTitleTypography >COMING SOON...</TableTitleTypography>
                                 </Grid>
                                 <Grid container justifyContent={"center"} size={12}>
 
@@ -200,12 +201,12 @@ export default function UniswapPool() {
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
+                    
                 </SingleComponentStack>
                 <CustomBackdrop open={backDropOpen} handleClose={handleBackDropClose} />
 
             </Stack>
-        </Box>
+        
 
     )
 
