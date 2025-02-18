@@ -50,25 +50,25 @@ const RealTimePrice = () => {
             <Stack   >
                 
                 <Grid container columnSpacing={2} alignItems="center">
-                    <Grid>
+                    <Grid size={{ xs: 4, sm: 2 }}>
                         <img src='./nvda.png' width="40" height="40" />
                     </Grid>
-                    <Grid>
+                    <Grid size={{ xs: 4, sm: 2 }}>
                         <TableTitleTypography sx={{ fontWeight: 600 }}>
                             NVIDIA Corp.
                         </TableTitleTypography>
                     </Grid>
-                    <Grid>
+                    <Grid size={{ xs: 4, sm: 2 }}>
                         <TableTitleTypography sx={{ fontWeight: 600 }}>
                             {price !== null ? `$${price.toFixed(2)}` : 'Loading...'}
                         </TableTitleTypography>
                     </Grid>
-                    <Grid>
+                    <Grid display={{ xs: 'none', sm: 'flex' }}>
                         <TableTitleTypography sx={{ fontWeight: 600 }}>
                             {priceChange !== null ? `${(priceChange * 100).toFixed(2)}%` : 'Loading...'}
                         </TableTitleTypography>
                     </Grid>
-                    <Grid>
+                    <Grid display={{ xs: 'none', sm: 'flex' }}>
                         <TableTitleTypography sx={{ fontWeight: 600 }}>
                             {priceChangeAbs !== null ? `(${(priceChangeAbs).toFixed(2)})` : 'Loading...'}
                         </TableTitleTypography>
