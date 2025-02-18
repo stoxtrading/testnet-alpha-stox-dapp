@@ -169,30 +169,30 @@ export default function UniswapPool() {
                 </Grid>
 
                 <Grid container rowGap={2}>
-                    <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
+                    <Grid container direction="column" rowGap={1} size={{ xs: 12, md: 3 }}>
                         <SubtitleTypography> {currencyReserves?.symbol || 'loading'} </SubtitleTypography>
-                        <NumbersTypography sx={{ fontWeight: 700 }}>
+                        <NumbersTypography sx={{ }}>
                             {formatNumber(Number(currencyReserves?.reserve) || 0, 2)}
                         </NumbersTypography>
                     </Grid>
-                    <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
+                    <Grid container direction="column" rowGap={1} size={{ xs: 12, md: 3 }}>
                         <SubtitleTypography>{assetReserves?.symbol || 'loading'} </SubtitleTypography>
                         <NumbersTypography
-                            sx={{ fontWeight: 700 }}>
+                            sx={{  }}>
                             {formatNumber(Number(assetReserves?.reserve) || 0, 2)}
                         </NumbersTypography>
                     </Grid>
-                    <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
+                    <Grid container direction="column" rowGap={1} size={{ xs: 12, md: 3 }}>
                         <SubtitleTypography>  FEE</SubtitleTypography>
                         <NumbersTypography
-                            sx={{ fontWeight: 700 }}>
+                            sx={{  }}>
                             {formatNumber(Number(fee) || 0, 2)}
                         </NumbersTypography>
                     </Grid>
-                    <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
+                    <Grid container direction="column" rowGap={1} size={{ xs: 12, md: 3 }}>
                         <SubtitleTypography>PRICE (LIQUIDITY RATIO)</SubtitleTypography>
                         <NumbersTypography
-                            sx={{ fontWeight: 700 }}>
+                            sx={{ }}>
                             1 {assetReserves?.symbol || 'loading'} = {formatNumber(Number(currencyReserves?.reserve) / Number(assetReserves?.reserve), 2)} {currencyReserves?.symbol}
                         </NumbersTypography>
                     </Grid>

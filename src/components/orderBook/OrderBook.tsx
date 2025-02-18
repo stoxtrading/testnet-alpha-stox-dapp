@@ -31,7 +31,6 @@ const GridBidsNb = styled(Grid)(() => ({
     textAlign: 'center',
     color: '#27AE60',
     alignContent: 'center',
-    height: 28,
 
 
 
@@ -44,7 +43,7 @@ const GridBidsAddr = styled(Grid)(() => ({
     textAlign: 'left',
     color: '#27AE60',
     alignContent: 'center',
-    height: 28,
+    
     paddingLeft: 6,
     wordBreak: 'break-all',
     fontWeight: 'bold',
@@ -62,7 +61,6 @@ const GridAsksHeader = styled(Grid)(() => ({
     textAlign: 'center',
     color: '#1e163b',
     paddingLeft: 2,
-    height: 30,
     alignContent: 'center',
 }));
 
@@ -72,7 +70,7 @@ const GridAsksNb = styled(Grid)(() => ({
     textAlign: 'center',
     color: 'red',
     alignContent: 'center',
-    height: 28,
+
 
 }));
 
@@ -83,7 +81,6 @@ const GridAsksAddr = styled(Grid)(() => ({
     textAlign: 'left',
 
     alignContent: 'center',
-    height: 28,
     paddingLeft: 6,
     wordBreak: 'break-all',
     fontWeight: 'bold',
