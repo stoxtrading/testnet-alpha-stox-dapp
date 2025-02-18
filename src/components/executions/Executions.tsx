@@ -2,7 +2,7 @@ import { ethers, Interface, InterfaceAbi } from 'ethers';
 import { JSX, useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import { CircularProgress, } from '@mui/material';
+import { CircularProgress, Fade, } from '@mui/material';
 
 import Box from '@mui/material/Box';
 import { Link, Tooltip, } from '@mui/material';
@@ -44,12 +44,11 @@ interface TokenInfo {
 
 export default function Executions(): JSX.Element {
 
-  const [executionsEvents, setExecutionsEvents] = useState<ContractEvent[]>([]);
-
-  
+  const [executionsEvents, setExecutionsEvents] = useState<ContractEvent[]>([]);  
   const [assetReserves, setAssetReserves] = useState<TokenInfo | null>(null);
   const [stoxPrice, setStoxPrice] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [dataLoading, setDataLoading] = useState(false);
+  
 
   async function getContractEvents(
     contractAddress: string,
@@ -118,7 +117,7 @@ export default function Executions(): JSX.Element {
 
   useEffect(() => {
     const fetchPoolReserves = async () => {
-      setLoading(true);
+      setDataLoading(true);
       try {
         const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
         setAssetReserves(reserves.token1);
@@ -131,29 +130,28 @@ export default function Executions(): JSX.Element {
           setError(String(err));
         }
       } finally {
-        setLoading(false);
+        setDataLoading(false);
       }
     };
 
     fetchPoolReserves();
   }, []);
 
-  if (loading) {
-    return (
-      <Box display="flex" justifyContent="center" alignItems="center" >
-        <SingleComponentStack  >
-          <CircularProgress />
-        </SingleComponentStack>
-      </Box>
-    );
-  }
+  
 
   return (
     <Box >
       <SingleComponentStack  >
 
-        <StackTitle
-          title='Executions' />
+      <Grid container>
+          <StackTitle
+            title='Executions' />
+          <Grid offset='auto' sx={{  marginTop: -1.25 }}>
+            <Fade in={dataLoading}>
+              <CircularProgress color="secondary" size="15px"/>
+            </Fade>
+          </Grid>
+        </Grid>
         <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
           <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>TX HASH</TableTitleTypography></GridAsksHeader>
           <GridAsksHeader size={2}><TableTitleTypography>TIMESTAMP</TableTitleTypography></GridAsksHeader>
