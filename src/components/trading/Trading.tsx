@@ -21,7 +21,7 @@ import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
 import { TableTitleTypography, NumbersTypography, ButtonTypography } from '../../assets/elements/CustomTypography';
-import CustomBackdrop from '../../assets/elements/CustomBackdrop';
+import { CircularProgress, Fade, } from '@mui/material';
 
 
 export default function Trading() {
@@ -29,18 +29,20 @@ export default function Trading() {
   const [price, setPrice] = useState('0');
   const [priceInStox, setPriceInStox] = useState(0);
   const [quantity, setQuantity] = useState('0');
+  const [dataLoading, setDataLoading] = useState(false);
 
-  const [backDropOpen, setBackDropOpen] = useState(false);
 
-    const handleBackDropOpen = () => {
-        setBackDropOpen(true);
-    };
 
-    const handleBackDropClose = () => {
-        setBackDropOpen(false);
-    };
 
- 
+  const handleBackDropOpen = () => {
+    setDataLoading(true);
+  };
+
+  const handleBackDropClose = () => {
+    setDataLoading(false);
+  };
+
+
 
   const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -262,33 +264,33 @@ export default function Trading() {
     address: string;
     symbol: string;
     reserve: string;
-}
+  }
   const [assetReserves, setAssetReserves] = useState<TokenInfo>();
   const [stoxPrice, setStoxPrice] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-          const fetchPoolReserves = async () => {
-              try {
-                handleBackDropOpen();
-                  const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
-                  setAssetReserves(reserves.token1);
-                  setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
-                  console.log("fetching STOX reserves", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))
-              } catch (err) {
-                  if (err instanceof Error) {
-                      setError(err.message);
-                  } else {
-                      setError(String(err));
-                  }
-              } finally {
-                handleBackDropClose();
+    const fetchPoolReserves = async () => {
+      try {
+        handleBackDropOpen();
+        const reserves = await getPoolReserves(`${import.meta.env.VITE_APP_POOL_ADDRESS}`);
+        setAssetReserves(reserves.token1);
+        setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
+        console.log("fetching STOX reserves", Number(reserves.token0.reserve) / Number(reserves.token1.reserve))
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError(String(err));
+        }
+      } finally {
+        handleBackDropClose();
 
-              }
-          };
-         
-          fetchPoolReserves();
-      }, []);
+      }
+    };
+
+    fetchPoolReserves();
+  }, []);
 
   async function placeSellOrder() {
 
@@ -334,145 +336,151 @@ export default function Trading() {
 
   return (
     <Box sx={{
-     
-
 
     }}>
+
       <SingleComponentStack height={{ xs: 180, md: 120 }}>
-      <StackTitle
-                title='Trading'  />
-                <Grid container direction={'column'} rowGap={1} >
-        <Grid container display="flex" justifyContent="center" alignItems="center" spacing={1}  >
-
-          <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
-
-            <TextField
-              size="small"
-              label="USD$"
-              id="outlined-basic"
-              
-              onChange={handlePriceChange}
-              defaultValue={0}
-              sx={{
-                width: '10ch',
-                height: '35px', // Increase the height
-                '& .MuiOutlinedInput-root': {
-                    height: '100%', // Ensure the input takes the full height of the TextField
-                },
-                '& .MuiOutlinedInput-input': {
-                    padding: '10px 14px', // Adjust padding to vertically center the text
-                    fontFamily: 'Michroma',
-                    fontSize: '0.6rem', 
-                    letterSpacing: '0.1em', 
-                },
-                '& .MuiInputAdornment-root': {
-                    height: '25px',
-                    
-                },
-                 
-            }}
-            />
+        <Grid container>
+          <StackTitle
+            title='Trading' />
+          <Grid offset='auto' sx={{  marginTop: -1.25 }}>
+            <Fade in={dataLoading}>
+              <CircularProgress color="secondary" size="15px"/>
+            </Fade>
           </Grid>
-
-          <Grid display="flex" justifyContent="center" alignItems="center" >
-            <Stack alignContent={"center"} justifyContent={"center"} alignItems={"center"} spacing={1}>
-            <TableTitleTypography>
-                {assetReserves !== null ? `Price in ${(assetReserves?.symbol)} ` : 'Loading ccy...'}
-              </TableTitleTypography>
-              <NumbersTypography>
-                {formatNumber(priceInStox, 2)}
-              </NumbersTypography>
-            </Stack>
-
-          </Grid>
-
-          <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
-            <TextField
-              size="small"
-              label="Quantity"
-              id="outlined-basic"
-              defaultValue={0}
-              
-              sx={{
-                width: '10ch',
-                height: '35px', // Increase the height
-                '& .MuiOutlinedInput-root': {
-                    height: '100%', // Ensure the input takes the full height of the TextField
-                },
-                '& .MuiOutlinedInput-input': {
-                    padding: '10px 14px', // Adjust padding to vertically center the text
-                    fontFamily: 'Michroma',
-                    fontSize: '0.6rem', 
-                    letterSpacing: '0.1em', 
-                },
-                '& .MuiInputAdornment-root': {
-                    height: '25px',
-                },
-            }}
-              //value={quantity}
-              onChange={handleQuantityChange}
-            />
-          </Grid>
-
         </Grid>
-        <Grid container display="flex" justifyContent="center" alignItems="center" spacing={1} sx={{ marginTop: 1 }} >
+        <Grid container direction={'column'} rowGap={1} >
+          <Grid container display="flex" justifyContent="center" alignItems="center" spacing={1}  >
 
-        <Grid container size={6} justifyContent={'center'} >
-            <BuyButton
-              disabled={buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming}
-              onClick={placeBuyOrder}
-              color="success"
-              variant="contained"
-              size="small"
-              sx={{
-                padding: '10px 20px',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                backgroundColor: '#4caf50',
-                '&:hover': {
+            <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
+
+              <TextField
+                size="small"
+                label="USD$"
+                id="outlined-basic"
+
+                onChange={handlePriceChange}
+                defaultValue={0}
+                sx={{
+                  width: '10ch',
+                  height: '35px', // Increase the height
+                  '& .MuiOutlinedInput-root': {
+                    height: '100%', // Ensure the input takes the full height of the TextField
+                  },
+                  '& .MuiOutlinedInput-input': {
+                    padding: '10px 14px', // Adjust padding to vertically center the text
+                    fontFamily: 'Michroma',
+                    fontSize: '0.6rem',
+                    letterSpacing: '0.1em',
+                  },
+                  '& .MuiInputAdornment-root': {
+                    height: '25px',
+
+                  },
+
+                }}
+              />
+            </Grid>
+
+            <Grid display="flex" justifyContent="center" alignItems="center" >
+              <Stack alignContent={"center"} justifyContent={"center"} alignItems={"center"} spacing={1}>
+                <TableTitleTypography>
+                  {assetReserves !== null ? `Price in ${(assetReserves?.symbol)} ` : 'Loading ccy...'}
+                </TableTitleTypography>
+                <NumbersTypography>
+                  {formatNumber(priceInStox, 2)}
+                </NumbersTypography>
+              </Stack>
+
+            </Grid>
+
+            <Grid display="flex" justifyContent="center" alignItems="center" size="grow">
+              <TextField
+                size="small"
+                label="Quantity"
+                id="outlined-basic"
+                defaultValue={0}
+
+                sx={{
+                  width: '10ch',
+                  height: '35px', // Increase the height
+                  '& .MuiOutlinedInput-root': {
+                    height: '100%', // Ensure the input takes the full height of the TextField
+                  },
+                  '& .MuiOutlinedInput-input': {
+                    padding: '10px 14px', // Adjust padding to vertically center the text
+                    fontFamily: 'Michroma',
+                    fontSize: '0.6rem',
+                    letterSpacing: '0.1em',
+                  },
+                  '& .MuiInputAdornment-root': {
+                    height: '25px',
+                  },
+                }}
+                //value={quantity}
+                onChange={handleQuantityChange}
+              />
+            </Grid>
+
+          </Grid>
+          <Grid container display="flex" justifyContent="center" alignItems="center" spacing={1} sx={{ marginTop: 1 }} >
+
+            <Grid container size={6} justifyContent={'center'} >
+              <BuyButton
+                disabled={buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming}
+                onClick={placeBuyOrder}
+                color="success"
+                variant="contained"
+                size="small"
+                sx={{
+                  padding: '10px 20px',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  backgroundColor: '#4caf50',
+                  '&:hover': {
                     backgroundColor: '#45a049',
-                },
-                textTransform: 'none',
-            }}
-            >
-              {buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming ? 'Pending...' : <>
-                <ButtonTypography
-                color='white'
-                >BUY</ButtonTypography>
-              </>}
-            </BuyButton>
-          </Grid>
-          <Grid container size={6} justifyContent={'center'} >
-            <SellButton
-              disabled={buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming}
-              onClick={placeSellOrder}
-              color="error"
-              variant="contained"
-              size="small"
-              sx={{
-                padding: '10px 20px',
-                fontSize: '1rem',
-                fontWeight: 'bold',
-                backgroundColor: '#f44336', // Red color for the button
-                '&:hover': {
+                  },
+                  textTransform: 'none',
+                }}
+              >
+                {buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming ? 'Pending...' : <>
+                  <ButtonTypography
+                    color='white'
+                  >BUY</ButtonTypography>
+                </>}
+              </BuyButton>
+            </Grid>
+            <Grid container size={6} justifyContent={'center'} >
+              <SellButton
+                disabled={buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming}
+                onClick={placeSellOrder}
+                color="error"
+                variant="contained"
+                size="small"
+                sx={{
+                  padding: '10px 20px',
+                  fontSize: '1rem',
+                  fontWeight: 'bold',
+                  backgroundColor: '#f44336', // Red color for the button
+                  '&:hover': {
                     backgroundColor: '#d32f2f', // Darker red color for hover state
-                },
-                textTransform: 'none',
-            }}
-            >
-              {buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming ? 'Pending...' : <>
-                <ButtonTypography
-                color='white'
-                >SELL</ButtonTypography>
-              </>}
-            </SellButton>
-          </Grid>
+                  },
+                  textTransform: 'none',
+                }}
+              >
+                {buyOrderIsPending || stoxApproveIsPending || sellOrderIsPending || nvidiaApproveIsPending || buyOrderIsConfirming || stoxApproveIsConfirming || sellOrderIsConfirming || nvidiaApproveIsConfirming ? 'Pending...' : <>
+                  <ButtonTypography
+                    color='white'
+                  >SELL</ButtonTypography>
+                </>}
+              </SellButton>
+            </Grid>
 
-        </Grid>
+          </Grid>
         </Grid>
 
       </SingleComponentStack>
-      <CustomBackdrop open={backDropOpen} handleClose={handleBackDropClose} />
+
 
       <Snackbar
         open={snackBarOpen}

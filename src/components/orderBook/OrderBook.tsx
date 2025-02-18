@@ -14,7 +14,7 @@ import {
     useWriteContract
 } from 'wagmi'
 import './OrderBook.css'
-import { Link, Typography } from '@mui/material';
+import { CircularProgress, Fade,  Link, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
@@ -121,8 +121,8 @@ const truncateAddress = (address: string) => {
 
 export default function OrderBook(): JSX.Element {
 
- 
 
+    const [dataLoading, setDataLoading] = useState(false);
 
     interface Order {
         address: string;
@@ -156,7 +156,7 @@ export default function OrderBook(): JSX.Element {
     useEffect(() => {
         const fetchPoolReserves = async () => {
             try {
-                
+                setDataLoading(true)
                 const reserves = await getPoolReserves("0xDA7FeB22c7701c4DFc05bF34F27AfD122dcd49e2");
                 setAssetReserves(reserves.token1);
                 setStoxPrice(Number(reserves.token0.reserve) / Number(reserves.token1.reserve));
@@ -168,9 +168,9 @@ export default function OrderBook(): JSX.Element {
                 } else {
                     setPoolError(String(err));
                 }
-            } /* finally {
-
-            } */
+            }  finally {
+                setDataLoading(false)
+            } 
         };
 
         fetchPoolReserves();
@@ -310,11 +310,19 @@ export default function OrderBook(): JSX.Element {
 
 
     return (
-        <Box sx={{
 
-        }}>
+        <Box sx={{}}>
+
             <SingleComponentStack minHeight={250}>
-                <StackTitle title='Limit Order Book' />
+                <Grid container>
+                    <StackTitle
+                        title='Limit Order Book' />
+                    <Grid offset='auto' sx={{ marginTop: -1.25 }}>
+                        <Fade in={dataLoading}>
+                            <CircularProgress color="secondary" size="15px" />
+                        </Fade>
+                    </Grid>
+                </Grid>
                 <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
                     <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>ADDRESS</TableTitleTypography></GridAsksHeader>
                     <GridAsksHeader size={4}><TableTitleTypography>PRICE</TableTitleTypography></GridAsksHeader>
@@ -322,28 +330,28 @@ export default function OrderBook(): JSX.Element {
                     <GridAsksHeader size={2}><TableTitleTypography>ACTION</TableTitleTypography></GridAsksHeader>
                 </Grid>
 
-                  <Grid container columns={12} display={{ xs: 'flex', sm: 'none' }} >
-                   <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>ADDRESS</TableTitleTypography></GridAsksHeader>
+                <Grid container columns={12} display={{ xs: 'flex', sm: 'none' }} >
+                    <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>ADDRESS</TableTitleTypography></GridAsksHeader>
                     <GridAsksHeader size={5}><TableTitleTypography>PX</TableTitleTypography></GridAsksHeader>
                     <GridAsksHeader size={2}><TableTitleTypography>QTY</TableTitleTypography></GridAsksHeader>
                     <GridAsksHeader size={1}><TableTitleTypography></TableTitleTypography></GridAsksHeader>
                 </Grid>
- 
+
                 {sortedSellSideOrderBook.map((order) => (
                     <Grid container key={order.address} columns={12}>
                         <GridAsksAddr size={4}>
-                                <Stack>
-                                    <Tooltip title={order.address} placement="top">
+                            <Stack>
+                                <Tooltip title={order.address} placement="top">
                                     <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/address/${order.address}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
                                         <ClickableAddressTypography color="red" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                             {truncateAddress(order.address)}
                                         </ClickableAddressTypography>
-                                        </Link>
-                                    </Tooltip>
-                                </Stack>
+                                    </Link>
+                                </Tooltip>
+                            </Stack>
                         </GridAsksAddr>
 
-                        <GridAsksNb size={{xs:5,sm:4}}>
+                        <GridAsksNb size={{ xs: 5, sm: 4 }}>
                             <NumbersTypography color="red" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                 ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'} )
                             </NumbersTypography>
@@ -353,7 +361,7 @@ export default function OrderBook(): JSX.Element {
                                 {Number(order.quantity.toString()) / (1_000_000_000_000_000_000.0)}
                             </NumbersTypography>
                         </GridAsksNb>
-                        <GridAction size={{xs:1,sm:2}}>
+                        <GridAction size={{ xs: 1, sm: 2 }}>
                             <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                 {order.address === connectedWalletAddress && (
                                     <Tooltip title="Cancel SELL order" placement="top">
@@ -381,7 +389,7 @@ export default function OrderBook(): JSX.Element {
 
                             </GridBidsAddr>
 
-                            <GridBidsNb size={{xs:5,sm:4}} >
+                            <GridBidsNb size={{ xs: 5, sm: 4 }} >
                                 <NumbersTypography color='#27AE60' style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                     ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'})
                                 </NumbersTypography>
@@ -393,7 +401,7 @@ export default function OrderBook(): JSX.Element {
                                     {Number(order.quantity.toString()) / (1_000_000_000_000_000_000.0)}
                                 </NumbersTypography>
                             </GridBidsNb>
-                            <GridAction size={{xs:1,sm:2}}>
+                            <GridAction size={{ xs: 1, sm: 2 }}>
                                 <Typography variant="caption" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
                                     {order.address === connectedWalletAddress && (
                                         <Tooltip title="Cancel BUY order" placement="top">
