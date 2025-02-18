@@ -36,6 +36,7 @@ variant='subtitle1'
                 letterSpacing: '0.1em',
                 fontWeight: 700,
                 fontFamily: 'Michroma',
+                fontSize: '0.7rem',
 
                 ...props.sx, // Allow overriding styles
             }}
