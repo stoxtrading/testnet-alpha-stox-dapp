@@ -19,8 +19,8 @@ const TradingTokens = () => {
                 <StackTitle
                     title='tokens' />
                 <Grid container columnSpacing={2} alignItems="center">
-                    <Grid container size={12}>
-                        <Grid container direction="column" rowGap={1} size={3}>
+                    <Grid container size={12} rowGap={3} >
+                        <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
                             <SubtitleTypography>
                                 Order Book Contract
                             </SubtitleTypography>
@@ -28,7 +28,7 @@ const TradingTokens = () => {
                                 <ClickableTxHashTypography>{nvidiaOrderBookContractConfig.address}</ClickableTxHashTypography>
                             </Link>
                         </Grid>
-                        <Grid container direction="column" rowGap={1} size={3}>
+                        <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
                             <SubtitleTypography>
                                 NVIDIA Token
                             </SubtitleTypography>
@@ -36,7 +36,7 @@ const TradingTokens = () => {
                                 <ClickableTxHashTypography>{nvidiaContractConfig.address}</ClickableTxHashTypography>
                             </Link>
                         </Grid>
-                        <Grid container direction="column" rowGap={1} size={3}>
+                        <Grid container direction="column" rowGap={1} size={{ sm: 12, md: 3 }}>
 
                             <SubtitleTypography>
                                 STOX Token
@@ -45,7 +45,7 @@ const TradingTokens = () => {
                                 <ClickableTxHashTypography>{stoxContractConfig.address}</ClickableTxHashTypography>
                             </Link>
                         </Grid>
-                        <Grid container offset='auto' justifyItems={'center'} size={3}>
+                        <Grid container  justifyItems={'center'} size={{ sm: 12, md: 3 }}>
 
                             <Button
                                 variant="contained"
