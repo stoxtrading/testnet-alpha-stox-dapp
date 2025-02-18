@@ -74,9 +74,9 @@ const NumbersTypography: React.FC<NumbersTypographyProps> = ({ color = '#1e163b'
             color={color}
             sx={{
                 letterSpacing: '0.1em',
-                fontWeight: 500,
-                fontFamily: 'Michroma',
-                fontSize: '0.6rem',
+                fontWeight: 400,
+                fontFamily: 'Rubik',
+                fontSize: '0.7rem',
                 ...props.sx, // Allow overriding styles
             }}
         >
@@ -96,9 +96,9 @@ const ClickableTxHashTypography: React.FC<TypographyProps> = (props) => {
                     color: '#3f51b5',
                     textDecoration: 'underline',
                 },
-                fontWeight: 700,
-                fontFamily: 'Michroma',
-                fontSize: '0.6rem',
+                fontWeight: 300,
+                fontFamily: 'Rubik',
+                fontSize: '0.8rem',
                 letterSpacing: '0.05em',
 
                 ...props.sx, // Allow overriding styles
@@ -123,8 +123,8 @@ const ClickableAddressTypography: React.FC<ClickableAddressTypographyProps> = ({
                     color: '#3f51b5',
                     textDecoration: 'underline',
                 },
-                fontFamily: 'Michroma',
-                fontSize: '0.6rem',
+                fontFamily: 'Rubik',
+                fontSize: '0.8rem',
                 ...props.sx, // Allow overriding styles
             }}
         >
