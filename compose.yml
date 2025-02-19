@@ -1,0 +1,5 @@
+services:
+  web-app:
+    build: .
+    ports:
+      - "4173:4173"
