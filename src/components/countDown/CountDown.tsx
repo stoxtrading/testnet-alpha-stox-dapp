@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Stack } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { HomePageAnnoucementTypography, CountdownNumbersTypography, CountdownTextTypography } from '../../assets/elements/CustomTypography';
-
+import { SocialMediaBar } from './SocialMediaBar';
 // filepath: /media/philippe/C0CE77BCCE77A974/github-2/testnet-alpha-stox-dapp/src/components/countDown/CountDown.tsx
 const minuteSeconds = 60;
 const hourSeconds = 3600;
@@ -36,66 +36,72 @@ export default function CountDown() {
     const remainingMinutes = getTimeMinutes(remainingTimeInSeconds);
     const remainingSeconds = getTimeSeconds(remainingTimeInSeconds);
 
-    return (
-        <Stack rowGap={5} alignItems={'center'} >
-            <Grid container justifyContent="center" spacing={2} direction={'column'} alignItems={"center"} >
+ 
 
-                <Grid container justifyContent="center" >
-                    <HomePageAnnoucementTypography sx={{ fontSize: '3rem', }}>
-                        STOX
-                    </HomePageAnnoucementTypography>
-                </Grid>
-                <Grid container justifyContent="center" >
-                    <img src="./transparent-white-ring-logo.svg" alt="STOX" height="150" />
-                </Grid>
-                <Grid container justifyContent="center" direction={"column"}>
-                    <HomePageAnnoucementTypography sx={{ fontSize: '1.9rem', }}>
-                        PRESALE
-                    </HomePageAnnoucementTypography>
-                </Grid>
-                <Grid container justifyContent="center" direction={"column"}>
+        return (
+            <Stack rowGap={5} alignItems={'center'} >
+                <Grid container justifyContent="center" spacing={2} direction={'column'} alignItems={"center"} >
 
-                    <HomePageAnnoucementTypography sx={{ fontSize: '1rem', }}>
-                        STARTS IN
-                    </HomePageAnnoucementTypography>
-                </Grid>
-            </Grid>
-            <Grid container columns={12} alignItems={"center"} justifyContent={"center"} > 
-                <Grid size={{ xs: 6, sm: 3 }} container direction={"column"} padding='10px' alignItems={"center"} justifyContent={"center"}>
-                    <CountdownNumbersTypography >
-                        {`${remainingDays}`}
-                    </CountdownNumbersTypography>
-                    <CountdownTextTypography>
-                        days
-                    </CountdownTextTypography>
-                </Grid>
-                <Grid size={{ xs: 6, sm: 3 }} container direction={"column"} padding='10px' alignItems={"center"} justifyContent={"center"}>
-                    <CountdownNumbersTypography>
-                        {`${remainingHours}`}
-                    </CountdownNumbersTypography>
-                    <CountdownTextTypography>
-                        hrs
-                    </CountdownTextTypography>
-                </Grid>
-                <Grid size={{ xs: 6, sm: 3 }} container direction={"column"} padding='10px' alignItems={"center"} justifyContent={"center"}>
-                    <CountdownNumbersTypography>
-                        {`${remainingMinutes}`}
-                    </CountdownNumbersTypography>
-                    <CountdownTextTypography>
-                        mins
-                    </CountdownTextTypography>
-                </Grid>
-                <Grid size={{ xs: 6, sm: 3 }} container direction={"column"} padding='10px' alignItems={"center"} justifyContent={"center"}>
-                    <CountdownNumbersTypography>
-                        {`${remainingSeconds}`}
-                    </CountdownNumbersTypography>
-                    <CountdownTextTypography>
-                        secs
-                    </CountdownTextTypography>
-                </Grid>
+                    <Grid container justifyContent="center" >
+                        <HomePageAnnoucementTypography sx={{ fontSize: '3rem', }}>
+                            STOX
+                        </HomePageAnnoucementTypography>
+                    </Grid>
+                    <Grid container justifyContent="center" >
+                        <img src="./transparent-white-ring-logo.svg" alt="STOX" height="150" />
+                    </Grid>
+                    <Grid container justifyContent="center" direction={"column"}>
+                        <HomePageAnnoucementTypography sx={{ fontSize: '1.9rem', }}>
+                            PRESALE
+                        </HomePageAnnoucementTypography>
+                    </Grid>
+                    <Grid container justifyContent="center" direction={"column"}>
 
-            </Grid>
+                        <HomePageAnnoucementTypography sx={{ fontSize: '1rem', }}>
+                            STARTS IN
+                        </HomePageAnnoucementTypography>
+                    </Grid>
+                </Grid>
+                <Grid container columns={12} alignItems={"center"} justifyContent={"center"} >
+                    <Grid size={{ xs: 6, sm: 3 }} container direction={"column"} padding='10px' alignItems={"center"} justifyContent={"center"}>
+                        <CountdownNumbersTypography >
+                            {`${remainingDays}`}
+                        </CountdownNumbersTypography>
+                        <CountdownTextTypography>
+                            days
+                        </CountdownTextTypography>
+                    </Grid>
+                    <Grid size={{ xs: 6, sm: 3 }} container direction={"column"} padding='10px' alignItems={"center"} justifyContent={"center"}>
+                        <CountdownNumbersTypography>
+                            {`${remainingHours}`}
+                        </CountdownNumbersTypography>
+                        <CountdownTextTypography>
+                            hrs
+                        </CountdownTextTypography>
+                    </Grid>
+                    <Grid size={{ xs: 6, sm: 3 }} container direction={"column"} padding='10px' alignItems={"center"} justifyContent={"center"}>
+                        <CountdownNumbersTypography>
+                            {`${remainingMinutes}`}
+                        </CountdownNumbersTypography>
+                        <CountdownTextTypography>
+                            mins
+                        </CountdownTextTypography>
+                    </Grid>
+                    <Grid size={{ xs: 6, sm: 3 }} container direction={"column"} padding='10px' alignItems={"center"} justifyContent={"center"}>
+                        <CountdownNumbersTypography>
+                            {`${remainingSeconds}`}
+                        </CountdownNumbersTypography>
+                        <CountdownTextTypography>
+                            secs
+                        </CountdownTextTypography>
+                    </Grid>
 
-        </Stack>
-    );
-}
+                </Grid>
+                   
+                    
+
+                <SocialMediaBar/>
+            </Stack>
+            
+        );
+    }
