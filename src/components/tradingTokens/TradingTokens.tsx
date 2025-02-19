@@ -53,9 +53,9 @@ const TradingTokens = () => {
                                 endIcon={<DiscordIcon />}
                                 sx={{
                                     marginLeft: 2,
-                                    backgroundColor: '#7289da',
+                                    backgroundColor: '#5865F2',
                                     '&:hover': {
-                                        backgroundColor: '#5e6bae',
+                                        backgroundColor: '#ED4245',
                                     },
                                     textTransform: 'none',
                                 }}
