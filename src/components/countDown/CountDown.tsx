@@ -17,9 +17,7 @@ const getTimeMinutes = (time: number) => Math.floor((time % hourSeconds) / minut
 const getTimeHours = (time: number) => Math.floor((time % daySeconds) / hourSeconds).toString().padStart(2, '0');
 const getTimeDays = (time: number) => Math.floor(time / daySeconds).toString().padStart(2, '0');
 export default function CountDown() {
-    const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
-    const endTime = stratTime + 2629743; // 1 month in seconds
-    const remainingTime = endTime - stratTime;
+    const remainingTime = 6354223; // use UNIX timestamp in seconds
     const [elapsedTime, setElapsedTime] = useState(0);
 
     useEffect(() => {
@@ -97,9 +95,6 @@ export default function CountDown() {
                     </Grid>
 
                 </Grid>
-                   
-                    
-
                 <SocialMediaBar/>
             </Stack>
             
