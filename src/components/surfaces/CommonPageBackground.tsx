@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
+import './CommonPageBackground.css';
 
 interface CommonPageBackgroundProps {
 
@@ -16,7 +17,7 @@ const CommonPageBackground: React.FC<CommonPageBackgroundProps> = ({ children })
             justifyContent: 'center',
             
             minHeight: '100vh',
-            backgroundImage: 'url(./upscale-1.jpg)',
+            
         }}
     >
         <CssBaseline />

@@ -37,16 +37,16 @@ export default function CountDown() {
  
 
         return (
-            <Stack rowGap={5} alignItems={'center'} >
+            <Stack rowGap={5} alignItems={'center'} paddingTop="20vh">
                 <Grid container justifyContent="center" spacing={2} direction={'column'} alignItems={"center"} >
 
-                    <Grid container justifyContent="center" >
-                        <HomePageAnnoucementTypography sx={{ fontSize: '3rem', }}>
+                   {/*  <Grid container justifyContent="center" >
+                        <HomePageAnnoucementTypography sx={{ fontSize: '5rem', }}>
                             STOX
                         </HomePageAnnoucementTypography>
-                    </Grid>
+                    </Grid> */}
                     <Grid container justifyContent="center" >
-                        <img src="./transparent-white-ring-logo.svg" alt="STOX" height="150" />
+                        
                     </Grid>
                     <Grid container justifyContent="center" direction={"column"}>
                         <HomePageAnnoucementTypography sx={{ fontSize: '1.9rem', }}>
