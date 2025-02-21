@@ -120,25 +120,51 @@ const Header: React.FC<HeaderProps> = () => {
                         paddingRight="15px"
                     >
                         <Box
+
                             borderRadius="6px"
                             onClick={openAccountModal}
                             sx={{
-                                background: 'linear-gradient(180deg, #D1D3E2 0%, #75629D 100%)',
-                                transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
+                                borderRadius: "100px",
+                                position: 'relative',
+                                background: "#000",
+                                '&::before': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    inset: 0,
+                                    padding: '2px',
+                                    borderRadius: '100px',
+                                    background: 'linear-gradient(90deg, #FF3BFF, #ECBFBF, #5C24FF, #D94FD5, #FF3BFF)',
+                                    backgroundSize: '200% 100%',
+                                    animation: 'gradientMove 3s linear infinite',
+                                    mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                                    maskComposite: 'exclude',
+                                    pointerEvents: 'none',
+                                },
+                                '@keyframes gradientMove': {
+                                    '0%': {
+                                        backgroundPosition: '0% 0%',
+                                    },
+                                    '100%': {
+                                        backgroundPosition: '200% 0%',
+                                    }
+                                },
+                                transition: 'all 0.1s ease-in-out',
                                 '&:hover': {
                                     backgroundColor: '#5e6bae',
                                     cursor: 'pointer',
-                                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Add shadow on hover
-                                    transform: 'scale(1.05)', // Slightly scale up on hover
+                                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                                    transform: 'scale(1.05)',
                                 },
                                 paddingTop: "8px",
                                 paddingBottom: "5px",
-
-
                             }}>
-                            <HeaderMenuTypography paddingLeft="8px"
-                                paddingRight="8px"
-                                color="black">{truncateAddress(connectedWalletAddress)}</HeaderMenuTypography>
+                            <HeaderMenuTypography 
+                                paddingLeft="12px"
+                                paddingRight="12px"
+                                color="white"
+                                sx={{
+                                    fontSize: "0.6rem",
+                                }}>{truncateAddress(connectedWalletAddress)}</HeaderMenuTypography>
                         </Box>
                     </Grid>
                 ) : (
@@ -152,8 +178,6 @@ const Header: React.FC<HeaderProps> = () => {
                         offset='auto'
                         paddingLeft="15px"
                         paddingRight="15px"
-
-
                     >
                         <Box
 
