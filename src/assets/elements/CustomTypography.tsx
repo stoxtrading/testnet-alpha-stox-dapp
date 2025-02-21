@@ -67,7 +67,7 @@ interface NumbersTypographyProps extends TypographyProps {
     color?: string;
 }
 
-const NumbersTypography: React.FC<NumbersTypographyProps> = ({ color = '#1e163b', ...props }) => {
+const NumbersTypography: React.FC<NumbersTypographyProps> = ({ color = 'white', ...props }) => {
     return (
         <Typography
             {...props}

@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid2';
 
 const GridAsksNb = styled(Grid)(() => ({
   borderRadius: 0,
-  backgroundColor: '#FFFFFF',
   textAlign: 'center',
   color: '#1e163b',
   alignContent: 'center',
@@ -13,7 +12,7 @@ const GridAsksNb = styled(Grid)(() => ({
 const GridAsksAddr = styled(Grid)(() => ({
   borderTopLeftRadius: 6,
   borderBottomLeftRadius: 6,
-  backgroundColor: '#FFFFFF',
+  
   textAlign: 'left',
   color: '#1e163b',
   alignContent: 'center',
@@ -23,7 +22,7 @@ const GridAsksAddr = styled(Grid)(() => ({
 const GridQty = styled(Grid)(() => ({
   borderTopRightRadius: 6,
   borderBottomRightRadius: 6,
-  backgroundColor: '#FFFFFF',
+  
   textAlign: 'center',
   color: '#1e163b',
   alignContent: 'center',
@@ -39,4 +38,34 @@ const GridAsksHeader = styled(Grid)(() => ({
 }));
 
 
-export { GridAsksNb, GridAsksAddr, GridQty, GridAsksHeader };
+const GridAction = styled(Grid)(() => ({
+  borderTopRightRadius: 6,
+  borderBottomRightRadius: 6,
+  textAlign: 'center',
+ 
+  alignContent: 'center',
+  height: 28,
+}));
+
+const GridBidsNb = styled(Grid)(() => ({
+  borderRadius: 0,
+  textAlign: 'center',
+  color: '#27AE60',
+  alignContent: 'center',
+}));
+
+const GridBidsAddr = styled(Grid)(() => ({
+  borderTopLeftRadius: 6,
+  borderBottomLeftRadius: 6,
+  textAlign: 'left',
+  color: '#27AE60',
+  alignContent: 'center',
+  
+  paddingLeft: 6,
+  wordBreak: 'break-all',
+  fontWeight: 'bold',
+  cursor: 'pointer',
+
+}));
+
+export { GridAsksNb, GridAsksAddr, GridQty, GridAsksHeader,GridAction, GridBidsNb, GridBidsAddr };

@@ -400,7 +400,7 @@ export default function Trading() {
                 label="Quantity"
                 id="outlined-basic"
                 defaultValue={0}
-
+                
                 sx={{
                   width: '10ch',
                   height: '35px', // Increase the height
