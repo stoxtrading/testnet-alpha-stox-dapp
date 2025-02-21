@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { createChart, ISeriesApi, CandlestickData } from 'lightweight-charts';
+import { createChart, ISeriesApi, CandlestickData , ColorType} from 'lightweight-charts';
 import { CandlestickSeries } from 'lightweight-charts';
 
 import Box from '@mui/material/Box';
@@ -28,7 +28,7 @@ const Chart = () => {
             const chartOptions = {
                 layout: {
                     textColor: 'black',
-                    backgroundColor:  'hsl(200, 10%, 20%)',
+                    background: { type: ColorType.Solid, color: 'hsl(200, 10%, 20%)' },
                     borderRadius: 3,
                 },
             };
