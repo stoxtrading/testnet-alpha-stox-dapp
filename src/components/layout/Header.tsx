@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = () => {
 
 
     return (
-        <AppBar position="fixed" className="appBar" sx={{ backgroundColor: "black", paddingTop: "3vh", paddingRight: "1vw", paddingLeft: "1vw" }} >
+        <AppBar position="fixed" className="appBar" sx={{ backgroundColor: "black", paddingBottom: "3vh",paddingTop: "3vh", paddingRight: "1vw", paddingLeft: "1vw" }} >
             <Grid container >
                 <Grid size={2} alignItems='center' justifyContent="center" alignContent="center" justifyItems="center" display={{ xs: 'flex', sm: 'flex', md: 'none', }}>
                     <IconButton size="small" onClickCapture={handleClick}>

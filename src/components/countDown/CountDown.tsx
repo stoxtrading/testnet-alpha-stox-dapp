@@ -39,14 +39,14 @@ export default function CountDown() {
  
 
         return (
-            <Stack rowGap={5} alignItems={'center'} paddingTop="20vh">
+            <Stack rowGap={5} alignItems={'center'} paddingTop="15vh">
                 <Grid container justifyContent="center" spacing={2} direction={'column'} alignItems={"center"} >
 
-                   {/*  <Grid container justifyContent="center" >
-                        <HomePageAnnoucementTypography sx={{ fontSize: '5rem', }}>
+                     <Grid container justifyContent="center" display={{ xs: 'flex', sm: 'none' }}>
+                        <HomePageAnnoucementTypography sx={{ fontSize: '3rem', }}>
                             STOX
                         </HomePageAnnoucementTypography>
-                    </Grid> */}
+                    </Grid> 
                     <Grid container justifyContent="center" >
                         
                     </Grid>
