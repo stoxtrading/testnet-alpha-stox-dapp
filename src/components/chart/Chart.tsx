@@ -27,7 +27,17 @@ const AreaChart = () => {
             const chart = createChart(chartContainerRef.current, {
                 layout: {
                     background: { type: ColorType.Solid, color: 'hsl(200, 10%, 20%)' },
+                    textColor:"white"
                 },
+                grid: {
+                    vertLines: {
+                        visible: false,
+                    },
+                    horzLines: {
+                        visible: false,
+                    },
+                },
+
                 width: chartContainerRef.current.clientWidth,
                 height: 400,
             });

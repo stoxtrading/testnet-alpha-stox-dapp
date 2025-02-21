@@ -12,7 +12,7 @@ import { mockUsdtContractConfig } from '../../assets/contracts/dev/MockUsdt';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
 import { TableTitleTypography } from '../../assets/elements/CustomTypography';
-import { ClickableTxHashTypography, SubtitleTypography, NumbersTypography, } from '../../assets/elements/CustomTypography';
+import { ClickableTxHashTypography, SubtitleTypography, NumbersTypography,ButtonTypography } from '../../assets/elements/CustomTypography';
 
 
 export default function UniswapPool() {
@@ -128,13 +128,14 @@ export default function UniswapPool() {
                             </Grid>
                         </Link>
                     </Grid>
-                    <Grid container justifyItems={'center'} size={{ sm: 12, md: 3 }}>
+                    <Grid container alignItems={'center'}  justifyItems={'center'} size={{ sm: 12, md: 3 }}>
 
                         <Button
                             variant="contained"
                             color="primary"
                             endIcon={<DiscordIcon />}
                             sx={{
+                                height:35,
                                 marginLeft: 2,
                                 backgroundColor: '#5865F2',
                                 '&:hover': {
@@ -147,9 +148,9 @@ export default function UniswapPool() {
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <SubtitleTypography sx={{ fontWeight: 600, color: 'white' }}>
+                            <ButtonTypography sx={{ fontWeight: 600, color: 'white' }}>
                                 GET TESTNET TOKENS
-                            </SubtitleTypography>
+                            </ButtonTypography>
                         </Button>
                     </Grid>
 

@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 import { SimplePageBackground} from '../../components/surfaces/CommonPageBackground';
 
-import {CandleChart, AreaChart} from '../../components/chart/Chart';
+import { AreaChart} from '../../components/chart/Chart';
 import OrderBook from '../../components/orderBook/OrderBook';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
