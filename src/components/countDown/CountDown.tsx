@@ -17,22 +17,24 @@ const getTimeMinutes = (time: number) => Math.floor((time % hourSeconds) / minut
 const getTimeHours = (time: number) => Math.floor((time % daySeconds) / hourSeconds).toString().padStart(2, '0');
 const getTimeDays = (time: number) => Math.floor(time / daySeconds).toString().padStart(2, '0');
 export default function CountDown() {
-    const remainingTime = 6354223; // use UNIX timestamp in seconds
+    const targetDate = new Date('2025-05-05T00:00:00Z').getTime(); // Target date in milliseconds
     const [elapsedTime, setElapsedTime] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
+            const now = new Date().getTime();
+            const remainingTime = targetDate - now;
+            setElapsedTime(remainingTime / 1000); // Convert milliseconds to seconds
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [targetDate]);
 
-    const remainingTimeInSeconds = remainingTime - elapsedTime;
+    const remainingTimeInSeconds = Math.max(0, elapsedTime); // Ensure remaining time is not negative
     const remainingDays = getTimeDays(remainingTimeInSeconds);
     const remainingHours = getTimeHours(remainingTimeInSeconds);
     const remainingMinutes = getTimeMinutes(remainingTimeInSeconds);
-    const remainingSeconds = getTimeSeconds(remainingTimeInSeconds);
+    const remainingSeconds = Number(getTimeSeconds(remainingTimeInSeconds)).toFixed(0);
 
  
 
