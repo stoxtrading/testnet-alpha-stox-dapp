@@ -362,6 +362,7 @@ export default function Trading() {
                 onChange={handlePriceChange}
                 defaultValue={0}
                 sx={{
+                  color:"white",
                   width: '10ch',
                   height: '35px', // Increase the height
                   '& .MuiOutlinedInput-root': {
@@ -372,6 +373,7 @@ export default function Trading() {
                     fontFamily: 'Michroma',
                     fontSize: '0.6rem',
                     letterSpacing: '0.1em',
+                    color:"white",
                   },
                   '& .MuiInputAdornment-root': {
                     height: '25px',
@@ -402,12 +404,14 @@ export default function Trading() {
                 defaultValue={0}
                 
                 sx={{
+                  color:"white",
                   width: '10ch',
                   height: '35px', // Increase the height
                   '& .MuiOutlinedInput-root': {
                     height: '100%', // Ensure the input takes the full height of the TextField
                   },
                   '& .MuiOutlinedInput-input': {
+                    color:"white",
                     padding: '10px 14px', // Adjust padding to vertically center the text
                     fontFamily: 'Michroma',
                     fontSize: '0.6rem',
@@ -415,6 +419,7 @@ export default function Trading() {
                   },
                   '& .MuiInputAdornment-root': {
                     height: '25px',
+                    color:"white",
                   },
                 }}
                 //value={quantity}

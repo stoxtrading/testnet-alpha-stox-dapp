@@ -7,6 +7,15 @@
    
 }
 
+.simplePageSurroundingArea {
+    background-image: url('./misc-page-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+   
+}
+
 /*
  .innerBoxArea{
      background-color: white;

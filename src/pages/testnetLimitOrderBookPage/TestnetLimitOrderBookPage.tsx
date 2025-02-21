@@ -1,7 +1,7 @@
 
 import Box from '@mui/material/Box';
 
-import CommonPageBackground from '../../components/surfaces/CommonPageBackground';
+import { SimplePageBackground} from '../../components/surfaces/CommonPageBackground';
 
 import Chart from '../../components/chart/Chart';
 import OrderBook from '../../components/orderBook/OrderBook';
@@ -23,7 +23,7 @@ export default function TestnetLimitOrderBookPage() {
 
     return (
 
-        <CommonPageBackground>
+        <SimplePageBackground>
             <Box display="flex" flexDirection="column" marginTop="10vh" >
                 <Stack rowGap={2}>
                     <Grid container columnSpacing={2} rowSpacing={2}>
@@ -60,6 +60,6 @@ export default function TestnetLimitOrderBookPage() {
                 </Stack>
             </Box>
 
-        </CommonPageBackground>
+        </SimplePageBackground>
     );
 }
