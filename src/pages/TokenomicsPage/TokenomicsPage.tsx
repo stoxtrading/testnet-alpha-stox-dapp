@@ -14,7 +14,7 @@ export default function TokenomicsPage() {
     return (
 
         <CommonPageBackground>
-            <Box display="flex" flexDirection="column"  marginTop="5vh" >
+            <Box display="flex" flexDirection="column"  marginTop="10vh" >
                 <Stack rowGap={2}>
                     <Grid container columnSpacing={2} rowSpacing={2} >
                         <Grid size={12} >
