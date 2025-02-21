@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 import { SimplePageBackground} from '../../components/surfaces/CommonPageBackground';
 
-import Chart from '../../components/chart/Chart';
+import {CandleChart, AreaChart} from '../../components/chart/Chart';
 import OrderBook from '../../components/orderBook/OrderBook';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
@@ -34,7 +34,7 @@ export default function TestnetLimitOrderBookPage() {
 
                     <Grid container columnSpacing={2} rowSpacing={2}>
                         <Grid size={{ xs: 12, md: 6 }}>    
-                            <Chart />
+                            <AreaChart />
                         </Grid>
                         <Grid size={{ xs: 12, md: 6}}>
                             <OrderBook />

@@ -1,7 +1,7 @@
 
 import Box from '@mui/material/Box';
 
-import CommonPageBackground from '../../components/surfaces/CommonPageBackground';
+import {CommonPageBackground} from '../../components/surfaces/CommonPageBackground';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import { HomePageAnnoucementTypography } from '../../assets/elements/CustomTypography';
