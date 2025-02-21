@@ -28,7 +28,7 @@ const Chart = () => {
             const chartOptions = {
                 layout: {
                     textColor: 'black',
-
+                    backgroundColor:  'hsl(200, 10%, 20%)',
                     borderRadius: 3,
                 },
             };

@@ -150,7 +150,7 @@ const Header: React.FC<HeaderProps> = () => {
                                 },
                                 transition: 'all 0.1s ease-in-out',
                                 '&:hover': {
-                                    backgroundColor: '#5e6bae',
+                                    
                                     cursor: 'pointer',
                                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
                                     transform: 'scale(1.05)',
@@ -210,7 +210,7 @@ const Header: React.FC<HeaderProps> = () => {
                                 },
                                 transition: 'all 0.1s ease-in-out',
                                 '&:hover': {
-                                    backgroundColor: '#5e6bae',
+                                    
                                     cursor: 'pointer',
                                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
                                     transform: 'scale(1.05)',

@@ -12,7 +12,7 @@ const SingleComponentStackTitleTypography: React.FC<TypographyProps> = ({ childr
     return (
         <Typography
             sx={{ fontWeight: 700, fontFamily: 'Michroma', letterSpacing: '0.2em' }}
-            color='#1e163b'
+            color='white'
             variant="overline"
             {...props}
         >
@@ -50,7 +50,7 @@ const TableTitleTypography: React.FC<TypographyProps> = (props) => {
     return (
         <Typography
             {...props}
-            color='#1e163b'
+            color='white'
             sx={{
                 fontWeight: 500,
                 fontFamily: 'Michroma',
@@ -89,11 +89,11 @@ const ClickableTxHashTypography: React.FC<TypographyProps> = (props) => {
     return (
         <Typography
             {...props}
-            color='#1e163b'
+            color='white'
             sx={{
                 wordBreak: 'break-all', cursor: 'pointer',
                 '&:hover': {
-                    color: '#3f51b5',
+                    color: 'white',
                     textDecoration: 'underline',
                 },
                 fontWeight: 300,
@@ -112,7 +112,7 @@ interface ClickableAddressTypographyProps extends TypographyProps {
     color?: string;
 }
 
-const ClickableAddressTypography: React.FC<ClickableAddressTypographyProps> = ({ children, color = '#1e163b', ...props }) => {
+const ClickableAddressTypography: React.FC<ClickableAddressTypographyProps> = ({ children, color = 'white', ...props }) => {
     return (
         <Typography
             {...props}
@@ -138,7 +138,7 @@ interface SubtitleTypographyProps extends TypographyProps {
     color?: string;
 }
 
-const SubtitleTypography: React.FC<SubtitleTypographyProps> = ({ color = '#3f51b5', ...props }) => {
+const SubtitleTypography: React.FC<SubtitleTypographyProps> = ({ color = 'white', ...props }) => {
     return (
         <Typography
             {...props}
