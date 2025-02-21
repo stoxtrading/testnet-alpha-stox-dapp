@@ -1,7 +1,6 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
-import './CommonPageBackground.css';
 
 interface CommonPageBackgroundProps {
     children: React.ReactNode;
@@ -11,8 +10,11 @@ const CommonPageBackground: React.FC<CommonPageBackgroundProps> = ({ children })
         style={{
             display: 'flex',
             justifyContent: 'center',
-            
-            minHeight: '100vh', 
+            backgroundImage: 'url(./welcome-page-bg.png)',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            minHeight: '100vh',
         }}
     >
         <CssBaseline />
@@ -34,8 +36,11 @@ const SimplePageBackground: React.FC<SimplePageBackgroundProps> = ({ children })
         style={{
             display: 'flex',
             justifyContent: 'center',
-            
-            minHeight: '100vh', 
+            backgroundImage: 'url(./misc-page-bg.png)',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            minHeight: '100vh',
         }}
     >
         <CssBaseline />
