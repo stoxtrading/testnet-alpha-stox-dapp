@@ -92,13 +92,13 @@ const Header: React.FC<HeaderProps> = () => {
                         <HomePageAnnoucementTypography sx={{ fontSize: '2rem', }} color="inherit">STOX</HomePageAnnoucementTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/testnet-limit-order-book">
-                        <HeaderMenuTypography color="inherit">Order Book</HeaderMenuTypography>
+                        <HeaderMenuTypography color="inherit">Trade</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/liquidity">
                         <HeaderMenuTypography color="inherit">Liquidity</HeaderMenuTypography>
                     </HeaderMenuButton>
-                    <HeaderMenuButton redirectTo="/white-paper">
-                        <HeaderMenuTypography color="inherit">White Paper</HeaderMenuTypography>
+                    <HeaderMenuButton redirectTo="/smart-contracts">
+                        <HeaderMenuTypography color="inherit">Smart Contracts</HeaderMenuTypography>
                     </HeaderMenuButton>
                     {/*  <HeaderMenuButton redirectTo="/roadmap">
                         <HeaderMenuTypography color="inherit">Roadmap</HeaderMenuTypography>
@@ -120,7 +120,10 @@ const Header: React.FC<HeaderProps> = () => {
                         paddingRight="15px"
                     >
                         <Box
-
+                            alignItems="center"
+                            justifyContent="center"
+                            alignContent="center"
+                            justifyItems="center"
                             borderRadius="6px"
                             onClick={openAccountModal}
                             sx={{

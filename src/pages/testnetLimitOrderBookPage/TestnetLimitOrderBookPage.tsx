@@ -11,26 +11,15 @@ import Trading from '../../components/trading/Trading';
 import Withdrawals from '../../components/withdrawals/Withdrawals';
 import StoxEcosystem from '../../components/stoxEcosystem/StoxEcosystem';
 import Executions from '../../components/executions/Executions';
-import TradingTokens from '../../components/tradingTokens/TradingTokens';
 
 export default function TestnetLimitOrderBookPage() {
-
-
-
-
-
-
 
     return (
 
         <SimplePageBackground>
             <Box display="flex" flexDirection="column" marginTop="10vh" >
                 <Stack rowGap={2}>
-                    <Grid container columnSpacing={2} rowSpacing={2}>
-                        <Grid size={12}>
-                            <TradingTokens />
-                        </Grid>
-                    </Grid>
+
 
                     <Grid container columnSpacing={2} rowSpacing={2}>
                         <Grid size={{ xs: 12, md: 6 }}>    

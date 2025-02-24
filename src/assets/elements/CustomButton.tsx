@@ -1,6 +1,7 @@
 import { Box } from "@mui/material"
 
 import { HeaderMenuTypography, } from '../../assets/elements/CustomTypography';
+import { ButtonTypography, } from '../../assets/elements/CustomTypography';
 
 
 interface WalletButtonProps {
@@ -63,3 +64,46 @@ const WalletButton: React.FC<WalletButtonProps> = ({ text, onClick }) => {
 }
 
 export {WalletButton}
+
+
+
+
+
+
+interface CustomButtonProps {
+    backgroundColor: string;   
+    text: string;
+    onClick: () => void;
+}
+
+const CustomButton: React.FC<CustomButtonProps> = ({ text, backgroundColor, onClick }) => {
+    
+    return (
+        <Box
+            height={40}
+            width={133}
+            borderRadius="6px"
+            onClick={onClick}
+            alignContent={"center"}
+            justifyItems={"center"}
+            sx={{
+                backgroundColor: backgroundColor,
+                transition: 'all 0.1s ease-in-out',
+                '&:hover': {
+                    cursor: 'pointer',
+                    transform: 'scale(1.02)',
+                },
+                
+            }}>
+            <ButtonTypography
+                
+                color="white"
+                sx={{
+                    fontSize: "0.6rem",
+                }}>{text}
+            </ButtonTypography>
+        </Box>
+    )
+}
+
+export {CustomButton}
