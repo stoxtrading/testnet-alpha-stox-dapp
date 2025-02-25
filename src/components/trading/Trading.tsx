@@ -50,25 +50,35 @@ export default function Trading() {
             <SingleComponentStack  >
                 <Grid container sx={{ marginBottom: "10px" }}>
                     <Grid size={6} justifyItems={"center"} >
-                        <TableTitleTypography>
-                            {stockTicker}
-                        </TableTitleTypography>
+                        <SubtitleTypography fontSize='1.5em'>
+                                          {stockTicker}
+                                        </SubtitleTypography>
                     </Grid>
                     <Grid size={6} justifyItems={"center"}>
-                        <NumbersTypography>
-                            {price !== null ? <NumbersTypography>{price.toFixed(2)}</NumbersTypography> : <NumbersTypography>Loading...</NumbersTypography>}
-                        </NumbersTypography>
+                {price !== null ? <NumbersTypography fontSize={"1.75em"}>{price.toFixed(3)}</NumbersTypography> : <NumbersTypography>Loading...</NumbersTypography>}
                     </Grid>
                 </Grid>
                 <Grid container sx={{ marginBottom: "10px" }}>
                     <Grid size={6} justifyItems={"center"}>
-                        <CustomButton backgroundColor={"green"} text={"BUY"} onClick={function (): void {
+                        <CustomButton 
+                        fontSize='1.1rem'
+                        height={40}
+                        width={100}
+                        backgroundColor={"green"} 
+                        text={"BUY"} 
+                        onClick={function (): void {
                             OpenTradeDetailsModal("BUY");
                         }}
                         />
                     </Grid>
                     <Grid size={6} justifyItems={"center"}>
-                        <CustomButton backgroundColor={"red"} text={"SELL"} onClick={function (): void {
+                        <CustomButton 
+                        fontSize='1.1rem'
+                        height={40}
+                        width={100}
+                        backgroundColor={"red"} 
+                        text={"SELL"} 
+                        onClick={function (): void {
                             OpenTradeDetailsModal("SELL");
                         }}
                         />
@@ -83,16 +93,21 @@ export default function Trading() {
                                     checked={isMarketOrder}
                                     onChange={handleOrderTypeChange}
                                     inputProps={{ 'aria-label': 'controlled' }}
-                                    size="small"
+                                    
                                 />
                             </Grid>
                             <Grid container>
-                                <Grid size={6}>
+                                <Grid size={4} justifyItems={"center"}>
                                     <SubtitleTypography fontSize='0.5rem'>
                                         LIMIT
                                     </SubtitleTypography>
                                 </Grid>
-                                <Grid size={6}>
+                                <Grid size={2}  justifyItems={"center"}>
+                                    <SubtitleTypography fontSize='0.5rem'>
+                                        |
+                                    </SubtitleTypography>
+                                </Grid>
+                                <Grid size={4} >
                                     <SubtitleTypography fontSize='0.5rem'>
                                         MARKET
                                     </SubtitleTypography>
@@ -103,6 +118,9 @@ export default function Trading() {
                     </Grid>
                     <Grid size={6} justifyItems={"center"}>
                         <CustomTextField 
+                        marginLeft='1.5ch'
+                  marginTop='0.9ch'
+                  width='8em'
                         label={"Quantity"} 
                         defaultValue={0} 
                         onChange={handleQuantityChange}
