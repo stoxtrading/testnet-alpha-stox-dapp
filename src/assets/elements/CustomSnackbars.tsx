@@ -1,28 +1,44 @@
 import React from 'react';
-import { Snackbar, SnackbarProps, SnackbarOrigin } from '@mui/material';
+import { Snackbar, SnackbarProps,  Alert } from '@mui/material';
+import { CheckIcon } from '../icons/CheckIcon';
+import { ErrorIcon } from '../icons/ErrorIcon';
+import { SubtitleTypography } from './CustomTypography';
 
-interface State extends SnackbarOrigin {
-    open: boolean;
+
+interface CustomSnackbarProps extends SnackbarProps {
+    severity: 'success' | 'error' | 'warning' | 'info';
 }
 
-const SimpleSnackbar : React.FC<SnackbarProps> = ({open}) => {
-    const [state, setState] = React.useState<State>({
-        open: false,
-        vertical: 'top',
-        horizontal: 'center',
-    });
-    const handleClose = () => {
-        setState({ ...state, open: false });
+const SimpleSnackbar: React.FC<CustomSnackbarProps> = ({ open, message, severity, onClose }) => {
+    const getIcon = (severity: string) => {
+        switch (severity) {
+            case 'success':
+                return <CheckIcon fontSize="inherit" />;
+            case 'error':
+                return <ErrorIcon fontSize="inherit" />;
+            case 'warning':
+                return <ErrorIcon fontSize="inherit" />; // Replace with appropriate warning icon
+            case 'info':
+                return <CheckIcon fontSize="inherit" />; // Replace with appropriate info icon
+            default:
+                return <CheckIcon fontSize="inherit" />;
+        }
     };
+
     return (
         <Snackbar
+            autoHideDuration={4000}
             anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
             open={open}
-            onClose={handleClose}
-            message="Alert message"
-
-        />
+            onClose={onClose}
+        >
+            <Alert icon={getIcon(severity)} severity={severity} onClose={(event) => onClose && onClose(event, 'timeout')}>
+                <SubtitleTypography fontSize='0.9rem' color='red'>
+                    {message}
+                </SubtitleTypography>
+            </Alert>
+        </Snackbar>
     );
 };
 
-export  {SimpleSnackbar};
+export { SimpleSnackbar };
