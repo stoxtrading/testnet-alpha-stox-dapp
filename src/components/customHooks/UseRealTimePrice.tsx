@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const useRealTimePrice = (instrument: string) => {
-    const [price, setPrice] = useState<number | null>(null);
+    const [price, setPrice] = useState<number >(0);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {

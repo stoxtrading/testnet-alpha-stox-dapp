@@ -74,21 +74,24 @@ interface CustomButtonProps {
     backgroundColor: string;   
     text: string;
     onClick: () => void;
+    height: number
+    width: number
+    fontSize: string
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ text, backgroundColor, onClick }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({fontSize = '0.8rem',height =30, width = 60, text, backgroundColor, onClick }) => {
     
     return (
         <Box
-            height={40}
-            width={133}
+            height={height}
+            width={width}
             borderRadius="6px"
             onClick={onClick}
             alignContent={"center"}
             justifyItems={"center"}
             sx={{
                 backgroundColor: backgroundColor,
-                transition: 'all 0.1s ease-in-out',
+                transition: 'all 0.05s ease-in-out',
                 '&:hover': {
                     cursor: 'pointer',
                     transform: 'scale(1.02)',
@@ -99,7 +102,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ text, backgroundColor, onCl
                 
                 color="white"
                 sx={{
-                    fontSize: "0.6rem",
+                    fontSize: fontSize,
                 }}>{text}
             </ButtonTypography>
         </Box>
