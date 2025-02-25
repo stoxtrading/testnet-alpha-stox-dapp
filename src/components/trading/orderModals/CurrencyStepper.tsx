@@ -5,14 +5,13 @@ import StepLabel from '@mui/material/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { StepIconProps } from '@mui/material/StepIcon';
 import { styled } from '@mui/material/styles';
-import { CircleIcon } from '../../../assets/icons/CircleIcon';
-import { SubSectionTitleTypography, SubtitleTypography } from '../../../assets/elements/CustomTypography';
+import {  SubtitleTypography } from '../../../assets/elements/CustomTypography';
 
 const steps = ["USDT", "STOX", "USDC"];
 
 const ColorlibStepIconRoot = styled('div')<{
   ownerState: { completed?: boolean; active?: boolean };
-}>(({ theme, ownerState }) => ({
+}>(({  ownerState }) => ({
   backgroundColor: 'white',
   zIndex: 1,
   color: '#fff',
@@ -62,11 +61,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
 function ColorlibStepIcon(props: StepIconProps) {
   const { active, completed, className } = props;
 
-  const icons: { [index: string]: React.ReactElement<unknown> } = {
-    1: <CircleIcon />,
-    2: <CircleIcon />,
-    3: <CircleIcon />,
-  };
+
 
   return (
     <ColorlibStepIconRoot ownerState={{ completed, active }} className={className}>
