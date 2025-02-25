@@ -2,6 +2,7 @@ import React from 'react';
 import { Snackbar, SnackbarProps,  Alert } from '@mui/material';
 import { CheckIcon } from '../icons/CheckIcon';
 import { ErrorIcon } from '../icons/ErrorIcon';
+import {RefereshDotIcon} from '../icons/RefereshDotIcon';
 import { SubtitleTypography } from './CustomTypography';
 
 
@@ -17,7 +18,7 @@ const SimpleSnackbar: React.FC<CustomSnackbarProps> = ({ open, message, severity
             case 'error':
                 return <ErrorIcon fontSize="inherit" />;
             case 'warning':
-                return <ErrorIcon fontSize="inherit" />; // Replace with appropriate warning icon
+                return <RefereshDotIcon fontSize="inherit" />; // Replace with appropriate warning icon
             case 'info':
                 return <CheckIcon fontSize="inherit" />; // Replace with appropriate info icon
             default:
@@ -32,7 +33,7 @@ const SimpleSnackbar: React.FC<CustomSnackbarProps> = ({ open, message, severity
             open={open}
             onClose={onClose}
         >
-            <Alert icon={getIcon(severity)} severity={severity} onClose={(event) => onClose && onClose(event, 'timeout')}>
+            <Alert icon={getIcon(severity)} severity={severity}>
                 <SubtitleTypography fontSize='0.9rem' color='red'>
                     {message}
                 </SubtitleTypography>
