@@ -13,7 +13,7 @@ import CurrencyStepper from './CurrencyStepper';
 import getPoolReserves from '../../liquidityPoolPricing/LiquidityPoolPricing'
 import { useEffect, useState } from 'react';
 import { SimpleSnackbar } from '../../../assets/elements/CustomSnackbars';
-import {getApproveSpendingConfig} from '../../../components/smartContractsInteractions/OrderSending'
+import { getApproveSpendingConfig } from '../../../components/smartContractsInteractions/OrderSending'
 import { stoxContractConfig } from '../../../assets/contracts/dev/Stox';
 import { nvidiaContractConfig } from '../../../assets/contracts/dev/Nvidia';
 import { ethers } from 'ethers';
@@ -49,8 +49,8 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'warning' | 'info'>("success");
 
-  const { writeContract: approveStoxSpending, isPending: isPendingStoxSpending, isSuccess: isSuccessStoxSpending, isError: isErrorStoxSpending} = useWriteContract();
-  const { writeContract: approveNvdaSpending, isPending: isPendingNvdaSpending, isSuccess: isSuccessNvdaSpending, isError: isErrorNvdaSpending} = useWriteContract();
+  const { writeContract: approveStoxSpending, isPending: isPendingStoxSpending, isSuccess: isSuccessStoxSpending, isError: isErrorStoxSpending } = useWriteContract();
+  const { writeContract: approveNvdaSpending, isPending: isPendingNvdaSpending, isSuccess: isSuccessNvdaSpending, isError: isErrorNvdaSpending } = useWriteContract();
 
 
 
@@ -62,7 +62,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
 
   const handleCloseSnackbar = () => {
     setSnackbarOpen(false);
-};
+  };
 
   const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -87,7 +87,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
         } else {
           triggerSnackbar(String(err), "error");
         }
-      } 
+      }
     };
 
     fetchPoolReserves();
@@ -99,34 +99,39 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
       triggerSnackbar('Spending Approved', 'success');
     } else if (isErrorStoxSpending) {
       triggerSnackbar('Error in Spending Approval function', 'error');
+    } else if (isSuccessNvdaSpending) {
+      triggerSnackbar('Spending Approved', 'success');
+    }else if (isErrorNvdaSpending) {
+      triggerSnackbar('Error in Spending Approval function', 'error');
     }
-  } , [isSuccessStoxSpending, isErrorStoxSpending]);
+  }, [isSuccessStoxSpending, isErrorStoxSpending, isSuccessNvdaSpending, isErrorNvdaSpending]);
 
- 
+
   const sendOrder = async () => {
     if (direction === 'BUY') {
-    try {
-      const quantityFN = ethers.FixedNumber.fromString(newQuantity.toString())
-      const assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
-      const priceInStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
-      console.log('stoxPrice',stoxPrice)
-      console.log('priceInStoxFn', priceInStoxFn)
-      console.log('quantityFN', quantityFN)
-      console.log('newQuantity',newQuantity)
-      console.log('assetUsdPriceFN', assetUsdPriceFN)
-      console.log('price',price)
-      const config = getApproveSpendingConfig(BigInt(((quantityFN).mul(assetUsdPriceFN).div(priceInStoxFn)).value.toString()), stoxContractConfig);
-      approveStoxSpending(config);
+      try {
+        const quantityFN = ethers.FixedNumber.fromString(newQuantity.toString())
+        const assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
+        const priceInStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
+        console.log('stoxPrice', stoxPrice)
+        console.log('priceInStoxFn', priceInStoxFn)
+        console.log('quantityFN', quantityFN)
+        console.log('newQuantity', newQuantity)
+        console.log('assetUsdPriceFN', assetUsdPriceFN)
+        console.log('price', price)
+        const config = getApproveSpendingConfig(BigInt(((quantityFN).mul(assetUsdPriceFN).div(priceInStoxFn)).value.toString()), stoxContractConfig);
+        approveStoxSpending(config);
 
-    } catch (err) {
-      console.error('Error in Spending Approval function:', err);
-      triggerSnackbar('Error in Spending Approval function', 'error');
-    }} else if (direction === 'SELL') {
+      } catch (err) {
+        console.error('Error in Spending Approval function:', err);
+        triggerSnackbar('Error in Spending Approval function', 'error');
+      }
+    } else if (direction === 'SELL') {
       try {
         const quantityWithDecimals = ethers.parseUnits(newQuantity.toString(), 18);
         const config = getApproveSpendingConfig(BigInt(quantityWithDecimals), nvidiaContractConfig);
         approveNvdaSpending(config);
-  
+
       } catch (err) {
         console.error('Error in Spending Approval function:', err);
         triggerSnackbar('Error in Spending Approval function', 'error');
@@ -210,14 +215,14 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
             </Grid>
           </SingleComponentStack>
           <SimpleSnackbar
-        open={snackbarOpen}
-        message={snackbarMessage}
-        severity={snackbarSeverity}
-        onClose={handleCloseSnackbar}
-      />
+            open={snackbarOpen}
+            message={snackbarMessage}
+            severity={snackbarSeverity}
+            onClose={handleCloseSnackbar}
+          />
         </Box >
       </Fade>
-      
+
     </Modal>
   );
 };
