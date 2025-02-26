@@ -108,9 +108,14 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
       sendOrder()
     }else if (isErrorNvdaSpending) {
       triggerSnackbar('Error in Spending Approval function', 'error');
+    }else if (isSuccessSendOrder) {
+      triggerSnackbar('Order Sent', 'success');
+    } else if (isErrorSendOrder) {
+      triggerSnackbar('Error in Sending Order function', 'error');
     }
+
   
-  }, [isSuccessStoxSpending, isErrorStoxSpending, isSuccessNvdaSpending, isErrorNvdaSpending]);
+  }, [isSuccessStoxSpending, isErrorStoxSpending, isSuccessNvdaSpending, isErrorNvdaSpending,isSuccessSendOrder,isErrorSendOrder]);
 
 
   const sendOrder = async () => {
@@ -119,12 +124,12 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
         const quantityFN = ethers.FixedNumber.fromString(newQuantity.toString())
         const assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
         const priceOfStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
-        console.log('stoxPrice', stoxPrice)
+        /*console.log('stoxPrice', stoxPrice)
         console.log('priceOfStoxFn', priceOfStoxFn)
         console.log('quantityFN', quantityFN)
         console.log('newQuantity', newQuantity)
         console.log('assetUsdPriceFN', assetUsdPriceFN)
-        console.log('price', price)
+        console.log('price', price)*/
         const config = getOrderConfig(BigInt((assetUsdPriceFN).div(priceOfStoxFn).value.toString()),BigInt(quantityFN.value.toString()),nvidiaOrderBookContractConfig,direction);
         orderSending(config);
 
@@ -137,7 +142,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
         const quantityFN = ethers.FixedNumber.fromString(newQuantity.toString())
         const assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
         const priceOfStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
-        const quantityWithDecimals = ethers.parseUnits(newQuantity.toString(), 18);
+       // const quantityWithDecimals = ethers.parseUnits(newQuantity.toString(), 18);
         const config = getOrderConfig(BigInt((assetUsdPriceFN).div(priceOfStoxFn).value.toString()),BigInt(quantityFN.value.toString()),nvidiaOrderBookContractConfig,direction);
         orderSending(config);
 
@@ -230,7 +235,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
                 <CustomTextField
                   marginLeft='2ch'
                   marginTop='0.1ch'
-                  label={"Quantity"}
+                  label={"Shares"}
                   defaultValue={quantity}
                   width='7em'
                   onChange={handleQuantityChange}
@@ -251,7 +256,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
                 width='8em'
                 marginLeft='0ch'
                 marginTop='0ch'
-                label={"Volume"}
+                label={"Notional"}
                 defaultValue={Number((newQuantity / stoxPrice).toFixed(6))}
                 value={Number((price * newQuantity / stoxPrice).toFixed(6))}
               />
