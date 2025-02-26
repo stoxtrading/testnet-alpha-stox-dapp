@@ -1,6 +1,3 @@
-import {
-    useWriteContract
-} from 'wagmi'
 import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
