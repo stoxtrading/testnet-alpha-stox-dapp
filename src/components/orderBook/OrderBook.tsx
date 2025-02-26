@@ -263,7 +263,7 @@ export default function OrderBook(): JSX.Element {
 
                         <GridAsksNb size={{ xs: 5, sm: 4 }}>
                             <NumbersTypography color="red" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'} )
+                                ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0),2)}&nbsp;{assetReserves?.symbol || 'loading'} )
                             </NumbersTypography>
                         </GridAsksNb>
                         <GridAsksNb size={2}>
@@ -301,7 +301,7 @@ export default function OrderBook(): JSX.Element {
 
                             <GridBidsNb size={{ xs: 5, sm: 4 }} >
                                 <NumbersTypography color='#27AE60' style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                    ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'})
+                                    ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0),2)}&nbsp;{assetReserves?.symbol || 'loading'})
                                 </NumbersTypography>
                             </GridBidsNb>
 
