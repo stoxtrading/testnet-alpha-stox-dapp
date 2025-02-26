@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 
 const useRealTimePrice = (instrument: string) => {
-    const [price, setPrice] = useState<number >(0);
+    const [price, setPrice] = useState<number>(() => {
+        const savedPrice = localStorage.getItem(`price_${instrument}`);
+        return savedPrice ? parseFloat(savedPrice) : 0;
+    });
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -15,7 +18,9 @@ const useRealTimePrice = (instrument: string) => {
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data);
             if (data.body?.[`${instrument}_cboe`]?.last) {
-                setPrice(data.body[`${instrument}_cboe`].last);
+                const newPrice = data.body[`${instrument}_cboe`].last;
+                setPrice(newPrice);
+                localStorage.setItem(`price_${instrument}`, newPrice.toString());
             }
         };
 
