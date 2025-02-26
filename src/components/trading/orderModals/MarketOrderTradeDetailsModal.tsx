@@ -13,9 +13,11 @@ import CurrencyStepper from './CurrencyStepper';
 import getPoolReserves from '../../liquidityPoolPricing/LiquidityPoolPricing'
 import { useEffect, useState } from 'react';
 import { SimpleSnackbar } from '../../../assets/elements/CustomSnackbars';
-import { getApproveSpendingConfig } from '../../../components/smartContractsInteractions/OrderSending'
+import { getApproveSpendingConfig, getOrderConfig } from '../../../components/smartContractsInteractions/OrderSending'
 import { stoxContractConfig } from '../../../assets/contracts/dev/Stox';
 import { nvidiaContractConfig } from '../../../assets/contracts/dev/Nvidia';
+import {nvidiaOrderBookContractConfig} from '../../../assets/contracts/dev/NvidiaOrderBook'
+
 import { ethers } from 'ethers';
 
 import { useWriteContract } from 'wagmi';
@@ -51,6 +53,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
 
   const { writeContract: approveStoxSpending, isPending: isPendingStoxSpending, isSuccess: isSuccessStoxSpending, isError: isErrorStoxSpending } = useWriteContract();
   const { writeContract: approveNvdaSpending, isPending: isPendingNvdaSpending, isSuccess: isSuccessNvdaSpending, isError: isErrorNvdaSpending } = useWriteContract();
+  const { writeContract: orderSending, isPending: isPendingSendOrder, isSuccess: isSuccessSendOrder, isError: isErrorSendOrder } = useWriteContract();
 
 
 
@@ -97,13 +100,16 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
   useEffect(() => {
     if (isSuccessStoxSpending) {
       triggerSnackbar('Spending Approved', 'success');
+      sendOrder()
     } else if (isErrorStoxSpending) {
       triggerSnackbar('Error in Spending Approval function', 'error');
     } else if (isSuccessNvdaSpending) {
       triggerSnackbar('Spending Approved', 'success');
+      sendOrder()
     }else if (isErrorNvdaSpending) {
       triggerSnackbar('Error in Spending Approval function', 'error');
     }
+  
   }, [isSuccessStoxSpending, isErrorStoxSpending, isSuccessNvdaSpending, isErrorNvdaSpending]);
 
 
@@ -112,14 +118,51 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
       try {
         const quantityFN = ethers.FixedNumber.fromString(newQuantity.toString())
         const assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
-        const priceInStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
+        const priceOfStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
         console.log('stoxPrice', stoxPrice)
-        console.log('priceInStoxFn', priceInStoxFn)
+        console.log('priceOfStoxFn', priceOfStoxFn)
         console.log('quantityFN', quantityFN)
         console.log('newQuantity', newQuantity)
         console.log('assetUsdPriceFN', assetUsdPriceFN)
         console.log('price', price)
-        const config = getApproveSpendingConfig(BigInt(((quantityFN).mul(assetUsdPriceFN).div(priceInStoxFn)).value.toString()), stoxContractConfig);
+        const config = getOrderConfig(BigInt((assetUsdPriceFN).div(priceOfStoxFn).value.toString()),BigInt(quantityFN.value.toString()),nvidiaOrderBookContractConfig,direction);
+        orderSending(config);
+
+      } catch (err) {
+        console.error('Error in Spending Approval function:', err);
+        triggerSnackbar('Error in Spending Approval function', 'error');
+      }
+    } else if (direction === 'SELL') {
+      try {
+        const quantityFN = ethers.FixedNumber.fromString(newQuantity.toString())
+        const assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
+        const priceOfStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
+        const quantityWithDecimals = ethers.parseUnits(newQuantity.toString(), 18);
+        const config = getOrderConfig(BigInt((assetUsdPriceFN).div(priceOfStoxFn).value.toString()),BigInt(quantityFN.value.toString()),nvidiaOrderBookContractConfig,direction);
+        orderSending(config);
+
+      } catch (err) {
+        console.error('Error in Sending Order function:', err);
+        triggerSnackbar('Error in Sending Order  function', 'error');
+      }
+    }
+
+  };
+
+
+  const approveSpending = async () => {
+    if (direction === 'BUY') {
+      try {
+        const quantityFN = ethers.FixedNumber.fromString(newQuantity.toString())
+        const assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
+        const priceOfStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
+        /*console.log('stoxPrice', stoxPrice)
+        console.log('priceOfStoxFn', priceOfStoxFn)
+        console.log('quantityFN', quantityFN)
+        console.log('newQuantity', newQuantity)
+        console.log('assetUsdPriceFN', assetUsdPriceFN)
+        console.log('price', price)*/
+        const config = getApproveSpendingConfig(BigInt(((quantityFN).mul(assetUsdPriceFN).div(priceOfStoxFn)).value.toString()), stoxContractConfig);
         approveStoxSpending(config);
 
       } catch (err) {
@@ -180,7 +223,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
                   width={100}
                   backgroundColor={buttonColor}
                   text={direction}
-                  onClick={sendOrder}
+                  onClick={approveSpending}
                 />
               </Grid>
               <Grid size={6} justifyItems={"center"}>

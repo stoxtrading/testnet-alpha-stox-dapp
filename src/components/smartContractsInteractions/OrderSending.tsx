@@ -5,7 +5,7 @@ import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
 import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 
-const ApproveSpending = (approvedAmount : bigint, contractConfig: typeof stoxContractConfig | typeof nvidiaContractConfig   ) => {
+/* const ApproveSpending = (approvedAmount : bigint, contractConfig: typeof stoxContractConfig | typeof nvidiaContractConfig   ) => {
     const {
         data: approveHash,
         error: approveError,
@@ -34,9 +34,9 @@ const ApproveSpending = (approvedAmount : bigint, contractConfig: typeof stoxCon
         approveError,
         approveIsPending
     };
-};
+}; */
 
- const getApproveSpendingConfig = (approvedAmount: bigint, contractConfig: typeof stoxContractConfig | typeof nvidiaContractConfig) => {
+const getApproveSpendingConfig = (approvedAmount: bigint, contractConfig: typeof stoxContractConfig | typeof nvidiaContractConfig) => {
     return {
         address: contractConfig.address,
         abi: contractConfig.abi,
@@ -45,6 +45,33 @@ const ApproveSpending = (approvedAmount : bigint, contractConfig: typeof stoxCon
     };
 };
 
-export {ApproveSpending, getApproveSpendingConfig}
+const getOrderConfig = (
+    priceInStox: bigint,
+    quantity: bigint,
+    orderBookContractConfig: typeof nvidiaOrderBookContractConfig,
+    direction: 'BUY' | 'SELL') => {
+    if (direction === 'BUY') {
+        return {
+            address: orderBookContractConfig.address,
+            abi: orderBookContractConfig.abi,
+            functionName: 'placeBuy',
+            args: [priceInStox, quantity],
+        };
+    } else if (direction === 'SELL') {
+        return {
+            address: orderBookContractConfig.address,
+            abi: orderBookContractConfig.abi,
+            functionName: 'placeSell',
+            args: [priceInStox, quantity],
+        };
+    }
+
+
+};
+
+
+
+
+export { getApproveSpendingConfig, getOrderConfig }
 
 
