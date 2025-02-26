@@ -3,7 +3,17 @@ import { useState, useEffect } from 'react';
 const useRealTimePrice = (instrument: string) => {
     const [price, setPrice] = useState<number>(() => {
         const savedPrice = localStorage.getItem(`price_${instrument}`);
-        return savedPrice ? parseFloat(savedPrice) : 0;
+        const savedTimestamp = localStorage.getItem(`price_${instrument}_timestamp`);
+        const currentTime = new Date().getTime();
+
+        if (savedPrice && savedTimestamp) {
+            const timestamp = parseInt(savedTimestamp, 10);
+            // Invalidate cache if older than 5 minutes (300000 milliseconds)
+            if (currentTime - timestamp < 300000) {
+                return parseFloat(savedPrice);
+            }
+        }
+        return 0;
     });
     const [error, setError] = useState<string | null>(null);
 
@@ -21,6 +31,7 @@ const useRealTimePrice = (instrument: string) => {
                 const newPrice = data.body[`${instrument}_cboe`].last;
                 setPrice(newPrice);
                 localStorage.setItem(`price_${instrument}`, newPrice.toString());
+                localStorage.setItem(`price_${instrument}_timestamp`, new Date().getTime().toString());
             }
         };
 
