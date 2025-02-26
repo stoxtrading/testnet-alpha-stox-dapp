@@ -16,7 +16,7 @@ import { SimpleSnackbar } from '../../../assets/elements/CustomSnackbars';
 import { getApproveSpendingConfig, getOrderConfig } from '../../../components/smartContractsInteractions/OrderSending'
 import { stoxContractConfig } from '../../../assets/contracts/dev/Stox';
 import { nvidiaContractConfig } from '../../../assets/contracts/dev/Nvidia';
-import {nvidiaOrderBookContractConfig} from '../../../assets/contracts/dev/NvidiaOrderBook'
+import { nvidiaOrderBookContractConfig } from '../../../assets/contracts/dev/NvidiaOrderBook'
 
 import { ethers } from 'ethers';
 
@@ -36,16 +36,18 @@ interface TradeDetailsModalProps {
   direction: 'BUY' | 'SELL';
   quantity: number;
   handleClose: () => void;
+  isMarketOrder: boolean;
 }
 
 
 
 
-const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, direction, quantity, stockTicker, handleClose }) => {
+const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, direction, quantity, stockTicker, handleClose, isMarketOrder }) => {
   const { price, } = useRealTimePrice(stockTicker);
   const buttonColor = direction === 'BUY' ? 'green' : 'red';
   const [stoxPrice, setStoxPrice] = useState<number>(0);
   const [newQuantity, setNewQuantity] = useState<number>(0);
+  const [lmtPrice, setLmtPrice] = useState<number>(0);
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
@@ -67,6 +69,14 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
     setSnackbarOpen(false);
   };
 
+  const handleLmtPriceChg = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    if (/^[0-9.]*$/.test(value)) {
+      console.log("new qty", value)
+      setLmtPrice(Number(value));
+    }
+  };
+
   const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     if (/^[0-9.]*$/.test(value)) {
@@ -77,6 +87,11 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
   useEffect(() => {
     setNewQuantity(quantity);
   }, [quantity]);
+
+  useEffect(() => {
+    setLmtPrice(price);
+  }, []);
+
 
 
   useEffect(() => {
@@ -96,41 +111,56 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
     fetchPoolReserves();
   }, []);
 
-
   useEffect(() => {
     if (isSuccessStoxSpending) {
       triggerSnackbar('Spending Approved', 'success');
       sendOrder()
-    } else if (isErrorStoxSpending) {
-      triggerSnackbar('Error in Spending Approval function', 'error');
-    } else if (isSuccessNvdaSpending) {
+    }
+  }, [isSuccessStoxSpending])
+
+  useEffect(() => {
+    if (isSuccessNvdaSpending) {
       triggerSnackbar('Spending Approved', 'success');
       sendOrder()
-    }else if (isErrorNvdaSpending) {
+    }
+  }, [isSuccessNvdaSpending])
+
+  useEffect(() => {
+    if (isErrorStoxSpending) {
       triggerSnackbar('Error in Spending Approval function', 'error');
-    }else if (isSuccessSendOrder) {
+    } else if (isErrorNvdaSpending) {
+      triggerSnackbar('Error in Spending Approval function', 'error');
+    } else if (isSuccessSendOrder) {
       triggerSnackbar('Order Sent', 'success');
     } else if (isErrorSendOrder) {
       triggerSnackbar('Error in Sending Order function', 'error');
     }
 
-  
-  }, [isSuccessStoxSpending, isErrorStoxSpending, isSuccessNvdaSpending, isErrorNvdaSpending,isSuccessSendOrder,isErrorSendOrder]);
+
+  }, [isErrorStoxSpending, isSuccessNvdaSpending, isErrorNvdaSpending, isSuccessSendOrder, isErrorSendOrder]);
 
 
   const sendOrder = async () => {
     if (direction === 'BUY') {
       try {
         const quantityFN = ethers.FixedNumber.fromString(newQuantity.toString())
-        const assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
+        let assetUsdPriceFN;
+        if (isMarketOrder) {
+          assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
+        }
+        else {
+          assetUsdPriceFN = ethers.FixedNumber.fromString(lmtPrice.toString())
+        }
         const priceOfStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
+
+        console.log('assetUsdPriceFN', assetUsdPriceFN)
         /*console.log('stoxPrice', stoxPrice)
         console.log('priceOfStoxFn', priceOfStoxFn)
         console.log('quantityFN', quantityFN)
         console.log('newQuantity', newQuantity)
         console.log('assetUsdPriceFN', assetUsdPriceFN)
         console.log('price', price)*/
-        const config = getOrderConfig(BigInt((assetUsdPriceFN).div(priceOfStoxFn).value.toString()),BigInt(quantityFN.value.toString()),nvidiaOrderBookContractConfig,direction);
+        const config = getOrderConfig(BigInt((assetUsdPriceFN).div(priceOfStoxFn).value.toString()), BigInt(quantityFN.value.toString()), nvidiaOrderBookContractConfig, direction);
         orderSending(config);
 
       } catch (err) {
@@ -140,10 +170,16 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
     } else if (direction === 'SELL') {
       try {
         const quantityFN = ethers.FixedNumber.fromString(newQuantity.toString())
-        const assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
+        let assetUsdPriceFN;
+        if (isMarketOrder) {
+          assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
+        }
+        else {
+          assetUsdPriceFN = ethers.FixedNumber.fromString(lmtPrice.toString())
+        }
         const priceOfStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
-       // const quantityWithDecimals = ethers.parseUnits(newQuantity.toString(), 18);
-        const config = getOrderConfig(BigInt((assetUsdPriceFN).div(priceOfStoxFn).value.toString()),BigInt(quantityFN.value.toString()),nvidiaOrderBookContractConfig,direction);
+        // const quantityWithDecimals = ethers.parseUnits(newQuantity.toString(), 18);
+        const config = getOrderConfig(BigInt((assetUsdPriceFN).div(priceOfStoxFn).value.toString()), BigInt(quantityFN.value.toString()), nvidiaOrderBookContractConfig, direction);
         orderSending(config);
 
       } catch (err) {
@@ -159,7 +195,13 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
     if (direction === 'BUY') {
       try {
         const quantityFN = ethers.FixedNumber.fromString(newQuantity.toString())
-        const assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
+        let assetUsdPriceFN;
+        if (isMarketOrder) {
+          assetUsdPriceFN = ethers.FixedNumber.fromString(price.toString())
+        }
+        else {
+          assetUsdPriceFN = ethers.FixedNumber.fromString(lmtPrice.toString())
+        }
         const priceOfStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
         /*console.log('stoxPrice', stoxPrice)
         console.log('priceOfStoxFn', priceOfStoxFn)
@@ -216,7 +258,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
                 </SubtitleTypography>
               </Grid>
               <Grid size={6} justifyItems={"center"} alignItems={"center"} >
-                {price !== null ? <NumbersTypography fontSize={"1.75em"}>{price.toFixed(3)}</NumbersTypography> : <NumbersTypography>Loading...</NumbersTypography>}
+                {price !== null ? <NumbersTypography fontSize={"1.75em"}>${price.toFixed(2)}</NumbersTypography> : <NumbersTypography>Loading...</NumbersTypography>}
 
               </Grid>
             </Grid>
@@ -251,16 +293,42 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
             <Grid size={12}>
               <CurrencyStepper />
             </Grid>
-            <Grid container marginTop={'1em'} justifyContent={"center"}>
-              <CustomTextField
-                width='8em'
-                marginLeft='0ch'
-                marginTop='0ch'
-                label={"Notional"}
-                defaultValue={Number((newQuantity / stoxPrice).toFixed(6))}
-                value={Number((price * newQuantity / stoxPrice).toFixed(6))}
-              />
-            </Grid>
+            {isMarketOrder ? (
+              <Grid container marginTop={'1em'} justifyContent={"center"}>
+                <CustomTextField
+                  width='7em'
+                  marginLeft='0ch'
+                  marginTop='0ch'
+                  label={"Notional"}
+                  defaultValue={Number((newQuantity / stoxPrice).toFixed(6))}
+                  value={Number((price * newQuantity / stoxPrice).toFixed(6))}
+                />
+              </Grid>
+            ) : (
+              <Grid container marginTop={'1em'} justifyContent={"center"} >
+                <Grid size={6} justifyItems={"center"}  >
+                  <CustomTextField
+                    width='7em'
+                    marginLeft='2ch'
+                    marginTop='0ch'
+                    label={"Limit Price"}
+                    defaultValue={Number((price).toFixed(6))}
+                    onChange={handleLmtPriceChg}
+                  //value={Number((price * newQuantity / stoxPrice).toFixed(6))}
+                  />
+                </Grid>
+                <Grid size={6} justifyItems={"center"}  >
+                  <CustomTextField
+                    width='7em'
+                    marginLeft='2ch'
+                    marginTop='0ch'
+                    label={"Notional"}
+                    defaultValue={Number((newQuantity / stoxPrice).toFixed(6))}
+                    value={Number((lmtPrice * newQuantity / stoxPrice).toFixed(6))}
+                  />
+                </Grid>
+              </Grid>)
+            }
           </SingleComponentStack>
           <SimpleSnackbar
             open={snackbarOpen}

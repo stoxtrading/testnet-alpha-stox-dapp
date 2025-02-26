@@ -68,7 +68,7 @@ export default function Trading() {
                         </SubtitleTypography>
                     </Grid>
                     <Grid size={6} justifyItems={"center"}>
-                        {price !== null ? <NumbersTypography fontSize={"1.75em"}>{price.toFixed(3)}</NumbersTypography> : <NumbersTypography>Loading...</NumbersTypography>}
+                        {price !== null ? <NumbersTypography fontSize={"1.75em"}>${price.toFixed(3)}</NumbersTypography> : <NumbersTypography>Loading...</NumbersTypography>}
                     </Grid>
                 </Grid>
                 <Grid container sx={{ marginBottom: "10px" }}>
@@ -146,6 +146,7 @@ export default function Trading() {
                 direction={direction}
                 quantity={quantity}
                 stockTicker={stockTicker}
+                isMarketOrder = {isMarketOrder}
             />
             <SimpleSnackbar
                 open={snackbarOpen}
