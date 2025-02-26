@@ -2,6 +2,30 @@ import { styled } from '@mui/material/styles';
 import { TypographyProps, Typography } from '@mui/material';
 
 
+interface GenericTypographyProps extends TypographyProps {
+    color?: string;
+    fontSize?: string;
+}
+
+const GenericTypography: React.FC<GenericTypographyProps> = ({ color = 'white',fontSize = '0.7rem', ...props }) => {
+    return (
+        <Typography
+            {...props}
+
+            color={color}
+            sx={{
+                
+                fontWeight: 300,
+                fontFamily: 'Michroma',
+                fontSize: {fontSize},
+                ...props.sx, // Allow overriding styles
+            }}
+        >
+            {props.children}
+        </Typography>
+    );
+}
+
 const SubSectionTitleTypography = styled(Typography)<TypographyProps>(() => ({
     variant: "caption",
     color: 'white',
@@ -21,6 +45,9 @@ const SingleComponentStackTitleTypography: React.FC<TypographyProps> = ({ childr
         </Typography>
     );
 };
+
+
+
 
 interface HeaderMenuTypographyProps extends TypographyProps {
     color?: string;
@@ -270,4 +297,4 @@ export { ClickableAddressTypography }
 export { SubtitleTypography }
 export { ButtonTypography }
 export { HomePageAnnoucementTypography }
-export { CountdownNumbersTypography, CountdownTextTypography }
+export { CountdownNumbersTypography, CountdownTextTypography,GenericTypography }

@@ -11,7 +11,7 @@ const CommonPageBackground: React.FC<CommonPageBackgroundProps> = ({ children })
             display: 'flex',
             justifyContent: 'center',
             backgroundImage: 'url(./welcome-page-bg.png)',
-            backgroundSize: 'cover',
+            backgroundSize: '100% auto', // Cover horizontally, not vertically
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             minHeight: '100vh',
