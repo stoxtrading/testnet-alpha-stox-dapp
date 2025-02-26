@@ -15,7 +15,7 @@ export default function WelcomePage() {
 
 
     return (
-        <Grid>
+        <Grid >
             <CommonPageBackground>
                 <Box display="flex" flexDirection="column" marginTop="8vh" >
                     <CountDown />
