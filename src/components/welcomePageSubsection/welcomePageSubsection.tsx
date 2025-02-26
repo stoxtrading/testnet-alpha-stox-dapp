@@ -78,7 +78,7 @@ export default function WelcomePageSubsection() {
                         gutterBottom
                         sx={{
                             fontWeight: 300,
-                            fontSize: { xs: '2rem', md: '3rem' },
+                            fontSize: { xs: '1.5rem', md: '3rem' },
                             letterSpacing: '0.2em',
                             textTransform: 'uppercase',
                             marginBottom: 4,
