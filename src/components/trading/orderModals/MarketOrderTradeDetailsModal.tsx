@@ -34,7 +34,6 @@ interface TradeDetailsModalProps {
   open: boolean;
   stockTicker: string;
   direction: 'BUY' | 'SELL';
-  quantity: number;
   handleClose: () => void;
   isMarketOrder: boolean;
 }
@@ -42,20 +41,21 @@ interface TradeDetailsModalProps {
 
 
 
-const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, direction, quantity, stockTicker, handleClose, isMarketOrder }) => {
+const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, direction, stockTicker, handleClose, isMarketOrder }) => {
   const { price, } = useRealTimePrice(stockTicker);
   const buttonColor = direction === 'BUY' ? 'green' : 'red';
-  const [stoxPrice, setStoxPrice] = useState<number>(0);
-  const [newQuantity, setNewQuantity] = useState<number>(0);
+  const [stoxPrice, setStoxPrice] = useState<number>(1);
+  const [newQuantity, setNewQuantity] = useState<number>(1);
   const [lmtPrice, setLmtPrice] = useState<number>(0);
+  const [notional, setNotional] = useState<number>(0);
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'warning' | 'info'>("success");
 
-  const { writeContract: approveStoxSpending, isPending: isPendingStoxSpending, isSuccess: isSuccessStoxSpending, isError: isErrorStoxSpending } = useWriteContract();
+  const { writeContract: approveStoxSpending, isPending: isPendingStoxSpending, isSuccess: isSuccessStoxSpending, isError: isErrorStoxSpending} = useWriteContract();
   const { writeContract: approveNvdaSpending, isPending: isPendingNvdaSpending, isSuccess: isSuccessNvdaSpending, isError: isErrorNvdaSpending } = useWriteContract();
-  const { writeContract: orderSending, isPending: isPendingSendOrder, isSuccess: isSuccessSendOrder, isError: isErrorSendOrder } = useWriteContract();
+  const { writeContract: orderSending, isPending: isPendingSendOrder, isSuccess: isSuccessSendOrder, isError: isErrorSendOrder, error: err  } = useWriteContract();
 
 
 
@@ -84,14 +84,16 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
       setNewQuantity(Number(value));
     }
   };
-  useEffect(() => {
-    setNewQuantity(quantity);
-  }, [quantity]);
+
 
   useEffect(() => {
     setLmtPrice(price);
-  }, []);
+  }, [stoxPrice]);
 
+  useEffect(()=>{
+      setNotional(lmtPrice * newQuantity / stoxPrice);
+   
+  }, [lmtPrice, newQuantity, stoxPrice]);
 
 
   useEffect(() => {
@@ -133,9 +135,9 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
     } else if (isSuccessSendOrder) {
       triggerSnackbar('Order Sent', 'success');
     } else if (isErrorSendOrder) {
+      console.error('Error in Sending Order function');
       triggerSnackbar('Error in Sending Order function', 'error');
-    }
-
+    } 
 
   }, [isErrorStoxSpending, isSuccessNvdaSpending, isErrorNvdaSpending, isSuccessSendOrder, isErrorSendOrder]);
 
@@ -278,7 +280,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
                   marginLeft='2ch'
                   marginTop='0.1ch'
                   label={"Shares"}
-                  defaultValue={quantity}
+                  defaultValue={1}
                   width='7em'
                   onChange={handleQuantityChange}
 
@@ -324,7 +326,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
                     marginTop='0ch'
                     label={"Notional"}
                     defaultValue={Number((newQuantity / stoxPrice).toFixed(6))}
-                    value={Number((lmtPrice * newQuantity / stoxPrice).toFixed(6))}
+                    value={Number((notional).toFixed(6))}
                   />
                 </Grid>
               </Grid>)

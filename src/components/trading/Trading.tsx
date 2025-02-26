@@ -48,10 +48,7 @@ export default function Trading() {
     }
 
     function OpenTradeDetailsModal(direction: string) {
-        if (quantity === 0) {
-            triggerSnackbar("Please enter a quantity", "error");
-            return;
-        }
+     
 
         console.log(`Open ${direction} trade details popup`);
         setDirection(direction as 'BUY' | 'SELL');
@@ -97,8 +94,7 @@ export default function Trading() {
                         />
                     </Grid>
                 </Grid>
-                <Grid container>
-                    <Grid size={6} justifyItems={"center"}>
+                <Grid container alignItems={"center"} justifyContent={"center"}>
                         <Stack>
                             <Grid container justifyContent={"center"}>
                                 <Switch
@@ -126,17 +122,7 @@ export default function Trading() {
                                 </Grid>
                             </Grid>
                         </Stack>
-                    </Grid>
-                    <Grid size={6} justifyItems={"center"}>
-                        <CustomTextField
-                            marginLeft='1.5ch'
-                            marginTop='0.9ch'
-                            width='8em'
-                            label={"Quantity"}
-                            defaultValue={0}
-                            onChange={handleQuantityChange}
-                        />
-                    </Grid>
+                   
                 </Grid>
             </SingleComponentStack>
 
@@ -144,7 +130,6 @@ export default function Trading() {
                 open={marketOrderModalOpen}
                 handleClose={handleCloseMarketOrderModal}
                 direction={direction}
-                quantity={quantity}
                 stockTicker={stockTicker}
                 isMarketOrder = {isMarketOrder}
             />
