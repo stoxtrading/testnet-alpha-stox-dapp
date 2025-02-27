@@ -10,7 +10,7 @@ interface WalletButtonProps {
 }
 
 const WalletButton: React.FC<WalletButtonProps> = ({ text, onClick }) => {
-    
+
     return (
         <Box
 
@@ -63,7 +63,7 @@ const WalletButton: React.FC<WalletButtonProps> = ({ text, onClick }) => {
     )
 }
 
-export {WalletButton}
+export { WalletButton }
 
 
 
@@ -71,44 +71,67 @@ export {WalletButton}
 
 
 interface CustomButtonProps {
-    backgroundColor: string;   
+    backgroundColor: string;
     text: string;
     onClick: () => void;
     height: number
     width: number
     fontSize: string
     sx?: SxProps<Theme>;
-    color? : string
+    color?: string
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({color='white',fontSize = '0.8rem',height =30, width = 60, text, backgroundColor, onClick,  sx = {}  }) => {
-    
+const CustomButton: React.FC<CustomButtonProps> = ({ color = 'white', fontSize = '0.8rem', height = 30, width = 60, text, backgroundColor, onClick, sx = {} }) => {
+
     return (
         <Box
             height={height}
             width={width}
             borderRadius="6px"
             onClick={onClick}
-            alignContent={"center"}
-            justifyItems={"center"}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            position="relative"
+            overflow="hidden"
             sx={{
                 backgroundColor: backgroundColor,
-                transition: 'all 0.05s ease-in-out',
+                transition: 'all 0.1s ease-in-out',
                 '&:hover': {
                     cursor: 'pointer',
-                    transform: 'scale(1.02)',
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                    filter: 'brightness(0.5)',
+                },
+                '&:hover::before': {
+                    opacity: 0.1,
+                },
+                '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'white',
+                    opacity: 0,
+                    transition: 'opacity 0.1s ease-in-out',
                 },
                 ...sx
-            }}>
+            }}
+        >
             <ButtonTypography
-                
                 color={color}
                 sx={{
                     fontSize: fontSize,
-                }}>{text}
+                    position: 'relative',
+                    zIndex: 1,
+                }}
+            >
+                {text}
             </ButtonTypography>
         </Box>
+
     )
 }
 
-export {CustomButton}
+export { CustomButton }
