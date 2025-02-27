@@ -53,9 +53,9 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'warning' | 'info'>("success");
 
-  const { writeContract: approveStoxSpending, isPending: isPendingStoxSpending, isSuccess: isSuccessStoxSpending, isError: isErrorStoxSpending} = useWriteContract();
+  const { writeContract: approveStoxSpending, isPending: isPendingStoxSpending, isSuccess: isSuccessStoxSpending, isError: isErrorStoxSpending } = useWriteContract();
   const { writeContract: approveNvdaSpending, isPending: isPendingNvdaSpending, isSuccess: isSuccessNvdaSpending, isError: isErrorNvdaSpending } = useWriteContract();
-  const { writeContract: orderSending, isPending: isPendingSendOrder, isSuccess: isSuccessSendOrder, isError: isErrorSendOrder, error: err  } = useWriteContract();
+  const { writeContract: orderSending, isPending: isPendingSendOrder, isSuccess: isSuccessSendOrder, isError: isErrorSendOrder } = useWriteContract();
 
 
 
@@ -90,9 +90,9 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
     setLmtPrice(price);
   }, [stoxPrice]);
 
-  useEffect(()=>{
-      setNotional(lmtPrice * newQuantity / stoxPrice);
-   
+  useEffect(() => {
+    setNotional(lmtPrice * newQuantity / stoxPrice);
+
   }, [lmtPrice, newQuantity, stoxPrice]);
 
 
@@ -137,7 +137,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
     } else if (isErrorSendOrder) {
       console.error('Error in Sending Order function');
       triggerSnackbar('Error in Sending Order function', 'error');
-    } 
+    }
 
   }, [isErrorStoxSpending, isSuccessNvdaSpending, isErrorNvdaSpending, isSuccessSendOrder, isErrorSendOrder]);
 
@@ -267,12 +267,18 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
             <Grid container sx={{ marginBottom: "10px" }}>
               <Grid size={6} justifyItems={"center"}>
                 <CustomButton
+                  color='white'
                   fontSize='1.1rem'
                   height={40}
-                  width={100}
+                  width={125}
                   backgroundColor={buttonColor}
-                  text={direction}
-                  onClick={approveSpending}
+                  text={isPendingSendOrder || isPendingStoxSpending || isPendingNvdaSpending ? 'Pending' : direction}
+                  onClick={isPendingSendOrder || isPendingStoxSpending || isPendingNvdaSpending ? () => { } : approveSpending}
+                  sx={{
+                    opacity: isPendingSendOrder || isPendingStoxSpending || isPendingNvdaSpending ? 0.7 : 1,
+                    cursor: isPendingSendOrder || isPendingStoxSpending || isPendingNvdaSpending ? 'not-allowed' : 'pointer',
+                    pointerEvents: isPendingSendOrder || isPendingStoxSpending || isPendingNvdaSpending ? 'none' : 'auto'
+                  }}
                 />
               </Grid>
               <Grid size={6} justifyItems={"center"}>
