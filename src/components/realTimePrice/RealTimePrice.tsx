@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import { TableTitleTypography } from '../../assets/elements/CustomTypography';
+import { GenericTypography, NumbersTypography, } from '../../assets/elements/CustomTypography';
 
 
 const RealTimePrice = () => {
@@ -48,34 +48,49 @@ const RealTimePrice = () => {
     return (
         <Box >
             <Stack   >
-                
-                <Grid container columnSpacing={2} alignItems="center">
-                    <Grid size={{ xs: 4, sm: 2 }}>
-                        <img src='./nvda.png' width="40" height="40" />
+
+                <Grid container alignItems="top" justifyContent="left" >
+                    <Grid size={{ xs: 1, sm: 1 }} sx={{
+                      
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        <img src='./nvda.png' width="30" height="30" />
                     </Grid>
-                    <Grid size={{ xs: 4, sm: 2 }}>
-                        <TableTitleTypography sx={{ fontWeight: 600 }}>
+                    <Grid size={{ xs: 7, sm: 4 }} alignContent="center" justifyContent="center" sx={{
+                       
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                        <GenericTypography
+
+                            fontSize='1rem'>
                             NVIDIA Corp.
-                        </TableTitleTypography>
+                        </GenericTypography>
                     </Grid>
-                    <Grid size={{ xs: 4, sm: 2 }}>
-                        <TableTitleTypography sx={{ fontWeight: 600 }}>
+                    <Grid size={{ xs: 3, sm: 2 }} sx={{
+                       
+                       display: 'flex',
+                       justifyContent: 'center',
+                       alignItems: 'center',
+                       alignnContent: 'center'
+                   }} >
+                        <NumbersTypography fontSize={"1em"} paddingTop='0.4rem'>
                             {price !== null ? `$${price.toFixed(2)}` : 'Loading...'}
-                        </TableTitleTypography>
+                        </NumbersTypography>
                     </Grid>
-                    <Grid display={{ xs: 'none', sm: 'flex' }}>
-                        <TableTitleTypography sx={{ fontWeight: 600 }}>
-                            {priceChange !== null ? `${(priceChange * 100).toFixed(2)}%` : 'Loading...'}
-                        </TableTitleTypography>
+                    <Grid display={{ xs: 'none', sm: 'flex' }} size={{ xs: 4, sm: 3 }} paddingTop='0.4rem' sx={{
+                        justifyContent: 'center',
+                       alignItems: 'center',
+                       alignnContent: 'center'}}
+                       >
+                        <NumbersTypography fontSize={"0.8em"} >
+                            {priceChange !== null ? `${(priceChange * 100).toFixed(2)}%` : 'Loading...'}&nbsp;{priceChangeAbs !== null ? `(${(priceChangeAbs).toFixed(2)})` : 'Loading...'}
+                        </NumbersTypography>
                     </Grid>
-                    <Grid display={{ xs: 'none', sm: 'flex' }}>
-                        <TableTitleTypography sx={{ fontWeight: 600 }}>
-                            {priceChangeAbs !== null ? `(${(priceChangeAbs).toFixed(2)})` : 'Loading...'}
-                        </TableTitleTypography>
-                    </Grid>
-
-                    
-
+                   
                 </Grid>
             </Stack>
         </Box>
