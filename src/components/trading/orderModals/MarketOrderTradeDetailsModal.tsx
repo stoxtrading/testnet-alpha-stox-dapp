@@ -163,6 +163,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
         console.log('assetUsdPriceFN', assetUsdPriceFN)
         console.log('price', price)*/
         const config = getOrderConfig(BigInt((assetUsdPriceFN).div(priceOfStoxFn).value.toString()), BigInt(quantityFN.value.toString()), nvidiaOrderBookContractConfig, direction);
+        // @ts-expect-error ts-migrate(2554) FIXME: ABI typings are incorrect
         orderSending(config);
 
       } catch (err) {
@@ -182,6 +183,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
         const priceOfStoxFn = ethers.FixedNumber.fromString(stoxPrice.toString())
         // const quantityWithDecimals = ethers.parseUnits(newQuantity.toString(), 18);
         const config = getOrderConfig(BigInt((assetUsdPriceFN).div(priceOfStoxFn).value.toString()), BigInt(quantityFN.value.toString()), nvidiaOrderBookContractConfig, direction);
+        // @ts-expect-error ts-migrate(2554) FIXME: ABI typings are incorrect
         orderSending(config);
 
       } catch (err) {
@@ -212,6 +214,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
         console.log('assetUsdPriceFN', assetUsdPriceFN)
         console.log('price', price)*/
         const config = getApproveSpendingConfig(BigInt(((quantityFN).mul(assetUsdPriceFN).div(priceOfStoxFn)).value.toString()), stoxContractConfig);
+        // @ts-expect-error ts-migrate(2554) FIXME: ABI typings are incorrect
         approveStoxSpending(config);
 
       } catch (err) {
@@ -222,6 +225,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
       try {
         const quantityWithDecimals = ethers.parseUnits(newQuantity.toString(), 18);
         const config = getApproveSpendingConfig(BigInt(quantityWithDecimals), nvidiaContractConfig);
+        // @ts-expect-error ts-migrate(2554) FIXME: ABI typings are incorrect
         approveNvdaSpending(config);
 
       } catch (err) {
