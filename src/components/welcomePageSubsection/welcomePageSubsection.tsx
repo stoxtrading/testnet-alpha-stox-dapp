@@ -85,7 +85,7 @@ export default function WelcomePageSubsection() {
                             fontFamily: 'Orbitron, sans-serif', // Match the futuristic font from image
                         }}
                     >
-                        A Global, Permissionless Access to Stock Markets
+                        A Global, Permissionless Access to Stocks Markets
                     </Typography>
                 </motion.div>
 
