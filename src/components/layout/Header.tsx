@@ -6,14 +6,13 @@ import { MenuIcon } from "../../assets/icons/MenuIcon"
 import Grid from '@mui/material/Grid2';
 import './Header.css';
 import LeftSideMenu from './LeftSideMenu';
-import { GridProps } from '@mui/material';
+import { Box, GridProps } from '@mui/material';
 //import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useConnectModal, useAccountModal } from "@rainbow-me/rainbowkit";
 import { useAccount } from 'wagmi'
 import { truncateAddress } from '../../tools/Tools';
-import { HeaderMenuTypography, } from '../../assets/elements/CustomTypography';
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
+import { HeaderMenuTypography, HomePageAnnoucementTypography, } from '../../assets/elements/CustomTypography';
+
 
 interface RedirectGridProps extends GridProps {
     redirectTo: string;
@@ -35,21 +34,20 @@ const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo, children, .
     return (
         <Grid
             {...gridProps}
-            size={2}
+            size={3}
             component="div"
             alignItems="center"
             justifyContent="center"
             alignContent="center"
             justifyItems="center"
             onClick={handleClick}
-            color='#1e163b'
+            color='white'
             paddingLeft="5px"
             paddingRight="5px"
             sx={{
                 transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
                 '&:hover': {
-                    color: 'white',
-                    backgroundColor: '#5e6bae',
+
                     cursor: 'pointer',
                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Add shadow on hover
                     transform: 'scale(1.05)', // Slightly scale up on hover
@@ -74,26 +72,13 @@ const Header: React.FC<HeaderProps> = () => {
     const { address: connectedWalletAddress } = useAccount()
 
 
-    const theme = useTheme();
-    const isXs = useMediaQuery(theme.breakpoints.only('xs'));
-    const isSm = useMediaQuery(theme.breakpoints.only('sm'));
-    const isMd = useMediaQuery(theme.breakpoints.only('md'));
-    const isLg = useMediaQuery(theme.breakpoints.only('lg'));
-    const isXl = useMediaQuery(theme.breakpoints.only('xl'));
 
-    const getBackgroundColor = () => {
-        if (isXs) return '#1e163b';
-        if (isSm) return '#1e163b';
-        if (isMd) return 'white';
-        if (isLg) return 'white';
-        if (isXl) return 'white';
-        return 'defaultColor';
-    };
+
 
 
 
     return (
-        <AppBar position="fixed" className="appBar" sx={{ backgroundColor: getBackgroundColor() }} >
+        <AppBar position="fixed" className="appBar" sx={{ backgroundColor: "black", paddingBottom: "3vh",paddingTop: "3vh", paddingRight: "1vw", paddingLeft: "1vw" }} >
             <Grid container >
                 <Grid size={2} alignItems='center' justifyContent="center" alignContent="center" justifyItems="center" display={{ xs: 'flex', sm: 'flex', md: 'none', }}>
                     <IconButton size="small" onClickCapture={handleClick}>
@@ -101,20 +86,21 @@ const Header: React.FC<HeaderProps> = () => {
                     </IconButton>
                     <LeftSideMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
                 </Grid>
-                <Grid size={10} container display={{ xs: 'none', sm: 'none', md: 'flex', }}>
-                    <HeaderMenuButton redirectTo="/">
-                        <HeaderMenuTypography color="inherit">Home</HeaderMenuTypography>
+
+                <Grid size={9} container display={{ xs: 'none', sm: 'none', md: 'flex', }} justifyItems={"center"} alignItems={"center"} alignContent={"center"} justifyContent={"center"} >
+                    <HeaderMenuButton redirectTo="/" display={{ xs: 'none', sm: 'none', md: 'flex', }}>
+                        <HomePageAnnoucementTypography sx={{ fontSize: '2rem', }} color="inherit">STOX</HomePageAnnoucementTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/testnet-limit-order-book">
-                        <HeaderMenuTypography color="inherit">Testnet Order Book</HeaderMenuTypography>
+                        <HeaderMenuTypography color="inherit">Trade</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/liquidity">
                         <HeaderMenuTypography color="inherit">Liquidity</HeaderMenuTypography>
                     </HeaderMenuButton>
-                    <HeaderMenuButton redirectTo="/white-paper">
-                        <HeaderMenuTypography color="inherit">White Paper</HeaderMenuTypography>
+                    <HeaderMenuButton redirectTo="/smart-contracts">
+                        <HeaderMenuTypography color="inherit">Smart Contracts</HeaderMenuTypography>
                     </HeaderMenuButton>
-                   {/*  <HeaderMenuButton redirectTo="/roadmap">
+                    {/*  <HeaderMenuButton redirectTo="/roadmap">
                         <HeaderMenuTypography color="inherit">Roadmap</HeaderMenuTypography>
                     </HeaderMenuButton> */}
 
@@ -128,23 +114,61 @@ const Header: React.FC<HeaderProps> = () => {
                         justifyContent="center"
                         alignContent="center"
                         justifyItems="center"
-                        onClick={openAccountModal}
+
                         offset='auto'
                         paddingLeft="15px"
                         paddingRight="15px"
-                        sx={{
-                            backgroundColor: '#1e163b',
-                            transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
-                            '&:hover': {
-                                backgroundColor: '#5e6bae',
-                                cursor: 'pointer',
-                                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Add shadow on hover
-                                transform: 'scale(1.05)', // Slightly scale up on hover
-                            },
-                            paddingTop: "8px",
-                            paddingBottom: "5px",
-                        }}>
-                        <HeaderMenuTypography color="white">{truncateAddress(connectedWalletAddress)}</HeaderMenuTypography>
+                    >
+                        <Box
+                            alignItems="center"
+                            justifyContent="center"
+                            alignContent="center"
+                            justifyItems="center"
+                            borderRadius="6px"
+                            onClick={openAccountModal}
+                            sx={{
+                                borderRadius: "100px",
+                                position: 'relative',
+                                background: "#000",
+                                '&::before': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    inset: 0,
+                                    padding: '2px',
+                                    borderRadius: '100px',
+                                    background: 'linear-gradient(90deg, #FF3BFF, #ECBFBF, #5C24FF, #D94FD5, #FF3BFF)',
+                                    backgroundSize: '200% 100%',
+                                    animation: 'gradientMove 3s linear infinite',
+                                    mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                                    maskComposite: 'exclude',
+                                    pointerEvents: 'none',
+                                },
+                                '@keyframes gradientMove': {
+                                    '0%': {
+                                        backgroundPosition: '0% 0%',
+                                    },
+                                    '100%': {
+                                        backgroundPosition: '200% 0%',
+                                    }
+                                },
+                                transition: 'all 0.1s ease-in-out',
+                                '&:hover': {
+                                    
+                                    cursor: 'pointer',
+                                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                                    transform: 'scale(1.05)',
+                                },
+                                paddingTop: "8px",
+                                paddingBottom: "5px",
+                            }}>
+                            <HeaderMenuTypography 
+                                paddingLeft="12px"
+                                paddingRight="12px"
+                                color="white"
+                                sx={{
+                                    fontSize: "0.6rem",
+                                }}>{truncateAddress(connectedWalletAddress)}</HeaderMenuTypography>
+                        </Box>
                     </Grid>
                 ) : (
                     <Grid
@@ -154,24 +178,58 @@ const Header: React.FC<HeaderProps> = () => {
                         justifyContent="center"
                         alignContent="center"
                         justifyItems="center"
-                        onClick={openConnectModal}
                         offset='auto'
                         paddingLeft="15px"
                         paddingRight="15px"
-                        sx={{
+                    >
+                        <Box
 
-                            backgroundColor: '#1e163b',
-                            transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
-                            '&:hover': {
-                                backgroundColor: '#5e6bae',
-                                cursor: 'pointer',
-                                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Add shadow on hover
-                                transform: 'scale(1.05)', // Slightly scale up on hover
-                            },
-                            paddingTop: "8px",
-                            paddingBottom: "5px",
-                        }}>
-                        <HeaderMenuTypography color="white">Connect Wallet</HeaderMenuTypography>
+                            borderRadius="6px"
+                            onClick={openConnectModal}
+                            sx={{
+                                borderRadius: "100px",
+                                position: 'relative',
+                                background: "#000",
+                                '&::before': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    inset: 0,
+                                    padding: '2px',
+                                    borderRadius: '100px',
+                                    background: 'linear-gradient(90deg, #FF3BFF, #ECBFBF, #5C24FF, #D94FD5, #FF3BFF)',
+                                    backgroundSize: '200% 100%',
+                                    animation: 'gradientMove 3s linear infinite',
+                                    mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                                    maskComposite: 'exclude',
+                                    pointerEvents: 'none',
+                                },
+                                '@keyframes gradientMove': {
+                                    '0%': {
+                                        backgroundPosition: '0% 0%',
+                                    },
+                                    '100%': {
+                                        backgroundPosition: '200% 0%',
+                                    }
+                                },
+                                transition: 'all 0.1s ease-in-out',
+                                '&:hover': {
+                                    
+                                    cursor: 'pointer',
+                                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                                    transform: 'scale(1.05)',
+                                },
+                                paddingTop: "8px",
+                                paddingBottom: "5px",
+                            }}>
+                            <HeaderMenuTypography
+                                paddingLeft="12px"
+                                paddingRight="12px"
+                                color="white"
+                                sx={{
+                                    fontSize: "0.6rem",
+                                }}>Connect Wallet
+                            </HeaderMenuTypography>
+                        </Box>
                     </Grid>
                 )}
 

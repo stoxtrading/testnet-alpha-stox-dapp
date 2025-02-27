@@ -2,7 +2,6 @@ import React, { JSX, useEffect, useState } from 'react';
 import { useReadContract } from 'wagmi';
 import { nvidiaOrderBookContractConfig } from '../../assets/contracts/dev/NvidiaOrderBook';
 import Grid from '@mui/material/Grid2';
-import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Stack from '@mui/material/Stack';
@@ -22,93 +21,7 @@ import getPoolReserves from '../liquidityPoolPricing/LiquidityPoolPricing'
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import { ClickableAddressTypography, TableTitleTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
 import StackTitle from '../buildingBlocks/StackTitle';
-
-
-const GridBidsNb = styled(Grid)(() => ({
-    borderRadius: 0,
-    backgroundColor: 'rgba(263, 263, 263, 0.9)',
-
-    textAlign: 'center',
-    color: '#27AE60',
-    alignContent: 'center',
-
-
-
-}));
-
-const GridBidsAddr = styled(Grid)(() => ({
-    borderTopLeftRadius: 6,
-    borderBottomLeftRadius: 6,
-    backgroundColor: 'rgba(263, 263, 263, 0.9)',
-    textAlign: 'left',
-    color: '#27AE60',
-    alignContent: 'center',
-    
-    paddingLeft: 6,
-    wordBreak: 'break-all',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    '&:hover': {
-        color: '#3f51b5',
-        textDecoration: 'underline',
-    },
-
-}));
-
-
-const GridAsksHeader = styled(Grid)(() => ({
-    borderRadius: 0,
-    textAlign: 'center',
-    color: '#1e163b',
-    paddingLeft: 2,
-    alignContent: 'center',
-}));
-
-const GridAsksNb = styled(Grid)(() => ({
-    borderRadius: 0,
-    backgroundColor: 'rgba(263, 263, 263, 0.9)',
-    textAlign: 'center',
-    color: 'red',
-    alignContent: 'center',
-
-
-}));
-
-const GridAsksAddr = styled(Grid)(() => ({
-    borderTopLeftRadius: 6,
-    borderBottomLeftRadius: 6,
-    backgroundColor: 'rgba(263, 263, 263, 0.9)',
-    textAlign: 'left',
-
-    alignContent: 'center',
-    paddingLeft: 6,
-    wordBreak: 'break-all',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    '&:hover': {
-        color: '#3f51b5',
-        textDecoration: 'underline',
-    },
-}));
-
-
-const GridAction = styled(Grid)(() => ({
-    borderTopRightRadius: 6,
-    borderBottomRightRadius: 6,
-    backgroundColor: 'rgba(263, 263, 263, 0.9)',
-    textAlign: 'center',
-    color: '#1e163b',
-    alignContent: 'center',
-    height: 28,
-
-
-
-}));
-
-
-
-
-
+import {GridAsksHeader, GridAsksAddr, GridAsksNb, GridAction, GridBidsNb, GridBidsAddr} from '../../assets/elements/CustomGrid';
 
 
 
@@ -350,7 +263,7 @@ export default function OrderBook(): JSX.Element {
 
                         <GridAsksNb size={{ xs: 5, sm: 4 }}>
                             <NumbersTypography color="red" style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'} )
+                                ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0),2)}&nbsp;{assetReserves?.symbol || 'loading'} )
                             </NumbersTypography>
                         </GridAsksNb>
                         <GridAsksNb size={2}>
@@ -363,7 +276,7 @@ export default function OrderBook(): JSX.Element {
                                 {order.address === connectedWalletAddress && (
                                     <Tooltip title="Cancel SELL order" placement="top">
                                         <IconButton size="small" onClickCapture={cancelSell}>
-                                            <CancelIcon size={15} color="#1e163b" />
+                                            <CancelIcon size={15} color="white" />
                                         </IconButton>
                                     </Tooltip>
                                 )}
@@ -388,7 +301,7 @@ export default function OrderBook(): JSX.Element {
 
                             <GridBidsNb size={{ xs: 5, sm: 4 }} >
                                 <NumbersTypography color='#27AE60' style={{ fontWeight: order.address === connectedWalletAddress ? 'bold' : 'normal' }}>
-                                    ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({Number(order.price.toString()) / (1_000_000_000_000_000_000.0)}&nbsp;{assetReserves?.symbol || 'loading'})
+                                    ${formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0) * stoxPrice, 2)}&#32;({formatNumber(Number(order.price.toString()) / (1_000_000_000_000_000_000.0),2)}&nbsp;{assetReserves?.symbol || 'loading'})
                                 </NumbersTypography>
                             </GridBidsNb>
 
@@ -403,7 +316,7 @@ export default function OrderBook(): JSX.Element {
                                     {order.address === connectedWalletAddress && (
                                         <Tooltip title="Cancel BUY order" placement="top">
                                             <IconButton size="small" onClickCapture={cancelBuy}>
-                                                <CancelIcon size={15} color="#1e163b" />
+                                                <CancelIcon size={15} color="white" />
                                             </IconButton></Tooltip>
                                     )}
                                 </Typography>

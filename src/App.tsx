@@ -21,7 +21,7 @@ function App() {
               <Route index path="/" element={<WelcomePage />} />
               <Route path="testnet-limit-order-book" element={<TestnetLimitOrderBookPage />} />
               <Route path="liquidity" element={<TokenomicsPage/>} />
-              <Route path="white-paper" element={<WhitepaperPage/>} />
+              <Route path="smart-contracts" element={<WhitepaperPage/>} />
               <Route path="roadmap" element={<RoadmapPage/>} />
             </Route>
           </Routes>

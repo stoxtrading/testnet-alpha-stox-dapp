@@ -5,7 +5,7 @@ import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
 import Box from '@mui/material/Box';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
-import { TableTitleTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
+import {  NumbersTypography, GenericTypography } from '../../assets/elements/CustomTypography';
 
 
 
@@ -54,19 +54,21 @@ export default function StoxEcosystem() {
                 <Grid container direction={'column'} rowGap={1} >
                     <Grid container >
                         <Grid size={6} justifyItems={'center'} >
-                            <TableTitleTypography>STOX</TableTitleTypography>
+                        <GenericTypography
+                            fontSize = '1.5rem'>STOX</GenericTypography>
                         </Grid>
                         <Grid size={6} justifyItems={'center'} >
-                            <TableTitleTypography>NVIDIA</TableTitleTypography>
+                        <GenericTypography
+                            fontSize = '1.5rem'>NVIDIA</GenericTypography>
                         </Grid>
 
                     </Grid>
                     <Grid container>
                         <Grid size={6} justifyItems={'center'} >
-                            <NumbersTypography sx={{ fontWeight: 700 }}>{formatNumber(Number(stoxBalanceFormatted), 2)}</NumbersTypography>
+                            <NumbersTypography fontSize={"1.2em"}>{formatNumber(Number(stoxBalanceFormatted), 2)}</NumbersTypography>
                         </Grid>
                         <Grid size={6} justifyItems={'center'} >
-                            <NumbersTypography sx={{ fontWeight: 700 }}>{formatNumber(Number(nvidiaBalanceFormatted), 2)}</NumbersTypography>
+                            <NumbersTypography fontSize={"1.2em"}>{formatNumber(Number(nvidiaBalanceFormatted), 2)}</NumbersTypography>
                         </Grid>
                     </Grid>
                 </Grid>

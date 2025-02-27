@@ -2,8 +2,33 @@ import { styled } from '@mui/material/styles';
 import { TypographyProps, Typography } from '@mui/material';
 
 
+interface GenericTypographyProps extends TypographyProps {
+    color?: string;
+    fontSize?: string;
+}
+
+const GenericTypography: React.FC<GenericTypographyProps> = ({ color = 'white',fontSize = '0.7rem', ...props }) => {
+    return (
+        <Typography
+            {...props}
+
+            color={color}
+            sx={{
+                
+                fontWeight: 300,
+                fontFamily: 'Michroma',
+                fontSize: {fontSize},
+                ...props.sx, // Allow overriding styles
+            }}
+        >
+            {props.children}
+        </Typography>
+    );
+}
+
 const SubSectionTitleTypography = styled(Typography)<TypographyProps>(() => ({
-    variant: "caption"
+    variant: "caption",
+    color: 'white',
 
 }));
 
@@ -12,7 +37,7 @@ const SingleComponentStackTitleTypography: React.FC<TypographyProps> = ({ childr
     return (
         <Typography
             sx={{ fontWeight: 700, fontFamily: 'Michroma', letterSpacing: '0.2em' }}
-            color='#1e163b'
+            color='#E6D3E6'
             variant="overline"
             {...props}
         >
@@ -20,6 +45,9 @@ const SingleComponentStackTitleTypography: React.FC<TypographyProps> = ({ childr
         </Typography>
     );
 };
+
+
+
 
 interface HeaderMenuTypographyProps extends TypographyProps {
     color?: string;
@@ -49,14 +77,15 @@ variant='subtitle1'
 const TableTitleTypography: React.FC<TypographyProps> = (props) => {
     return (
         <Typography
-            {...props}
-            color='#1e163b'
+            
+            color='white'
             sx={{
                 fontWeight: 500,
                 fontFamily: 'Michroma',
                 fontSize: '0.7rem',
                 ...props.sx, // Allow overriding styles
             }}
+            {...props}
         >
             {props.children}
         </Typography>
@@ -65,9 +94,10 @@ const TableTitleTypography: React.FC<TypographyProps> = (props) => {
 
 interface NumbersTypographyProps extends TypographyProps {
     color?: string;
+    fontSize?: string;
 }
 
-const NumbersTypography: React.FC<NumbersTypographyProps> = ({ color = '#1e163b', ...props }) => {
+const NumbersTypography: React.FC<NumbersTypographyProps> = ({fontSize='0.7rem', color = 'white', ...props }) => {
     return (
         <Typography
             {...props}
@@ -76,7 +106,7 @@ const NumbersTypography: React.FC<NumbersTypographyProps> = ({ color = '#1e163b'
                 letterSpacing: '0.1em',
                 fontWeight: 400,
                 fontFamily: 'Rubik',
-                fontSize: '0.7rem',
+                fontSize:{fontSize},
                 ...props.sx, // Allow overriding styles
             }}
         >
@@ -89,11 +119,11 @@ const ClickableTxHashTypography: React.FC<TypographyProps> = (props) => {
     return (
         <Typography
             {...props}
-            color='#1e163b'
+            color='white'
             sx={{
                 wordBreak: 'break-all', cursor: 'pointer',
                 '&:hover': {
-                    color: '#3f51b5',
+                    color: 'white',
                     textDecoration: 'underline',
                 },
                 fontWeight: 300,
@@ -112,7 +142,7 @@ interface ClickableAddressTypographyProps extends TypographyProps {
     color?: string;
 }
 
-const ClickableAddressTypography: React.FC<ClickableAddressTypographyProps> = ({ children, color = '#1e163b', ...props }) => {
+const ClickableAddressTypography: React.FC<ClickableAddressTypographyProps> = ({ children, color = 'white', ...props }) => {
     return (
         <Typography
             {...props}
@@ -136,9 +166,10 @@ const ClickableAddressTypography: React.FC<ClickableAddressTypographyProps> = ({
 
 interface SubtitleTypographyProps extends TypographyProps {
     color?: string;
+    fontSize?: string;
 }
 
-const SubtitleTypography: React.FC<SubtitleTypographyProps> = ({ color = '#3f51b5', ...props }) => {
+const SubtitleTypography: React.FC<SubtitleTypographyProps> = ({ color = 'white',fontSize = '0.7rem', ...props }) => {
     return (
         <Typography
             {...props}
@@ -148,7 +179,7 @@ const SubtitleTypography: React.FC<SubtitleTypographyProps> = ({ color = '#3f51b
                 textTransform: 'uppercase',
                 fontWeight: 500,
                 fontFamily: 'Michroma',
-                fontSize: '0.7rem',
+                fontSize: {fontSize},
                 ...props.sx, // Allow overriding styles
             }}
         >
@@ -266,4 +297,4 @@ export { ClickableAddressTypography }
 export { SubtitleTypography }
 export { ButtonTypography }
 export { HomePageAnnoucementTypography }
-export { CountdownNumbersTypography, CountdownTextTypography }
+export { CountdownNumbersTypography, CountdownTextTypography,GenericTypography }

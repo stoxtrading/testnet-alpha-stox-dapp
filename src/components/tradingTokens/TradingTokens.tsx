@@ -7,7 +7,7 @@ import { nvidiaContractConfig } from '../../assets/contracts/dev/Nvidia';
 import { stoxContractConfig } from '../../assets/contracts/dev/Stox';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
-import { ClickableTxHashTypography, SubtitleTypography } from '../../assets/elements/CustomTypography';
+import { ClickableTxHashTypography, SubtitleTypography, ButtonTypography } from '../../assets/elements/CustomTypography';
 
 const TradingTokens = () => {
 
@@ -45,13 +45,15 @@ const TradingTokens = () => {
                                 <ClickableTxHashTypography>{stoxContractConfig.address}</ClickableTxHashTypography>
                             </Link>
                         </Grid>
-                        <Grid container  justifyItems={'center'} size={{ sm: 12, md: 3 }}>
+                        <Grid  container alignItems={'center'} justifyItems={'center'} size={{ sm: 12, md: 3 }}>
 
                             <Button
+                                
                                 variant="contained"
                                 color="primary"
                                 endIcon={<DiscordIcon />}
                                 sx={{
+                                    height:35,
                                     marginLeft: 2,
                                     backgroundColor: '#5865F2',
                                     '&:hover': {
@@ -64,9 +66,9 @@ const TradingTokens = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <SubtitleTypography sx={{ fontWeight: 600, color: 'white' }}>
-                                    GET TESTNET TOKENS
-                                </SubtitleTypography>
+                                <ButtonTypography sx={{  color: 'white' }}>
+                                    Testnet Tokens
+                                </ButtonTypography>
                             </Button>
                         </Grid>
                     </Grid>

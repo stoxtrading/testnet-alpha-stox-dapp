@@ -1,9 +1,9 @@
 
 import Box from '@mui/material/Box';
 
-import CommonPageBackground from '../../components/surfaces/CommonPageBackground';
+import { SimplePageBackground} from '../../components/surfaces/CommonPageBackground';
 
-import Chart from '../../components/chart/Chart';
+import { AreaChart} from '../../components/chart/Chart';
 import OrderBook from '../../components/orderBook/OrderBook';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
@@ -11,30 +11,19 @@ import Trading from '../../components/trading/Trading';
 import Withdrawals from '../../components/withdrawals/Withdrawals';
 import StoxEcosystem from '../../components/stoxEcosystem/StoxEcosystem';
 import Executions from '../../components/executions/Executions';
-import TradingTokens from '../../components/tradingTokens/TradingTokens';
 
 export default function TestnetLimitOrderBookPage() {
 
-
-
-
-
-
-
     return (
 
-        <CommonPageBackground>
-            <Box display="flex" flexDirection="column" marginTop="5vh" >
+        <SimplePageBackground>
+            <Box display="flex" flexDirection="column" marginTop="10vh" >
                 <Stack rowGap={2}>
-                    <Grid container columnSpacing={2} rowSpacing={2}>
-                        <Grid size={12}>
-                            <TradingTokens />
-                        </Grid>
-                    </Grid>
+
 
                     <Grid container columnSpacing={2} rowSpacing={2}>
                         <Grid size={{ xs: 12, md: 6 }}>    
-                            <Chart />
+                            <AreaChart />
                         </Grid>
                         <Grid size={{ xs: 12, md: 6}}>
                             <OrderBook />
@@ -60,6 +49,6 @@ export default function TestnetLimitOrderBookPage() {
                 </Stack>
             </Box>
 
-        </CommonPageBackground>
+        </SimplePageBackground>
     );
 }
