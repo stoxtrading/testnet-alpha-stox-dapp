@@ -233,7 +233,7 @@ export default function OrderBook(): JSX.Element {
                         </Fade>
                     </Grid>
                 </Grid>
-                <Divider color="#595959" sx={{ marginBottom:"0.5rem", marginTop:"-0.6rem"}}/>
+                <Divider color="#595959" sx={{ marginBottom:"0.8rem", marginTop:"-0.6rem"}}/>
 
                 <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
                     <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>ADDRESS</TableTitleTypography></GridAsksHeader>

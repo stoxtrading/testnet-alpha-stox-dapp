@@ -136,7 +136,7 @@ const AreaChart = () => {
         <Box sx={{}}>
             <SingleComponentStack height={500}>
                 <StackTitle title='Market' />
-                <Divider color="#595959" sx={{ marginBottom:"0.5rem"}}/>
+                <Divider color="#595959" sx={{ marginBottom:"0.8rem"}}/>
                 <RealTimePrice />
                 <div
                     ref={chartContainerRef}

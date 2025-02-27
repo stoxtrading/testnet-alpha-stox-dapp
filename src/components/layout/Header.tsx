@@ -91,7 +91,7 @@ const Header: React.FC<HeaderProps> = () => {
                     <HeaderMenuButton redirectTo="/" display={{ xs: 'none', sm: 'none', md: 'flex', }}>
                         <HomePageAnnoucementTypography sx={{ fontSize: '2rem', }} color="inherit">STOX</HomePageAnnoucementTypography>
                     </HeaderMenuButton>
-                    <HeaderMenuButton redirectTo="/testnet-limit-order-book">
+                    <HeaderMenuButton redirectTo="/trading">
                         <HeaderMenuTypography color="inherit">Trade</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/liquidity">

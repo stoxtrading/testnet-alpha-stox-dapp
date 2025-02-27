@@ -22,7 +22,7 @@ export default function LeftSideMenu({ anchorEl, setAnchorEl }: LeftSideMenuProp
 
   const menuItems = [
     { path: '/', label: 'Home'},
-    { path: '/testnet-limit-order-book', label: 'Trade'  },
+    { path: '/trading', label: 'Trade'  },
     { path: '/liquidity', label: 'Liquidity'  },
     { path: '/smart-contracts', label: 'Smart Contracts'  },
    /*  { path: '/roadmap', label: 'Roadmap'  }, */
