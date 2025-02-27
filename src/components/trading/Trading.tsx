@@ -1,4 +1,4 @@
-import { Box, Stack, Switch } from "@mui/material";
+import { Box, Divider, Stack, Switch } from "@mui/material";
 import SingleComponentStack from "../../assets/elements/CustomStack";
 import useRealTimePrice from '../../components/customHooks/UseRealTimePrice';
 import Grid from '@mui/material/Grid2';
@@ -14,24 +14,24 @@ export default function Trading() {
     const [isMarketOrder, setIsMarketOrder] = useState(true);
     const [direction, setDirection] = useState<'BUY' | 'SELL'>('BUY');
 
-   
+
 
     const handleOrderTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIsMarketOrder(event.target.checked);
     };
 
-   
+
     const handleCloseMarketOrderModal = () => {
         setMarketOrderModalOpen(false);
     };
 
-  
+
     const [marketOrderModalOpen, setMarketOrderModalOpen] = useState(false);
 
 
 
     function OpenTradeDetailsModal(direction: string) {
-     
+
 
         console.log(`Open ${direction} trade details popup`);
         setDirection(direction as 'BUY' | 'SELL');
@@ -41,8 +41,9 @@ export default function Trading() {
     return (
         <Box>
             <SingleComponentStack  >
-            <StackTitle
+                <StackTitle
                     title='TRADING' />
+                <Divider color="#595959" sx={{ marginBottom: "0.5rem" }} />                
                 <Grid container sx={{ marginBottom: "10px" }}>
                     <Grid size={6} justifyItems={"center"} >
                         <SubtitleTypography fontSize='1.5em'>
@@ -80,34 +81,34 @@ export default function Trading() {
                     </Grid>
                 </Grid>
                 <Grid container alignItems={"center"} justifyContent={"center"}>
-                        <Stack>
-                            <Grid container justifyContent={"center"}>
-                                <Switch
-                                    color='warning'
-                                    checked={isMarketOrder}
-                                    onChange={handleOrderTypeChange}
-                                    inputProps={{ 'aria-label': 'controlled' }}
-                                />
+                    <Stack>
+                        <Grid container justifyContent={"center"}>
+                            <Switch
+                                color='warning'
+                                checked={isMarketOrder}
+                                onChange={handleOrderTypeChange}
+                                inputProps={{ 'aria-label': 'controlled' }}
+                            />
+                        </Grid>
+                        <Grid container>
+                            <Grid size={4} justifyItems={"center"}>
+                                <SubtitleTypography fontSize='0.5rem'>
+                                    LIMIT
+                                </SubtitleTypography>
                             </Grid>
-                            <Grid container>
-                                <Grid size={4} justifyItems={"center"}>
-                                    <SubtitleTypography fontSize='0.5rem'>
-                                        LIMIT
-                                    </SubtitleTypography>
-                                </Grid>
-                                <Grid size={2} justifyItems={"center"}>
-                                    <SubtitleTypography fontSize='0.5rem'>
-                                        |
-                                    </SubtitleTypography>
-                                </Grid>
-                                <Grid size={4} >
-                                    <SubtitleTypography fontSize='0.5rem'>
-                                        MARKET
-                                    </SubtitleTypography>
-                                </Grid>
+                            <Grid size={2} justifyItems={"center"}>
+                                <SubtitleTypography fontSize='0.5rem'>
+                                    |
+                                </SubtitleTypography>
                             </Grid>
-                        </Stack>
-                   
+                            <Grid size={4} >
+                                <SubtitleTypography fontSize='0.5rem'>
+                                    MARKET
+                                </SubtitleTypography>
+                            </Grid>
+                        </Grid>
+                    </Stack>
+
                 </Grid>
             </SingleComponentStack>
 
@@ -116,9 +117,9 @@ export default function Trading() {
                 handleClose={handleCloseMarketOrderModal}
                 direction={direction}
                 stockTicker={stockTicker}
-                isMarketOrder = {isMarketOrder}
+                isMarketOrder={isMarketOrder}
             />
-            
+
         </Box>
     );
 }

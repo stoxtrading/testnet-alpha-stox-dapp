@@ -36,9 +36,10 @@ const SubSectionTitleTypography = styled(Typography)<TypographyProps>(() => ({
 const SingleComponentStackTitleTypography: React.FC<TypographyProps> = ({ children, ...props }) => {
     return (
         <Typography
-            sx={{ fontWeight: 700, fontFamily: 'Michroma', letterSpacing: '0.2em' }}
-            color='#E6D3E6'
+            sx={{ fontWeight: 700, fontFamily: 'Michroma', letterSpacing: '0.2em',  }}
+            color='#bfbfbf'
             variant="overline"
+            
             {...props}
         >
             {children}

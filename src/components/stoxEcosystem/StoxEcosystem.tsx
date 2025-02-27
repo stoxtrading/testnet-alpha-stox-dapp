@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
 import {  NumbersTypography, GenericTypography } from '../../assets/elements/CustomTypography';
+import { Divider } from '@mui/material';
 
 
 
@@ -51,6 +52,7 @@ export default function StoxEcosystem() {
             <SingleComponentStack height={120}>
                 <StackTitle
                     title='Wallet Balances' />
+                     <Divider color="#595959" sx={{ marginBottom:"0.5rem"}}/>
                 <Grid container direction={'column'} rowGap={1} >
                     <Grid container >
                         <Grid size={6} justifyItems={'center'} >

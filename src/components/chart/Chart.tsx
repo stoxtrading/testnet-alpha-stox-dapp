@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import RealTimePrice from '../../components/realTimePrice/RealTimePrice';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
+import { Divider } from '@mui/material';
 
 interface TimeSeriesDataPoint {
     time: string;
@@ -135,6 +136,7 @@ const AreaChart = () => {
         <Box sx={{}}>
             <SingleComponentStack height={500}>
                 <StackTitle title='Market' />
+                <Divider color="#595959" sx={{ marginBottom:"0.5rem"}}/>
                 <RealTimePrice />
                 <div
                     ref={chartContainerRef}
