@@ -37,7 +37,7 @@ const SingleComponentStackTitleTypography: React.FC<TypographyProps> = ({ childr
     return (
         <Typography
             sx={{ fontWeight: 700, fontFamily: 'Michroma', letterSpacing: '0.2em' }}
-            color='white'
+            color='#E6D3E6'
             variant="overline"
             {...props}
         >
