@@ -1,11 +1,33 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
+import { useEffect, useState } from "react";
 
+
+function useMediaQuery(query: string) : boolean{
+    const [matches, setMatches] = useState(false);
+  
+    useEffect(() => {
+      const media = window.matchMedia(query);
+      if (media.matches !== matches) {
+        setMatches(media.matches);
+      }
+      
+      const listener = () => setMatches(media.matches);
+      media.addEventListener('change', listener);
+      
+      return () => media.removeEventListener('change', listener);
+    }, [matches, query]);
+  
+    return matches;
+  }
 interface CommonPageBackgroundProps {
     children: React.ReactNode;
 }
-const CommonPageBackground: React.FC<CommonPageBackgroundProps> = ({ children }) => (
+const CommonPageBackground: React.FC<CommonPageBackgroundProps> = ({ children }) => {
+    const isMediumScreen = useMediaQuery('(min-width: 1351px)');
+    return(
+
     <div className='pageSurroundingArea'
         style={{
             display: 'flex',
@@ -14,6 +36,9 @@ const CommonPageBackground: React.FC<CommonPageBackgroundProps> = ({ children })
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
             minHeight: '100vh',
+            backgroundSize: isMediumScreen ? '100% auto' : 'auto',
+
+            
         }}
     >
         <CssBaseline />
@@ -24,7 +49,7 @@ const CommonPageBackground: React.FC<CommonPageBackgroundProps> = ({ children })
             </Box>
         </Container>
     </div>
-);
+)};
 
 
 interface SimplePageBackgroundProps {

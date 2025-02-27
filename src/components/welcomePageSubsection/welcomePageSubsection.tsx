@@ -1,4 +1,4 @@
-import { Typography, Card, Box, Container, Divider, Paper } from '@mui/material';
+import { Typography, Card, Box, Container,  Paper } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { motion } from 'framer-motion';
 
@@ -121,7 +121,7 @@ export default function WelcomePageSubsection() {
                             fontSize='2rem'
                             marginTop='10rem'
                         >
-                            STOX ecosystem components
+                            STOX ECOSYSTEM FEATURES
                         </GenericTypography>
                     </Paper>
                 </motion.div>

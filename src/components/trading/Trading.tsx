@@ -4,48 +4,30 @@ import useRealTimePrice from '../../components/customHooks/UseRealTimePrice';
 import Grid from '@mui/material/Grid2';
 import { NumbersTypography, SubtitleTypography } from "../../assets/elements/CustomTypography";
 import { CustomButton } from "../../assets/elements/CustomButton";
-import CustomTextField from "../../assets/elements/CustomTextField";
 import { useState } from "react";
 import MarketOrderTradeDetailsModal from "./orderModals/MarketOrderTradeDetailsModal";
-import { SimpleSnackbar } from '../../assets/elements/CustomSnackbars';
 
 export default function Trading() {
     const stockTicker = 'NVDA'
     const { price, } = useRealTimePrice(stockTicker);
     const [isMarketOrder, setIsMarketOrder] = useState(true);
     const [direction, setDirection] = useState<'BUY' | 'SELL'>('BUY');
-    const [quantity, setQuantity] = useState<number>(0);
 
-    const [snackbarOpen, setSnackbarOpen] = useState(false);
-    const [snackbarMessage, setSnackbarMessage] = useState("");
-    const [snackbarSeverity, setSnackbarSeverity] = useState<'success' | 'error' | 'warning' | 'info'>("success");
+   
 
     const handleOrderTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIsMarketOrder(event.target.checked);
     };
 
-    const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        if (/^[0-9.]*$/.test(value)) {
-            setQuantity(Number(value));
-        }
-    };
-
+   
     const handleCloseMarketOrderModal = () => {
         setMarketOrderModalOpen(false);
     };
 
-    const handleCloseSnackbar = () => {
-        setSnackbarOpen(false);
-    };
-
+  
     const [marketOrderModalOpen, setMarketOrderModalOpen] = useState(false);
 
-    function triggerSnackbar(message: string, severity: 'success' | 'error' | 'warning' | 'info') {
-        setSnackbarMessage(message);
-        setSnackbarSeverity(severity);
-        setSnackbarOpen(true);
-    }
+
 
     function OpenTradeDetailsModal(direction: string) {
      
@@ -133,12 +115,7 @@ export default function Trading() {
                 stockTicker={stockTicker}
                 isMarketOrder = {isMarketOrder}
             />
-            <SimpleSnackbar
-                open={snackbarOpen}
-                message={snackbarMessage}
-                severity={snackbarSeverity}
-                onClose={handleCloseSnackbar}
-            />
+            
         </Box>
     );
 }
