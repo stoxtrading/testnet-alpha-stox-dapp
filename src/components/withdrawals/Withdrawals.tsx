@@ -15,8 +15,9 @@ import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
-import {  NumbersTypography, GenericTypography,  } from '../../assets/elements/CustomTypography';
+import { NumbersTypography, GenericTypography, } from '../../assets/elements/CustomTypography';
 import { CustomButton } from '../../assets/elements/CustomButton';
+import { Divider } from '@mui/material';
 
 
 
@@ -150,19 +151,20 @@ export default function Withdrawals() {
 
                 <StackTitle
                     title='SETTLEMENT' />
+                <Divider color="#595959" sx={{ marginBottom:"0.5rem"}}/>
 
                 <Grid container direction={'column'} rowGap={1} >
                     <Grid container >
                         <Grid size={6} justifyItems={'center'}>
                             <GenericTypography
-                            fontSize = '1.5rem'
+                                fontSize='1.5rem'
                             >STOX</GenericTypography>
                         </Grid>
 
                         <Grid size={6} justifyItems={'center'}>
 
                             <GenericTypography
-                            fontSize = '1.5rem'>NVIDIA</GenericTypography>
+                                fontSize='1.5rem'>NVIDIA</GenericTypography>
                         </Grid>
 
                     </Grid>
@@ -174,22 +176,22 @@ export default function Withdrawals() {
                             <NumbersTypography fontSize={"1.2em"}>{withdrawalbleSecuritiesFormatted?.toString()}</NumbersTypography>
                         </Grid>
                     </Grid>
-                    <Grid container >
+                    <Grid container columnSpacing={"0.5rem"} >
                         <Grid container size={6} justifyContent={'center'} >
 
-                        <CustomButton
-                            color = 'black'
-                            fontSize='0.9rem'
-                            height={40}
-                            width={145}
-                            backgroundColor={"orange"}
-                            text={withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'Pending...' : 'WITHDRAW'}
-                            onClick={withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? () => {} : withdrawCurrencies}
-                            sx={{
-                                opacity: withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 0.7 : 1,
-                                cursor: withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'not-allowed' : 'pointer',
-                                pointerEvents: withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'none' : 'auto'
-                            }}
+                            <CustomButton
+                                color='black'
+                                fontSize='0.8rem'
+                                height={40}
+                                width={145}
+                                backgroundColor={"orange"}
+                                text={withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'Pending...' : 'WITHDRAW'}
+                                onClick={withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? () => { } : withdrawCurrencies}
+                                sx={{
+                                    opacity: withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 0.7 : 1,
+                                    cursor: withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'not-allowed' : 'pointer',
+                                    pointerEvents: withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'none' : 'auto'
+                                }}
                             />
 
                         </Grid>
@@ -199,19 +201,19 @@ export default function Withdrawals() {
 
 
 
-                        <CustomButton
-                            color = 'black'
-                            fontSize='0.9rem'
-                            height={40}
-                            width={145}
-                            backgroundColor={"orange"}
-                            text={withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'Pending...' : 'WITHDRAW'}
-                            onClick={withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? () => {} : withdrawSecurities}
-                            sx={{
-                                opacity: withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 0.7 : 1,
-                                cursor: withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'not-allowed' : 'pointer',
-                                pointerEvents: withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'none' : 'auto'
-                            }}
+                            <CustomButton
+                                color='black'
+                                fontSize='0.8rem'
+                                height={40}
+                                width={145}
+                                backgroundColor={"orange"}
+                                text={withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'Pending...' : 'WITHDRAW'}
+                                onClick={withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? () => { } : withdrawSecurities}
+                                sx={{
+                                    opacity: withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 0.7 : 1,
+                                    cursor: withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'not-allowed' : 'pointer',
+                                    pointerEvents: withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'none' : 'auto'
+                                }}
                             />
 
 

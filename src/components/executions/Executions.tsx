@@ -2,7 +2,7 @@ import { ethers, Interface, InterfaceAbi } from 'ethers';
 import { JSX, useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import { CircularProgress, Fade, } from '@mui/material';
+import { CircularProgress, Divider, Fade, } from '@mui/material';
 
 import Box from '@mui/material/Box';
 import { Link, Tooltip, } from '@mui/material';
@@ -146,12 +146,14 @@ export default function Executions(): JSX.Element {
       <Grid container>
           <StackTitle
             title='Executions' />
-          <Grid offset='auto' sx={{  marginTop: -1.25 }}>
+             
+          <Grid offset='auto'>
             <Fade in={dataLoading}>
               <CircularProgress color="secondary" size="15px"/>
             </Fade>
           </Grid>
         </Grid>
+        <Divider color="#595959" sx={{ marginBottom:"0.5rem", marginTop:"-0.6rem"}}/>
         <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
           <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>TX HASH</TableTitleTypography></GridAsksHeader>
           <GridAsksHeader size={2}><TableTitleTypography>TIMESTAMP</TableTitleTypography></GridAsksHeader>

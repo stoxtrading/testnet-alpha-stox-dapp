@@ -13,7 +13,7 @@ import {
     useWriteContract
 } from 'wagmi'
 import './OrderBook.css'
-import { CircularProgress, Fade,  Link, Typography } from '@mui/material';
+import { CircularProgress, Divider, Fade,  Link, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
@@ -227,12 +227,14 @@ export default function OrderBook(): JSX.Element {
                 <Grid container>
                     <StackTitle
                         title='Limit Order Book' />
-                    <Grid offset='auto' sx={{ marginTop: -1.25 }}>
+                    <Grid offset='auto' >
                         <Fade in={dataLoading}>
                             <CircularProgress color="secondary" size="15px" />
                         </Fade>
                     </Grid>
                 </Grid>
+                <Divider color="#595959" sx={{ marginBottom:"0.5rem", marginTop:"-0.6rem"}}/>
+
                 <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
                     <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>ADDRESS</TableTitleTypography></GridAsksHeader>
                     <GridAsksHeader size={4}><TableTitleTypography>PRICE</TableTitleTypography></GridAsksHeader>
