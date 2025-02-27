@@ -6,12 +6,13 @@ import { Stack, StackProps } from '@mui/material';
 const SingleComponentStack: React.FC<StackProps> = ({ children, ...props }) => {
     return (
         <Stack
-        
+        minHeight="13rem"
             sx={{
                 padding: 2,
                 backgroundColor: 'hsl(200, 10%, 20%)',
-                borderRadius: 1,
+                borderRadius: 3,
                 ...props.sx,
+                border: '1px solid '
             }}
             {...props}
         >

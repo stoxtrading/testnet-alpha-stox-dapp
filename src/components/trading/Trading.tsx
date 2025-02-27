@@ -6,6 +6,7 @@ import { NumbersTypography, SubtitleTypography } from "../../assets/elements/Cus
 import { CustomButton } from "../../assets/elements/CustomButton";
 import { useState } from "react";
 import MarketOrderTradeDetailsModal from "./orderModals/MarketOrderTradeDetailsModal";
+import StackTitle from "../buildingBlocks/StackTitle";
 
 export default function Trading() {
     const stockTicker = 'NVDA'
@@ -40,6 +41,8 @@ export default function Trading() {
     return (
         <Box>
             <SingleComponentStack  >
+            <StackTitle
+                    title='TRADING' />
                 <Grid container sx={{ marginBottom: "10px" }}>
                     <Grid size={6} justifyItems={"center"} >
                         <SubtitleTypography fontSize='1.5em'>

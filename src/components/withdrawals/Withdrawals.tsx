@@ -7,8 +7,7 @@ import {
     useWaitForTransactionReceipt,
     useWriteContract
 } from 'wagmi'
-import Button, { ButtonProps } from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+
 import Box from '@mui/material/Box';
 import React, { useState, useEffect, } from 'react';
 
@@ -16,23 +15,10 @@ import Snackbar from '@mui/material/Snackbar';
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import SingleComponentStack from '../../assets/elements/CustomStack';
 import StackTitle from '../buildingBlocks/StackTitle';
-import { TableTitleTypography, NumbersTypography, ButtonTypography } from '../../assets/elements/CustomTypography';
+import {  NumbersTypography, GenericTypography,  } from '../../assets/elements/CustomTypography';
+import { CustomButton } from '../../assets/elements/CustomButton';
 
 
-const WithdrawButton = styled(Button)<ButtonProps>(() => ({
-    color: '#1e163b',
-    width: 100,
-
-    height: 24,
-    padding: '10px 20px',
-    fontSize: '0.75rem',
-    fontWeight: 'bold',
-    backgroundColor: '#ff9800', // Orange color for the button
-    '&:hover': {
-        backgroundColor: '#fb8c00', // Darker orange color for hover state
-    },
-    textTransform: 'none',
-}));
 
 
 export default function Withdrawals() {
@@ -160,69 +146,78 @@ export default function Withdrawals() {
 
     return (
         <Box >
-            <SingleComponentStack height={120}>
+            <SingleComponentStack  >
 
-            <StackTitle
-                title='Withdrawals'  />
+                <StackTitle
+                    title='SETTLEMENT' />
 
-<Grid container direction={'column'} rowGap={1} >
-                <Grid container >
-                    <Grid size={6} justifyItems={'center'}>
-                        <TableTitleTypography>STOX</TableTitleTypography>
-                    </Grid>
+                <Grid container direction={'column'} rowGap={1} >
+                    <Grid container >
+                        <Grid size={6} justifyItems={'center'}>
+                            <GenericTypography
+                            fontSize = '1.5rem'
+                            >STOX</GenericTypography>
+                        </Grid>
 
-                    <Grid size={6} justifyItems={'center'}>
+                        <Grid size={6} justifyItems={'center'}>
 
-                        <TableTitleTypography>NVIDIA</TableTitleTypography>
-                    </Grid>
-
-                </Grid>
-                <Grid container>
-                    <Grid size={6} justifyItems={'center'} >
-                        <NumbersTypography sx={{ fontWeight: 700 }}>{withdrawalbleCurrenciesFormatted?.toString()}</NumbersTypography>
-                    </Grid>
-                    <Grid size={6} justifyItems={'center'}>
-                        <NumbersTypography  sx={{ fontWeight: 700 }}>{withdrawalbleSecuritiesFormatted?.toString()}</NumbersTypography>
-                    </Grid>
-                </Grid>
-                <Grid container sx={{ marginTop: 1 }}>
-                    <Grid container size={6} justifyContent={'center'} >
-
-                        <WithdrawButton
-                            disabled={withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming}
-                            onClick={withdrawCurrencies}
-                            color="error"
-                            variant="contained"
-                            size="small"
-                        >
-                            {withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'Pending...' : <>
-                                <ButtonTypography
-                                >WITHDRAW</ButtonTypography>
-                            </>}
-                        </WithdrawButton>
-                    </Grid>
-
-
-                    <Grid container size={6} justifyContent={'center'} >
-
-
-
-                        <WithdrawButton
-                            disabled={withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming}
-                            onClick={withdrawSecurities}
-                            color="error"
-                            variant="contained"
-                            size="small"
-
-                        >
-                            {withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'Pending...' : <>
-                                <ButtonTypography>WITHDRAW</ButtonTypography>
-                            </>}</WithdrawButton>
-
+                            <GenericTypography
+                            fontSize = '1.5rem'>NVIDIA</GenericTypography>
+                        </Grid>
 
                     </Grid>
+                    <Grid container>
+                        <Grid size={6} justifyItems={'center'} >
+                            <NumbersTypography fontSize={"1.2em"}>{withdrawalbleCurrenciesFormatted?.toString()}</NumbersTypography>
+                        </Grid>
+                        <Grid size={6} justifyItems={'center'}>
+                            <NumbersTypography fontSize={"1.2em"}>{withdrawalbleSecuritiesFormatted?.toString()}</NumbersTypography>
+                        </Grid>
+                    </Grid>
+                    <Grid container >
+                        <Grid container size={6} justifyContent={'center'} >
 
-                </Grid>
+                        <CustomButton
+                            color = 'black'
+                            fontSize='0.9rem'
+                            height={40}
+                            width={145}
+                            backgroundColor={"orange"}
+                            text={withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'Pending...' : 'WITHDRAW'}
+                            onClick={withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? () => {} : withdrawCurrencies}
+                            sx={{
+                                opacity: withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 0.7 : 1,
+                                cursor: withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'not-allowed' : 'pointer',
+                                pointerEvents: withdrawCurrenciesIsPending || withdrawCurrenciesIsConfirming ? 'none' : 'auto'
+                            }}
+                            />
+
+                        </Grid>
+
+
+                        <Grid container size={6} justifyContent={'center'} >
+
+
+
+                        <CustomButton
+                            color = 'black'
+                            fontSize='0.9rem'
+                            height={40}
+                            width={145}
+                            backgroundColor={"orange"}
+                            text={withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'Pending...' : 'WITHDRAW'}
+                            onClick={withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? () => {} : withdrawSecurities}
+                            sx={{
+                                opacity: withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 0.7 : 1,
+                                cursor: withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'not-allowed' : 'pointer',
+                                pointerEvents: withdrawSecuritiesIsPending || withdrawSecuritiesIsConfirming ? 'none' : 'auto'
+                            }}
+                            />
+
+
+                        </Grid>
+
+                    </Grid>
                 </Grid>
 
             </SingleComponentStack>

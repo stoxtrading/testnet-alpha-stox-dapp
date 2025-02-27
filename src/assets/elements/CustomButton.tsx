@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, SxProps, Theme } from "@mui/material"
 
 import { HeaderMenuTypography, } from '../../assets/elements/CustomTypography';
 import { ButtonTypography, } from '../../assets/elements/CustomTypography';
@@ -77,9 +77,11 @@ interface CustomButtonProps {
     height: number
     width: number
     fontSize: string
+    sx?: SxProps<Theme>;
+    color? : string
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({fontSize = '0.8rem',height =30, width = 60, text, backgroundColor, onClick }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({color='white',fontSize = '0.8rem',height =30, width = 60, text, backgroundColor, onClick,  sx = {}  }) => {
     
     return (
         <Box
@@ -96,11 +98,11 @@ const CustomButton: React.FC<CustomButtonProps> = ({fontSize = '0.8rem',height =
                     cursor: 'pointer',
                     transform: 'scale(1.02)',
                 },
-                
+                ...sx
             }}>
             <ButtonTypography
                 
-                color="white"
+                color={color}
                 sx={{
                     fontSize: fontSize,
                 }}>{text}
