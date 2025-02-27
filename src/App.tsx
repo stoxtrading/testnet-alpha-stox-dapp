@@ -19,7 +19,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               {/*   <Route index element={<Navigate to="/" replace />} /> */}
               <Route index path="/" element={<WelcomePage />} />
-              <Route path="testnet-limit-order-book" element={<TestnetLimitOrderBookPage />} />
+              <Route path="trading" element={<TestnetLimitOrderBookPage />} />
               <Route path="liquidity" element={<TokenomicsPage/>} />
               <Route path="smart-contracts" element={<WhitepaperPage/>} />
               <Route path="roadmap" element={<RoadmapPage/>} />

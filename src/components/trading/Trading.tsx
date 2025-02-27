@@ -4,7 +4,7 @@ import useRealTimePrice from '../../components/customHooks/UseRealTimePrice';
 import Grid from '@mui/material/Grid2';
 import { NumbersTypography, SubtitleTypography } from "../../assets/elements/CustomTypography";
 import { CustomButton } from "../../assets/elements/CustomButton";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MarketOrderTradeDetailsModal from "./orderModals/MarketOrderTradeDetailsModal";
 import StackTitle from "../buildingBlocks/StackTitle";
 
@@ -14,7 +14,8 @@ export default function Trading() {
     const [isMarketOrder, setIsMarketOrder] = useState(true);
     const [direction, setDirection] = useState<'BUY' | 'SELL'>('BUY');
 
-
+    const prevPriceRef = useRef<number>(10);
+    
 
     const handleOrderTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setIsMarketOrder(event.target.checked);
@@ -25,18 +26,22 @@ export default function Trading() {
         setMarketOrderModalOpen(false);
     };
 
-
     const [marketOrderModalOpen, setMarketOrderModalOpen] = useState(false);
 
-
-
     function OpenTradeDetailsModal(direction: string) {
-
-
         console.log(`Open ${direction} trade details popup`);
         setDirection(direction as 'BUY' | 'SELL');
         setMarketOrderModalOpen(true);
     }
+
+    useEffect(() => {
+            prevPriceRef.current = price;
+        }, [price]);
+
+    const getColor = () => {
+        if (prevPriceRef.current === null || price === null) return 'white';
+        return price > prevPriceRef.current ? '#27AE60' : price < prevPriceRef.current ? 'red' : '#27AE60';
+    };
 
     return (
         <Box>
@@ -51,7 +56,7 @@ export default function Trading() {
                         </SubtitleTypography>
                     </Grid>
                     <Grid size={6} justifyItems={"center"}>
-                        {price !== null ? <NumbersTypography fontSize={"1.75em"}>${price.toFixed(3)}</NumbersTypography> : <NumbersTypography>Loading...</NumbersTypography>}
+                        {price !== null ? <NumbersTypography color={getColor()} fontSize={"1.75em"}>${price.toFixed(3)}</NumbersTypography> : <NumbersTypography>Loading...</NumbersTypography>}
                     </Grid>
                 </Grid>
                 <Grid container sx={{ marginBottom: "10px" }}>

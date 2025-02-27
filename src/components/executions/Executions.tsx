@@ -44,11 +44,11 @@ interface TokenInfo {
 
 export default function Executions(): JSX.Element {
 
-  const [executionsEvents, setExecutionsEvents] = useState<ContractEvent[]>([]);  
+  const [executionsEvents, setExecutionsEvents] = useState<ContractEvent[]>([]);
   const [assetReserves, setAssetReserves] = useState<TokenInfo | null>(null);
   const [stoxPrice, setStoxPrice] = useState<number>(0);
   const [dataLoading, setDataLoading] = useState(false);
-  
+
 
   async function getContractEvents(
     contractAddress: string,
@@ -137,23 +137,23 @@ export default function Executions(): JSX.Element {
     fetchPoolReserves();
   }, []);
 
-  
+
 
   return (
     <Box >
       <SingleComponentStack  >
 
-      <Grid container>
+        <Grid container>
           <StackTitle
             title='Executions' />
-             
+
           <Grid offset='auto'>
             <Fade in={dataLoading}>
-              <CircularProgress color="secondary" size="15px"/>
+              <CircularProgress color="secondary" size="15px" />
             </Fade>
           </Grid>
         </Grid>
-        <Divider color="#595959" sx={{ marginBottom:"0.5rem", marginTop:"-0.6rem"}}/>
+        <Divider color="#595959" sx={{ marginBottom: "0.8rem", marginTop: "-0.6rem" }} />
         <Grid container columns={12} display={{ xs: 'none', sm: 'flex', }} >
           <GridAsksHeader sx={{ textAlign: 'left' }} size={4}><TableTitleTypography>TX HASH</TableTitleTypography></GridAsksHeader>
           <GridAsksHeader size={2}><TableTitleTypography>TIMESTAMP</TableTitleTypography></GridAsksHeader>
@@ -169,35 +169,40 @@ export default function Executions(): JSX.Element {
           <GridAsksHeader size={2}><TableTitleTypography>QTY</TableTitleTypography></GridAsksHeader>
         </Grid>
 
-        {executionsEvents.map((event, index) => (
-          <Grid container key={index} columns={12}>
-            <GridAsksAddr size={{ xs: 4, md: 4 }}>
-              <span>
-                <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/tx/${event.transactionHash}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
-                  <Stack>
-                    <Tooltip title={event.transactionHash} placement="top">
-                      <ClickableTxHashTypography >{truncateTxHash(event.transactionHash,6,6)}</ClickableTxHashTypography></Tooltip>
-                  </Stack>
-                </Link>
-              </span>
-            </GridAsksAddr>
-            <GridAsksNb size={{ xs: 3, md: 2 }} display={{ xs: 'none', sm: 'flex', }}> <NumbersTypography >
-              {event.timestamp}
-            </NumbersTypography></GridAsksNb>
-            <GridAsksNb size={{ xs: 3, md: 2 }}> <NumbersTypography >
-              {(Number(formatEthValue((event.args.amount1))) * stoxPrice).toFixed(2)}
-            </NumbersTypography></GridAsksNb>
-            <GridAsksNb size={{ xs: 3, md: 2 }}> <NumbersTypography >
-              {(Number(formatEthValue((event.args.amount1)))).toFixed(2)}
-            </NumbersTypography></GridAsksNb>
-            <GridQty size={{ xs: 2, md: 2 }}>
-              <NumbersTypography >
-                {formatEthValue(event.args.amount2)}
-              </NumbersTypography>
-            </GridQty>
+        <Grid marginTop="0.4rem" >
+          {executionsEvents.map((event, index) => (
+            <Grid container key={index} columns={12}>
+              <GridAsksAddr size={{ xs: 4, md: 4 }}>
+                <span>
+                  <Link href={`${import.meta.env.VITE_APP_BLOCKSCOUT_ENDPOINT}/tx/${event.transactionHash}`} target="_blank" rel="noopener noreferrer" sx={{ textDecoration: 'none' }}>
+                    <Stack>
+                      <Tooltip title={event.transactionHash} placement="top">
+                        <ClickableTxHashTypography >{truncateTxHash(event.transactionHash, 6, 6)}</ClickableTxHashTypography></Tooltip>
+                    </Stack>
+                  </Link>
+                </span>
+              </GridAsksAddr>
+              <GridAsksNb size={{ xs: 3, md: 2 }} display={{ xs: 'none', sm: 'flex', }} justifyContent={"center"}>
+                <NumbersTypography >
+                  {event.timestamp}
+                </NumbersTypography></GridAsksNb>
+              <GridAsksNb size={{ xs: 3, md: 2 }} >
+                <NumbersTypography >
+                  {(Number(formatEthValue((event.args.amount1))) * stoxPrice).toFixed(2)}
+                </NumbersTypography>
+              </GridAsksNb>
+              <GridAsksNb size={{ xs: 3, md: 2 }}> <NumbersTypography >
+                {(Number(formatEthValue((event.args.amount1)))).toFixed(2)}
+              </NumbersTypography></GridAsksNb>
+              <GridQty size={{ xs: 2, md: 2 }}>
+                <NumbersTypography >
+                  {formatEthValue(event.args.amount2)}
+                </NumbersTypography>
+              </GridQty>
 
-          </Grid>
-        ))}
+            </Grid>
+          ))}
+        </Grid>
       </SingleComponentStack>
 
     </Box>
