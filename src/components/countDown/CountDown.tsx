@@ -3,6 +3,7 @@ import { Stack } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { HomePageAnnoucementTypography, CountdownNumbersTypography, CountdownTextTypography } from '../../assets/elements/CustomTypography';
 import { SocialMediaBar } from './SocialMediaBar';
+import {PoweredByBar} from './PoweredByBar';
 // filepath: /media/philippe/C0CE77BCCE77A974/github-2/testnet-alpha-stox-dapp/src/components/countDown/CountDown.tsx
 const minuteSeconds = 60;
 const hourSeconds = 3600;
@@ -39,7 +40,7 @@ export default function CountDown() {
  
 
         return (
-            <Stack rowGap={5} alignItems={'center'} paddingTop="15vh">
+            <Stack rowGap={5} alignItems={'center'} paddingTop="5vh">
                 <Grid container justifyContent="center" spacing={2} direction={'column'} alignItems={"center"} >
 
                      <Grid container justifyContent="center" display={{ xs: 'flex', sm: 'none' }}>
@@ -62,7 +63,7 @@ export default function CountDown() {
                         </HomePageAnnoucementTypography>
                     </Grid>
                 </Grid>
-                <Grid container columns={12} alignItems={"center"} justifyContent={"center"} >
+                <Grid container columns={12} alignItems={"center"} justifyContent={"center"} marginTop="-3.7vh" marginBottom="5vh">
                     <Grid size={{ xs: 6, sm: 3 }} container direction={"column"} padding='10px' alignItems={"center"} justifyContent={"center"}>
                         <CountdownNumbersTypography >
                             {`${remainingDays}`}
@@ -98,6 +99,8 @@ export default function CountDown() {
 
                 </Grid>
                 <SocialMediaBar/>
+                <PoweredByBar/>
+               
             </Stack>
             
         );

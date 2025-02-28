@@ -25,7 +25,7 @@ export default function LeftSideMenu({ anchorEl, setAnchorEl }: LeftSideMenuProp
     { path: '/trading', label: 'Trade'  },
     { path: '/liquidity', label: 'Liquidity'  },
     { path: '/smart-contracts', label: 'Smart Contracts'  },
-   /*  { path: '/roadmap', label: 'Roadmap'  }, */
+     { path: '/rewards', label: 'Rewards'  }, 
   ];
 
 
