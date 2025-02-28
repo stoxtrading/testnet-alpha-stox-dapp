@@ -1,7 +1,7 @@
 
 import Box from '@mui/material/Box';
 
-import {CommonPageBackground} from '../../components/surfaces/CommonPageBackground';
+import {SimplePageBackground} from '../../components/surfaces/CommonPageBackground';
 //import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import {BugBounty} from '../../components/rewards/bugBounty';
@@ -15,18 +15,15 @@ export default function RewardsPage() {
 
     return (
 
-        <CommonPageBackground>
+        <SimplePageBackground>
             <Box display="flex" flexDirection="column" marginTop="10vh" >
                 <Stack rowGap={2}>
                     <Tester/>
                     <BugBounty/>
-
-
-
                 </Stack>
             </Box>
 
 
-        </CommonPageBackground>
+        </SimplePageBackground>
     );
 }
