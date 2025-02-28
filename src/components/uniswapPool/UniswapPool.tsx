@@ -149,7 +149,7 @@ export default function UniswapPool() {
                             rel="noopener noreferrer"
                         >
                             <ButtonTypography sx={{ fontWeight: 600, color: 'white' }}>
-                                GET TESTNET TOKENS
+                                    FAUCET
                             </ButtonTypography>
                         </Button>
                     </Grid>

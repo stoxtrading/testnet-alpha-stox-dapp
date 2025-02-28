@@ -125,7 +125,6 @@ const Header: React.FC<HeaderProps> = () => {
                 <Grid size={9} container display={{ xs: 'none', sm: 'none', md: 'flex', }} justifyItems={"center"} alignItems={"center"} alignContent={"center"} justifyContent={"center"} >
                     <HeaderMenuBrand redirectTo="/" display={{ xs: 'none', sm: 'none', md: 'flex', }}>
                         <HomePageAnnoucementTypography sx={{ fontSize: '2rem', }} color="inherit">STOX</HomePageAnnoucementTypography>
-                        <HomePageAnnoucementTypography sx={{ fontSize: '0.8rem'}} color="red">testnet</HomePageAnnoucementTypography>
                     </HeaderMenuBrand>
                     <HeaderMenuButton redirectTo="/trading">
                         <HeaderMenuTypography color="inherit">Trade</HeaderMenuTypography>

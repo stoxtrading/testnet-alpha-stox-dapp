@@ -5,9 +5,10 @@ import { TypographyProps, Typography } from '@mui/material';
 interface GenericTypographyProps extends TypographyProps {
     color?: string;
     fontSize?: string;
+    fontWeight?: number;
 }
 
-const GenericTypography: React.FC<GenericTypographyProps> = ({ color = 'white',fontSize = '0.7rem', ...props }) => {
+const GenericTypography: React.FC<GenericTypographyProps> = ({fontWeight = 300, color = 'white',fontSize = '0.7rem', ...props }) => {
     return (
         <Typography
             {...props}
@@ -15,7 +16,7 @@ const GenericTypography: React.FC<GenericTypographyProps> = ({ color = 'white',f
             color={color}
             sx={{
                 
-                fontWeight: 300,
+                fontWeight: {fontWeight},
                 fontFamily: 'Michroma',
                 fontSize: {fontSize},
                 ...props.sx, // Allow overriding styles
