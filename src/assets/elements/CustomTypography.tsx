@@ -6,18 +6,26 @@ interface GenericTypographyProps extends TypographyProps {
     color?: string;
     fontSize?: string;
     fontWeight?: number;
+    usage? :  'paragraph' | 'title' | 'subTitle';
 }
 
-const GenericTypography: React.FC<GenericTypographyProps> = ({fontWeight = 300, color = 'white',fontSize = '0.7rem', ...props }) => {
+const GenericTypography: React.FC<GenericTypographyProps> = ({usage = 'paragraph', fontWeight = 400, color = 'white',fontSize = '0.7rem', ...props }) => {
+    let fontFamily = ''
+    if (usage === 'paragraph'){
+        fontFamily= 'Rajdhani'
+    } else if (usage === 'title'){
+        fontFamily= 'Michroma'
+    } else if (usage === 'subTitle'){
+        fontFamily= 'Michroma'}
+
+    
     return (
         <Typography
             {...props}
-
             color={color}
             sx={{
-                
                 fontWeight: {fontWeight},
-                fontFamily: 'Michroma',
+                fontFamily: {fontFamily},
                 fontSize: {fontSize},
                 ...props.sx, // Allow overriding styles
             }}

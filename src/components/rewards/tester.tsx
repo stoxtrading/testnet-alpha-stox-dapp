@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import { ButtonTypography, GenericTypography, HomePageAnnoucementTypography } from '../../assets/elements/CustomTypography';
-import { Button, Container, Paper, Box, Typography, List, ListItem, ListItemIcon, ListItemText, Divider, Card, CardContent } from '@mui/material';
+import { ButtonTypography, GenericTypography } from '../../assets/elements/CustomTypography';
+import { Button, Container, Box, List, ListItem, ListItemIcon, ListItemText, Divider, Card, CardContent } from '@mui/material';
 import { DiscordIcon } from '../../assets/icons/DiscordIcon';
 import { AirdropIcon } from "../../assets/icons/AirdropIcon";
 import { CheckIcon } from '../../assets/icons/CheckIcon';
@@ -12,12 +12,12 @@ function Tester() {
   const steps = [
     {
       title: "Join our Discord Server",
-      description: "Connect with our community and get support during testing",
+      description: "Connect with our community on Discord and get support during testing.",
       icon: <DiscordIcon />
     },
     {
-      title: "Drop your address in the Faucet Channel",
-      description: "Receive testnet STOX tokens, testnet BaseETH and testnet NVIDIA tokens on BASE SEPOLIA network",
+      title: "Drop your address",
+      description: "Drop your ETH Wallet Address in the Discord Faucet Channel to receive testnet STOX tokens, testnet BaseETH and testnet NVIDIA tokens on BASE SEPOLIA network",
       icon: <AirdropIcon />
     },
     {
@@ -37,7 +37,7 @@ function Tester() {
       <Stack spacing={5}>
         {/* Header Section */}
         <Grid>
-          <GenericTypography fontSize="2rem" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
+          <GenericTypography usage='title' fontSize="2.2rem" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
             TESTNET USER REWARDS PROGRAM
           </GenericTypography>
           <GenericTypography fontSize="1.5rem" align="center"  >
@@ -48,7 +48,7 @@ function Tester() {
         {/* Steps Section */}
         <Grid>
 
-          <GenericTypography fontSize="1.8rem" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
+          <GenericTypography usage='subTitle' fontSize="1.8rem" gutterBottom sx={{ fontWeight: 'bold' }}>
             How to Participate
           </GenericTypography>
 
@@ -59,33 +59,39 @@ function Tester() {
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                       <Box sx={{
-                        backgroundColor: 'primary.main',
+                        
                         borderRadius: '50%',
                         width: 36,
-                        height: 36,
+                        height: "2rem",
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         mr: 2,
                         color: 'white'
                       }}>
-                        {index + 1}
+                        <GenericTypography usage='subTitle' fontSize="2rem" color='black'>
+                          {index + 1}
+                        </GenericTypography>
                       </Box>
-                      <GenericTypography fontSize="1rem" color='black'>
+                      <GenericTypography usage='subTitle' fontSize="1.2rem" color='black'>
                         {step.title}
                       </GenericTypography>
                     </Box>
+
                     <GenericTypography fontSize="1rem" color='black' sx={{ mb: 2 }}>
                       {step.description}
                     </GenericTypography>
+                  </CardContent>
+                  <Grid  marginBottom='1rem'  sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                     {index === 0 && (
                       <Button
                         variant="contained"
                         color="primary"
                         endIcon={<DiscordIcon />}
-                        fullWidth
+                        
                         sx={{
-                          height: 45,
+                          height: '2.5rem',
+                          width :'12rem',
                           backgroundColor: '#5865F2',
                           '&:hover': {
                             backgroundColor: '#4752C4',
@@ -109,7 +115,8 @@ function Tester() {
                         color="secondary"
                         fullWidth
                         sx={{
-                          height: 45,
+                          height: '2.5rem',
+                          width :'12rem',
                           textTransform: 'none',
                           mt: 2
                         }}
@@ -119,7 +126,7 @@ function Tester() {
                         rel="noopener noreferrer"
                       >
                         <ButtonTypography sx={{ color: 'white' }}>
-                          Get FAUCET Tokens
+                          Get TESTNET Tokens
                         </ButtonTypography>
                       </Button>
                     )}
@@ -129,7 +136,8 @@ function Tester() {
                         color="primary"
                         fullWidth
                         sx={{
-                          height: 45,
+                          height: '2.5rem',
+                          width :'12rem',
                           textTransform: 'none',
                           mt: 2
                         }}
@@ -139,11 +147,12 @@ function Tester() {
                         rel="noopener noreferrer"
                       >
                         <ButtonTypography sx={{ color: 'white' }}>
-                          Go to Trading Page
+                          Visit the Trading Page
                         </ButtonTypography>
                       </Button>
                     )}
-                  </CardContent>
+                  </Grid>
+
                 </Card>
               </Grid>
             ))}
@@ -152,27 +161,27 @@ function Tester() {
 
         {/* Rewards Section */}
         <Grid>
-          <GenericTypography fontSize="1.8rem" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
+          <GenericTypography usage='title' fontSize="1.8rem" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
             Reward Distribution
           </GenericTypography>
 
           <Box sx={{ mb: 4 }}>
-            <GenericTypography fontSize="1.5rem" gutterBottom sx={{ fontWeight: 'bold' }}>
+            <GenericTypography usage='subTitle' fontSize="1.5rem" gutterBottom sx={{ fontWeight: 'bold' }}>
               Eligibility Criteria
             </GenericTypography>
             <List>
               <ListItem>
                 <ListItemIcon>
-                  <CheckIcon color="success" />
+                  <CheckIcon color="white" />
                 </ListItemIcon>
                 <ListItemText
                   primary={
-                    <GenericTypography fontSize="1rem" gutterBottom>
+                    <GenericTypography fontSize="1.2rem" gutterBottom>
                       Place at least 3 orders in the Order Book
                     </GenericTypography>
                   }
                   secondary={
-                    <GenericTypography fontSize="0.8rem" gutterBottom>
+                    <GenericTypography fontSize="1rem" gutterBottom>
                       Both limit and market orders count toward this requirement
                     </GenericTypography>
                   }
@@ -180,16 +189,16 @@ function Tester() {
               </ListItem>
               <ListItem>
                 <ListItemIcon>
-                  <AirdropIcon color="primary" />
+                  <StocksExchangeIcon color="white" />
                 </ListItemIcon>
                 <ListItemText
                   primary={
-                    <GenericTypography fontSize="1rem" gutterBottom>
+                    <GenericTypography fontSize="1.2rem" gutterBottom>
                       Participate between March 1, 2025 and April 30, 2025
                     </GenericTypography>
                   }
                   secondary={
-                    <GenericTypography fontSize="0.8rem" gutterBottom>
+                    <GenericTypography fontSize="1rem" gutterBottom>
                       All trading activity must occur during this period to be eligible
                     </GenericTypography>
                   }
@@ -198,17 +207,17 @@ function Tester() {
               </ListItem>
               <ListItem>
                 <ListItemIcon>
-                  <DiscordIcon style={{ color: '#5865F2' }} />
+                  <DiscordIcon style={{ color: 'white' }} />
                 </ListItemIcon>
                 <ListItemText
                   primary={
-                    <GenericTypography fontSize="1rem" gutterBottom>
-                     Link your ETH wallet address with your Discord account
+                    <GenericTypography fontSize="1.2rem" gutterBottom>
+                      Link your ETH wallet address with your Discord account
                     </GenericTypography>
                   }
                   secondary={
-                    <GenericTypography fontSize="0.8rem" gutterBottom>
-                     Only ETH wallet addresses associated with Discord accounts will be rewarded
+                    <GenericTypography fontSize="1rem" gutterBottom>
+                      Only ETH wallet addresses associated with Discord accounts will be rewarded
                     </GenericTypography>
                   }
                 />
@@ -219,7 +228,7 @@ function Tester() {
           <Divider sx={{ my: 3 }} />
 
           <Box>
-          <GenericTypography fontSize="1.5rem" gutterBottom sx={{ fontWeight: 'bold' }}>
+            <GenericTypography usage='subTitle' fontSize="1.5rem" gutterBottom sx={{ fontWeight: 'bold' }}>
               Reward Details
             </GenericTypography>
             <Box sx={{
@@ -228,20 +237,20 @@ function Tester() {
               borderRadius: 2,
               border: '1px solid rgba(25, 118, 210, 0.2)',
             }}>
-               <GenericTypography fontSize="0.8rem" gutterBottom>
+              <GenericTypography fontSize="1rem" gutterBottom>
                 Top 100 active traders will receive 150 STOX Mainnet tokens each as a reward for their participation and feedback.
               </GenericTypography>
-              <GenericTypography fontSize="0.8rem" gutterBottom>
+              <GenericTypography fontSize="1rem" gutterBottom>
                 Rankings will be determined based on trading activity, order volume, and quality of feedback provided.
               </GenericTypography>
-              <GenericTypography fontSize="0.8rem" gutterBottom>
+              <GenericTypography fontSize="1rem" gutterBottom>
                 Rewards will be distributed within two weeks after the end of the testing period.
               </GenericTypography>
             </Box>
           </Box>
         </Grid>
 
-       
+
 
       </Stack>
     </Container>
