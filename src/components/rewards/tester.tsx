@@ -37,7 +37,7 @@ function Tester() {
       <Stack spacing={5}>
         {/* Header Section */}
         <Grid>
-          <GenericTypography usage='title' fontSize="2.2rem" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
+          <GenericTypography id='testers-rewards' usage='title' fontSize="2.2rem" align="center" gutterBottom sx={{ fontWeight: 'bold' }}>
             TESTNET USER REWARDS PROGRAM
           </GenericTypography>
           <GenericTypography fontSize="1.5rem" align="center"  >
@@ -55,12 +55,14 @@ function Tester() {
           <Grid container spacing={3}>
             {steps.map((step, index) => (
               <Grid key={index} size={{ xs: 12, md: 6 }}>
-                <Card variant="outlined" sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                <Card variant="outlined" sx={{ height: '100%', display: 'flex', flexDirection: 'column', 
+                  backgroundColor:'black',
+                  borderColor: 'white',}}>
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                       <Box sx={{
                         
-                        borderRadius: '50%',
+                       
                         width: 36,
                         height: "2rem",
                         display: 'flex',
@@ -69,16 +71,16 @@ function Tester() {
                         mr: 2,
                         color: 'white'
                       }}>
-                        <GenericTypography usage='subTitle' fontSize="2rem" color='black'>
+                        <GenericTypography usage='subTitle' fontSize="2rem" >
                           {index + 1}
                         </GenericTypography>
                       </Box>
-                      <GenericTypography usage='subTitle' fontSize="1.2rem" color='black'>
+                      <GenericTypography usage='subTitle' fontSize="1.2rem" >
                         {step.title}
                       </GenericTypography>
                     </Box>
 
-                    <GenericTypography fontSize="1rem" color='black' sx={{ mb: 2 }}>
+                    <GenericTypography fontSize="1.2rem"  sx={{ mb: 2 }}>
                       {step.description}
                     </GenericTypography>
                   </CardContent>
@@ -181,7 +183,7 @@ function Tester() {
                     </GenericTypography>
                   }
                   secondary={
-                    <GenericTypography fontSize="1rem" gutterBottom>
+                    <GenericTypography fontSize="1.2rem" gutterBottom>
                       Both limit and market orders count toward this requirement
                     </GenericTypography>
                   }
@@ -198,7 +200,7 @@ function Tester() {
                     </GenericTypography>
                   }
                   secondary={
-                    <GenericTypography fontSize="1rem" gutterBottom>
+                    <GenericTypography fontSize="1.2rem" gutterBottom>
                       All trading activity must occur during this period to be eligible
                     </GenericTypography>
                   }
@@ -216,7 +218,7 @@ function Tester() {
                     </GenericTypography>
                   }
                   secondary={
-                    <GenericTypography fontSize="1rem" gutterBottom>
+                    <GenericTypography fontSize="1.2rem" gutterBottom>
                       Only ETH wallet addresses associated with Discord accounts will be rewarded
                     </GenericTypography>
                   }
@@ -237,13 +239,13 @@ function Tester() {
               borderRadius: 2,
               border: '1px solid rgba(25, 118, 210, 0.2)',
             }}>
-              <GenericTypography fontSize="1rem" gutterBottom>
+              <GenericTypography fontSize="1.2rem" gutterBottom>
                 Top 100 active traders will receive 150 STOX Mainnet tokens each as a reward for their participation and feedback.
               </GenericTypography>
-              <GenericTypography fontSize="1rem" gutterBottom>
+              <GenericTypography fontSize="1.2rem" gutterBottom>
                 Rankings will be determined based on trading activity, order volume, and quality of feedback provided.
               </GenericTypography>
-              <GenericTypography fontSize="1rem" gutterBottom>
+              <GenericTypography fontSize="1.2rem" gutterBottom>
                 Rewards will be distributed within two weeks after the end of the testing period.
               </GenericTypography>
             </Box>

@@ -9,7 +9,7 @@ interface GenericTypographyProps extends TypographyProps {
     usage? :  'paragraph' | 'title' | 'subTitle';
 }
 
-const GenericTypography: React.FC<GenericTypographyProps> = ({usage = 'paragraph', fontWeight = 400, color = 'white',fontSize = '0.7rem', ...props }) => {
+const GenericTypography: React.FC<GenericTypographyProps> = ({usage = 'paragraph', fontWeight = 400, color = 'white',fontSize = '1.2rem', ...props }) => {
     let fontFamily = ''
     if (usage === 'paragraph'){
         fontFamily= 'Rajdhani'
@@ -125,15 +125,19 @@ const NumbersTypography: React.FC<NumbersTypographyProps> = ({fontSize='0.7rem',
     );
 };
 
-const ClickableTxHashTypography: React.FC<TypographyProps> = (props) => {
+interface ClickableTxHashTypographyProps extends TypographyProps {
+    color?: string;
+    fontSize?: string;
+}
+
+const ClickableTxHashTypography: React.FC<ClickableTxHashTypographyProps> = (props, color="white") => {
     return (
         <Typography
             {...props}
-            color='white'
+            color={color}
             sx={{
                 wordBreak: 'break-all', cursor: 'pointer',
                 '&:hover': {
-                    color: 'white',
                     textDecoration: 'underline',
                 },
                 fontWeight: 300,
@@ -143,6 +147,7 @@ const ClickableTxHashTypography: React.FC<TypographyProps> = (props) => {
 
                 ...props.sx, // Allow overriding styles
             }}
+            
         >
             {props.children}
         </Typography>
