@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
-import { GenericTypography, NumbersTypography, } from '../../assets/elements/CustomTypography';
+import { GenericTypography, NumbersTypography } from '../../assets/elements/CustomTypography';
 
 
 const RealTimePrice = () => {
@@ -78,10 +78,9 @@ const RealTimePrice = () => {
                         alignItems: 'center'
                     }}>
                         <GenericTypography
-
-                            fontSize='1rem'>
-                            NVIDIA Corp.
-                        </GenericTypography>
+                            usage='subTitle'
+                            fontSize='0.9rem'>NVIDIA Corp.</GenericTypography>
+                        
                     </Grid>
                     <Grid size={{ xs: 3, sm: 2 }} sx={{
 
