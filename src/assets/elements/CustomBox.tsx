@@ -11,8 +11,8 @@ const TestnetBox: React.FC<BoxProps> = ({  ...props }) => {
         height= "1.8rem"
         width="7.7rem"
         alignContent={"center"}
-        justifyContent={"center"}
-        display="flex"
+        justifyItems={"center"}
+        
 
             sx={{
                
