@@ -24,7 +24,7 @@ interface HeaderProps {
 }
 
 
-const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo="/" , children, ...gridProps }) => {
+const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo = "/", children, ...gridProps }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -34,7 +34,8 @@ const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo="/" , childr
     return (
         <Grid
             {...gridProps}
-            size={2}
+            size={1}
+            
             component="div"
             alignItems="center"
             justifyContent="center"
@@ -45,6 +46,7 @@ const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo="/" , childr
             paddingLeft="5px"
             paddingRight="5px"
             sx={{
+                width:'12rem',
                 transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
                 '&:hover': {
 
@@ -63,7 +65,7 @@ const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo="/" , childr
 };
 
 
-const HeaderMenuBrand: React.FC<RedirectGridProps> = ({ redirectTo="/" , children, ...gridProps }) => {
+const HeaderMenuBrand: React.FC<RedirectGridProps> = ({ redirectTo = "/", children, ...gridProps }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -113,7 +115,7 @@ const Header: React.FC<HeaderProps> = () => {
 
 
     return (
-        <AppBar position="fixed" className="appBar" sx={{ backgroundColor: "black", paddingBottom: "3vh",paddingTop: "3vh", paddingRight: "1vw", paddingLeft: "1vw" }} >
+        <AppBar position="fixed" className="appBar" sx={{ backgroundColor: "black", paddingBottom: "3vh", paddingTop: "3vh", paddingRight: "1vw", paddingLeft: "1vw" }} >
             <Grid container >
                 <Grid size={2} alignItems='center' justifyContent="center" alignContent="center" justifyItems="center" display={{ xs: 'flex', sm: 'flex', md: 'none', }}>
                     <IconButton size="small" onClickCapture={handleClick}>
@@ -133,7 +135,10 @@ const Header: React.FC<HeaderProps> = () => {
                         <HeaderMenuTypography color="inherit">Liquidity</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/smart-contracts">
-                        <HeaderMenuTypography color="inherit">Smart Contracts</HeaderMenuTypography>
+                        <HeaderMenuTypography color="inherit" >Smart Contracts</HeaderMenuTypography>
+                    </HeaderMenuButton>
+                    <HeaderMenuButton redirectTo="/airdrop">
+                        <HeaderMenuTypography color="inherit">Airdrop</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/rewards">
                         <HeaderMenuTypography color="inherit">Rewards</HeaderMenuTypography>
@@ -191,7 +196,7 @@ const Header: React.FC<HeaderProps> = () => {
                                 },
                                 transition: 'all 0.1s ease-in-out',
                                 '&:hover': {
-                                    
+
                                     cursor: 'pointer',
                                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
                                     transform: 'scale(1.05)',
@@ -199,7 +204,7 @@ const Header: React.FC<HeaderProps> = () => {
                                 paddingTop: "8px",
                                 paddingBottom: "5px",
                             }}>
-                            <HeaderMenuTypography 
+                            <HeaderMenuTypography
                                 paddingLeft="12px"
                                 paddingRight="12px"
                                 color="white"
@@ -251,7 +256,7 @@ const Header: React.FC<HeaderProps> = () => {
                                 },
                                 transition: 'all 0.1s ease-in-out',
                                 '&:hover': {
-                                    
+
                                     cursor: 'pointer',
                                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
                                     transform: 'scale(1.05)',

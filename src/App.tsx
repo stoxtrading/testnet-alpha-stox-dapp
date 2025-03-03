@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import RewardsPage from './pages/rewardsPage/RewardsPage';
 import WhitepaperPage from './pages/whitepaperPage/WhitepaperPage';
 import './App.css';
+import AirdropPage from './pages/AirdropPage.tsx/AirdropPage';
 const queryClient = new QueryClient()
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="liquidity" element={<TokenomicsPage/>} />
               <Route path="smart-contracts" element={<WhitepaperPage/>} />
               <Route path="rewards" element={<RewardsPage/>} />
+              <Route path="airdrop" element={<AirdropPage/>} />
             </Route>
           </Routes>
         </BrowserRouter>
