@@ -13,7 +13,7 @@ export const PoweredByBar = () => {
 
 
     return (
-        <Stack justifyContent={"center"} alignItems={"center"} spacing={"0.8rem"} marginTop='1rem'>
+        <Stack justifyContent={"center"} alignItems={"center"} spacing={"0.8rem"}>
             <Grid alignItems={"center"} justifyContent={"center"} >
                 <Grid container justifyContent="center" >
                     <HomePageAnnoucementTypography sx={{ fontSize: '1rem', }}>
