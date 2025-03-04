@@ -1,9 +1,10 @@
 import { useState, } from 'react';
-import { Stack, TextField, Button, Alert, Snackbar, Typography, Paper, Box } from '@mui/material';
+import { Stack,  Button, Alert, Snackbar, Paper, Box } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import { GenericTypography, HomePageAnnoucementTypography } from '../../assets/elements/CustomTypography';
 import { SocialMediaBar } from '../countDown/SocialMediaBar';
 import { PoweredByBar } from '../countDown/PoweredByBar';
+import { AirdropTextField } from '../../assets/elements/CustomTextField';
 
 
 interface AirdropFormData {
@@ -130,90 +131,44 @@ export default function Airdrop() {
             >
                 <form onSubmit={handleSubmit}>
                     <Stack spacing={3}>
-                        <TextField
-                            fullWidth
-                            required
+                        
+
+                        <AirdropTextField
                             label="Wallet Address"
                             name="address"
+                            type="address"
                             value={formData.address}
                             onChange={handleChange}
-                            variant="outlined"
                             placeholder="Enter your wallet address"
-                            InputLabelProps={{
-                                sx: { color: 'white', fontFamily: 'Rajdhani' }
-                            }}
                         />
 
-                        <TextField
-                            fullWidth
+
+                        <AirdropTextField
                             label="Email (Optional)"
                             name="email"
                             type="email"
                             value={formData.email}
                             onChange={handleChange}
-                            variant="outlined"
                             placeholder="Enter your email"
-                            InputLabelProps={{
-                                sx: { color: 'white', fontFamily: 'Rajdhani' }
-                            }}
                         />
 
-                        <TextField
-                            fullWidth
+
+
+
+                        <AirdropTextField
                             label="Name (Optional)"
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            variant="outlined"
                             placeholder="Enter your name"
-                            InputLabelProps={{
-                                sx: { color: 'white', fontFamily: 'Rajdhani' }
-                            }}
                         />
 
-                        <TextField
-                            fullWidth
-                            label="X Account (Optional)"
+                        <AirdropTextField
+                            label="Twitter (Optional)"
                             name="twitter"
                             value={formData.twitter}
                             onChange={handleChange}
-                            variant="outlined"
-                            placeholder="Enter your X account"
-                            InputProps={{
-                                style: { color: 'white', fontFamily: 'Rajdhani', }, // Change input text color
-                                classes: {
-                                    notchedOutline: 'custom-notched-outline', // Custom class for the border
-                                },
-                            }}
-                            InputLabelProps={{
-                                sx: {
-                                    color: 'white',
-                                    fontFamily: 'Rajdhani',
-                                    '&.Mui-focused': {
-                                        color: 'white', // Change color when focused
-                                    },
-                                    '&.MuiFormLabel-filled': {
-                                        color: 'white', // Change color when filled
-                                    },
-                                },
-                            }}
-                            sx={{
-                                '& .MuiOutlinedInput-root': {
-                                    height: '100%', // Ensure the input takes the full height of the TextField
-                                    '& fieldset': {
-                                        borderColor: 'white', // Change border color
-                                    },
-                                    '&:hover fieldset': {
-                                        borderColor: 'white', // Change border color on hover
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: 'white', // Change border color when focused
-                                    },
-
-                                },
-
-
-                            }}
+                            placeholder="Enter your Twitter username"
                         />
 
                         <Button
