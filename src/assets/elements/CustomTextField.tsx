@@ -120,6 +120,7 @@ const AirdropTextField: React.FC<AirdropTextFieldProps> = ({ label, name, placeh
             }}
             InputLabelProps={{
                 sx: {
+                    
                     color: 'white',
                     fontFamily: 'Rajdhani',
                     '&.Mui-focused': {
@@ -132,6 +133,7 @@ const AirdropTextField: React.FC<AirdropTextFieldProps> = ({ label, name, placeh
             }}
             sx={{
                 '& .MuiOutlinedInput-root': {
+                    backgroundColor:'none',
                     height: '100%', // Ensure the input takes the full height of the TextField
                     '& fieldset': {
                         borderColor: 'white', // Change border color
