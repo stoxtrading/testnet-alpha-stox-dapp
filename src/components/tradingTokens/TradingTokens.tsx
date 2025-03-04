@@ -67,7 +67,7 @@ const TradingTokens = () => {
                                 rel="noopener noreferrer"
                             >
                                 <ButtonTypography sx={{  color: 'white' }}>
-                                    Testnet Tokens
+                                    FAUCET
                                 </ButtonTypography>
                             </Button>
                         </Grid>

@@ -63,7 +63,7 @@ export const SocialMediaBar = () => {
             </Grid>
             <Grid  alignItems={"center"} justifyContent={"center"}>
                 <IconButton
-                    onClick={() => window.open('https://discord.gg/hx5Vu8hN', '_blank')}
+                    onClick={() => window.open('https://discord.gg/39P3FdqmXT', '_blank')}
                     onMouseEnter={() => setDiscordIsHovered(true)}
                     onMouseLeave={() => setDiscordIsHovered(false)}
                     sx={{

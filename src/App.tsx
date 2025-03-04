@@ -5,9 +5,10 @@ import TokenomicsPage from './pages/TokenomicsPage/TokenomicsPage';
 import WelcomePage from './pages/welcomePage/WelcomePage';
 import CryptoWrapper from './components/cryptoWapper/CryptoWrapper';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import RoadmapPage from './pages/roadmapPage/RoadmapPage';
+import RewardsPage from './pages/rewardsPage/RewardsPage';
 import WhitepaperPage from './pages/whitepaperPage/WhitepaperPage';
 import './App.css';
+import AirdropPage from './pages/AirdropPage.tsx/AirdropPage';
 const queryClient = new QueryClient()
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
               <Route path="trading" element={<TestnetLimitOrderBookPage />} />
               <Route path="liquidity" element={<TokenomicsPage/>} />
               <Route path="smart-contracts" element={<WhitepaperPage/>} />
-              <Route path="roadmap" element={<RoadmapPage/>} />
+              <Route path="rewards" element={<RewardsPage/>} />
+              <Route path="airdrop" element={<AirdropPage/>} />
             </Route>
           </Routes>
         </BrowserRouter>

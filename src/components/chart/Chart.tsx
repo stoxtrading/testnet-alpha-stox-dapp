@@ -27,7 +27,7 @@ const AreaChart = () => {
         if (chartContainerRef.current && !chartRef.current) {
             const chart = createChart(chartContainerRef.current, {
                 layout: {
-                    background: { type: ColorType.Solid, color: 'hsl(200, 10%, 20%)' },
+                    background: { type: ColorType.Solid, color: 'transparent' },
                     textColor:"white"
                 },
                 grid: {
@@ -48,8 +48,9 @@ const AreaChart = () => {
             const newSeries = chart.addSeries(AreaSeries, {
                 lineWidth: 1,
                 lineColor: "white",
-                topColor: 'hsl(200, 10%, 20%)',
-                bottomColor: 'hsl(310, 10%, 50%)'
+                topColor: 'hsl(293, 100.00%, 50.00%)',
+                bottomColor: 'rgba(0, 150, 135, 0)',
+                crosshairMarkerBorderColor:'red'
             });
             areaSeriesRef.current = newSeries;
 

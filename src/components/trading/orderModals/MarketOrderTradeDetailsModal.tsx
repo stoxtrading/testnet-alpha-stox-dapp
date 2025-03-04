@@ -7,7 +7,7 @@ import useRealTimePrice from '../../../components/customHooks/UseRealTimePrice';
 import Grid from '@mui/material/Grid2';
 import { NumbersTypography, SubtitleTypography, TableTitleTypography } from "../../../assets/elements/CustomTypography";
 import { CustomButton } from "../../../assets/elements/CustomButton";
-import CustomTextField from "../../../assets/elements/CustomTextField";
+import {CustomTextField} from "../../../assets/elements/CustomTextField";
 import { Box, } from "@mui/material";
 import CurrencyStepper from './CurrencyStepper';
 import getPoolReserves from '../../liquidityPoolPricing/LiquidityPoolPricing'
@@ -256,7 +256,7 @@ const MarketOrderTradeDetailsModal: React.FC<TradeDetailsModalProps> = ({ open, 
     >
       <Fade in={open}>
         <Box sx={style}>
-          <SingleComponentStack width="20em" height="18em" rowGap="0.5em">
+          <SingleComponentStack width="20em" height="18em" rowGap="0.5em" sx={{backgroundColor:'black'}}>
             <Grid container sx={{ marginBottom: "10px" }}>
               <Grid size={6} justifyItems={"center"}  >
                 <SubtitleTypography fontSize='1.5em'>

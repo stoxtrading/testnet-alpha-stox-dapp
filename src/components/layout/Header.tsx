@@ -15,7 +15,7 @@ import { HeaderMenuTypography, HomePageAnnoucementTypography, } from '../../asse
 
 
 interface RedirectGridProps extends GridProps {
-    redirectTo: string;
+    redirectTo?: string;
 }
 
 
@@ -24,7 +24,48 @@ interface HeaderProps {
 }
 
 
-const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo, children, ...gridProps }) => {
+const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo = "/", children, ...gridProps }) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(redirectTo);
+    };
+
+    return (
+        <Grid
+            {...gridProps}
+            size={1}
+            
+            component="div"
+            alignItems="center"
+            justifyContent="center"
+            alignContent="center"
+            justifyItems="center"
+            onClick={handleClick}
+            color='white'
+            paddingLeft="5px"
+            paddingRight="5px"
+            sx={{
+                width:'12rem',
+                transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
+                '&:hover': {
+
+                    cursor: 'pointer',
+                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Add shadow on hover
+                    transform: 'scale(1.05)', // Slightly scale up on hover
+                },
+                paddingTop: "8px",
+                paddingBottom: "5px",
+                ...gridProps.sx,
+            }}
+        >
+            {children}
+        </Grid>
+    );
+};
+
+
+const HeaderMenuBrand: React.FC<RedirectGridProps> = ({ redirectTo = "/", children, ...gridProps }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -45,15 +86,11 @@ const HeaderMenuButton: React.FC<RedirectGridProps> = ({ redirectTo, children, .
             paddingLeft="5px"
             paddingRight="5px"
             sx={{
-                transition: 'all 0.1s ease-in-out', // Smooth transition for all properties
-                '&:hover': {
-
-                    cursor: 'pointer',
-                    boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)', // Add shadow on hover
-                    transform: 'scale(1.05)', // Slightly scale up on hover
-                },
                 paddingTop: "8px",
                 paddingBottom: "5px",
+                '&:hover': {
+                    cursor: 'pointer',
+                },
                 ...gridProps.sx,
             }}
         >
@@ -78,7 +115,7 @@ const Header: React.FC<HeaderProps> = () => {
 
 
     return (
-        <AppBar position="fixed" className="appBar" sx={{ backgroundColor: "black", paddingBottom: "3vh",paddingTop: "3vh", paddingRight: "1vw", paddingLeft: "1vw" }} >
+        <AppBar position="fixed" className="appBar" sx={{ backgroundColor: "black", paddingBottom: "3vh", paddingTop: "3vh", paddingRight: "1vw", paddingLeft: "1vw" }} >
             <Grid container >
                 <Grid size={2} alignItems='center' justifyContent="center" alignContent="center" justifyItems="center" display={{ xs: 'flex', sm: 'flex', md: 'none', }}>
                     <IconButton size="small" onClickCapture={handleClick}>
@@ -88,9 +125,9 @@ const Header: React.FC<HeaderProps> = () => {
                 </Grid>
 
                 <Grid size={9} container display={{ xs: 'none', sm: 'none', md: 'flex', }} justifyItems={"center"} alignItems={"center"} alignContent={"center"} justifyContent={"center"} >
-                    <HeaderMenuButton redirectTo="/" display={{ xs: 'none', sm: 'none', md: 'flex', }}>
+                    <HeaderMenuBrand redirectTo="/" display={{ xs: 'none', sm: 'none', md: 'flex', }}>
                         <HomePageAnnoucementTypography sx={{ fontSize: '2rem', }} color="inherit">STOX</HomePageAnnoucementTypography>
-                    </HeaderMenuButton>
+                    </HeaderMenuBrand>
                     <HeaderMenuButton redirectTo="/trading">
                         <HeaderMenuTypography color="inherit">Trade</HeaderMenuTypography>
                     </HeaderMenuButton>
@@ -98,7 +135,13 @@ const Header: React.FC<HeaderProps> = () => {
                         <HeaderMenuTypography color="inherit">Liquidity</HeaderMenuTypography>
                     </HeaderMenuButton>
                     <HeaderMenuButton redirectTo="/smart-contracts">
-                        <HeaderMenuTypography color="inherit">Smart Contracts</HeaderMenuTypography>
+                        <HeaderMenuTypography color="inherit" >Smart Contracts</HeaderMenuTypography>
+                    </HeaderMenuButton>
+                    <HeaderMenuButton redirectTo="/airdrop">
+                        <HeaderMenuTypography color="inherit">Airdrop</HeaderMenuTypography>
+                    </HeaderMenuButton>
+                    <HeaderMenuButton redirectTo="/rewards">
+                        <HeaderMenuTypography color="inherit">Rewards</HeaderMenuTypography>
                     </HeaderMenuButton>
                     {/*  <HeaderMenuButton redirectTo="/roadmap">
                         <HeaderMenuTypography color="inherit">Roadmap</HeaderMenuTypography>
@@ -153,7 +196,7 @@ const Header: React.FC<HeaderProps> = () => {
                                 },
                                 transition: 'all 0.1s ease-in-out',
                                 '&:hover': {
-                                    
+
                                     cursor: 'pointer',
                                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
                                     transform: 'scale(1.05)',
@@ -161,7 +204,7 @@ const Header: React.FC<HeaderProps> = () => {
                                 paddingTop: "8px",
                                 paddingBottom: "5px",
                             }}>
-                            <HeaderMenuTypography 
+                            <HeaderMenuTypography
                                 paddingLeft="12px"
                                 paddingRight="12px"
                                 color="white"
@@ -213,7 +256,7 @@ const Header: React.FC<HeaderProps> = () => {
                                 },
                                 transition: 'all 0.1s ease-in-out',
                                 '&:hover': {
-                                    
+
                                     cursor: 'pointer',
                                     boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
                                     transform: 'scale(1.05)',
