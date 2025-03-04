@@ -129,7 +129,7 @@ const Fireworks = ({ onComplete }: { onComplete: () => void }) => {
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
                 padding: '15px 30px',
-                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                backgroundColor: 'rgba(0, 0, 0, 0.9)',
                 borderRadius: '8px',
                 color: 'white',
                 fontWeight: 'bold',
