@@ -7,6 +7,7 @@ import { PoweredByBar } from '../countDown/PoweredByBar';
 import { AirdropTextField } from '../../assets/elements/CustomTextField';
 import { useAccount, useSignMessage } from 'wagmi'
 import Fireworks from './Fireworks';
+import { useDiscord } from '../contexts/useDiscord';
 
 
 interface AirdropFormData {
@@ -21,6 +22,12 @@ interface AirdropFormData {
 
 export default function Airdrop() {
     const { address: connectedWalletAddress, isConnected } = useAccount();
+
+    const {isVerified: isDiscordVerified, 
+        setIsVerified: setIsDiscordVerified, 
+        discordUserName,
+         setDiscordUserName} = useDiscord();
+
     
     
     const { signMessageAsync } = useSignMessage();
@@ -47,8 +54,10 @@ export default function Airdrop() {
 
     // const [tokensReward, setTokensReward] = useState(100);
 
-    const isCodeVerified = useRef<boolean>(false);
-    const [isDiscordVerified, setIsDiscordVerified] = useState(false);
+    /* const isCodeVerified = useRef<boolean>(false);
+    const [isDiscordVerified, setIsDiscordVerified] = useState(false); */
+
+
     
 
 
@@ -63,12 +72,12 @@ export default function Airdrop() {
         
 
     const handleDiscordAuth = () => {
-        const discordAuthUrl = `https://discord.com/oauth2/authorize?client_id=1346848533692551178&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fairdrop&scope=identify`;
+        const discordAuthUrl = `https://discord.com/oauth2/authorize?client_id=1346848533692551178&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fvalidate-discord-auth&scope=identify`;
         location.href = discordAuthUrl;
     }
 
 
-    useEffect(() => {
+   /*  useEffect(() => {
         const params = new URLSearchParams(location.search);
         const code = params.get('code');
         console.log(code);  
@@ -78,7 +87,7 @@ export default function Airdrop() {
             const verifyDiscordCode = async () => {
                 try {
                     
-                    const response = await fetch('http://localhost:8546/discord-get-user-id?code='+code, {
+                    const response = await fetch('http://bot.stoxtrading.com/discord-get-user-id?code='+code, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -115,7 +124,7 @@ export default function Airdrop() {
 
             verifyDiscordCode();
         }
-    }, [isCodeVerified]);
+    }, [isCodeVerified]); */
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -292,13 +301,7 @@ export default function Airdrop() {
                             placeholder="Enter your name"
                         /> */}
 
-                        <AirdropTextField
-                            label="X Handle (+1,000 STOX)"
-                            name="twitter"
-                            value={formData.twitter}
-                            onChange={handleChange}
-                            placeholder="Enter your Twitter username"
-                        />
+                    
 
                         <Button
                             type="submit"

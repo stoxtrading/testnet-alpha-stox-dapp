@@ -44,6 +44,9 @@ importers:
       react-router-dom:
         specifier: ^7.1.5
         version: 7.1.5(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react-spinners:
+        specifier: ^0.15.0
+        version: 0.15.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       viem:
         specifier: 2.x
         version: 2.22.23(bufferutil@4.0.9)(typescript@5.7.3)(utf-8-validate@5.0.10)
@@ -2203,6 +2206,12 @@ packages:
     peerDependenciesMeta:
       react-dom:
         optional: true
+
+  react-spinners@0.15.0:
+    resolution: {integrity: sha512-ZO3/fNB9Qc+kgpG3SfdlMnvTX6LtLmTnOogb3W6sXIaU/kZ1ydEViPfZ06kSOaEsor58C/tzXw2wROGQu3X2pA==}
+    peerDependencies:
+      react: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react-style-singleton@2.2.3:
     resolution: {integrity: sha512-b6jSvxvVnyptAiLjbkWLE/lOnR4lfTtDAl+eUC7RZy+QQWc6wRzIV2CE6xBuMmDxc2qIihtDCZD5NPOFl7fRBQ==}
@@ -5333,6 +5342,11 @@ snapshots:
       set-cookie-parser: 2.7.1
       turbo-stream: 2.4.0
     optionalDependencies:
+      react-dom: 19.0.0(react@19.0.0)
+
+  react-spinners@0.15.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
   react-style-singleton@2.2.3(@types/react@19.0.8)(react@19.0.0):

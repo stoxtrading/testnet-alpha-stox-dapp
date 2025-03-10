@@ -9,12 +9,16 @@ import RewardsPage from './pages/rewardsPage/RewardsPage';
 import WhitepaperPage from './pages/whitepaperPage/WhitepaperPage';
 import './App.css';
 import AirdropPage from './pages/AirdropPage.tsx/AirdropPage';
+import ValidateDiscord from './components/authentication/validateDiscord.tsx';
+import { DiscordProvider } from './components/contexts/discordContext';
+
 const queryClient = new QueryClient()
 
 function App() {
   return (
     <QueryClientProvider client={queryClient} >
       <CryptoWrapper>
+      <DiscordProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Layout />}>
@@ -25,9 +29,11 @@ function App() {
               <Route path="smart-contracts" element={<WhitepaperPage/>} />
               <Route path="rewards" element={<RewardsPage/>} />
               <Route path="airdrop" element={<AirdropPage/>} />
+              <Route path="validate-discord-auth" element={<ValidateDiscord/>} />
             </Route>
           </Routes>
         </BrowserRouter>
+        </DiscordProvider>
       </CryptoWrapper>
     </QueryClientProvider>
   );
