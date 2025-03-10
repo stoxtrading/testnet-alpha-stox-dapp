@@ -10,7 +10,10 @@ import WhitepaperPage from './pages/whitepaperPage/WhitepaperPage';
 import './App.css';
 import AirdropPage from './pages/AirdropPage.tsx/AirdropPage';
 import ValidateDiscord from './components/authentication/validateDiscord.tsx';
+import ValidateX from './components/authentication/validadeX.tsx';
 import { DiscordProvider } from './components/contexts/discordContext';
+import { XProvider } from './components/contexts/xContext.tsx';
+import { EthSignedTxProvider } from './components/contexts/ethSignedTxContext.tsx';
 
 const queryClient = new QueryClient()
 
@@ -18,22 +21,27 @@ function App() {
   return (
     <QueryClientProvider client={queryClient} >
       <CryptoWrapper>
-      <DiscordProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              {/*   <Route index element={<Navigate to="/" replace />} /> */}
-              <Route index path="/" element={<WelcomePage />} />
-              <Route path="trading" element={<TestnetLimitOrderBookPage />} />
-              <Route path="liquidity" element={<TokenomicsPage/>} />
-              <Route path="smart-contracts" element={<WhitepaperPage/>} />
-              <Route path="rewards" element={<RewardsPage/>} />
-              <Route path="airdrop" element={<AirdropPage/>} />
-              <Route path="validate-discord-auth" element={<ValidateDiscord/>} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-        </DiscordProvider>
+        <EthSignedTxProvider>
+          <DiscordProvider>
+            <XProvider>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Layout />}>
+                    {/*   <Route index element={<Navigate to="/" replace />} /> */}
+                    <Route index path="/" element={<WelcomePage />} />
+                    <Route path="trading" element={<TestnetLimitOrderBookPage />} />
+                    <Route path="liquidity" element={<TokenomicsPage />} />
+                    <Route path="smart-contracts" element={<WhitepaperPage />} />
+                    <Route path="rewards" element={<RewardsPage />} />
+                    <Route path="airdrop" element={<AirdropPage />} />
+                    <Route path="validate-discord-auth" element={<ValidateDiscord />} />
+                    <Route path="validate-x-auth" element={<ValidateX />} />
+                  </Route>
+                </Routes>
+              </BrowserRouter>
+            </XProvider>
+          </DiscordProvider>
+        </EthSignedTxProvider>
       </CryptoWrapper>
     </QueryClientProvider>
   );

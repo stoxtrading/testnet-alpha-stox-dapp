@@ -1,20 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import { useDiscord } from '../contexts/useDiscord';
+import { useX } from '../contexts/useX';
 import { useNavigate } from 'react-router-dom';
 import { CommonPageBackground } from "../surfaces/CommonPageBackground";
-import { Box,  } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import { HomePageAnnoucementTypography } from "../../assets/elements/CustomTypography";
 import { ClipLoader } from 'react-spinners';
 import { useAccount,} from 'wagmi'
 
-export default function ValidateDiscord() {
-    const isCodeVerified = useRef<boolean>(false);
-    const {  setIsVerified,  setDiscordUserName } = useDiscord();
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState<boolean>(true);
-    const {  address: connectedWalletAddress } = useAccount();
 
+export default function ValidateX() {
+    const isCodeVerified = useRef<boolean>(false);
+    const {  setIsVerified, } = useX();
+    const navigate = useNavigate();
+    const [ setLoading] = useState<boolean>(true);
+    const {  address: connectedWalletAddress } = useAccount();
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const code = params.get('code');
@@ -22,18 +22,19 @@ export default function ValidateDiscord() {
         console.log(isCodeVerified);
         if (code && !isCodeVerified.current) {
             isCodeVerified.current = true;
-            const verifyDiscordCode = async () => {
+            const verifyXCode = async () => {
                 try {
-                    //const endpoint = 'https://bot.stoxtrading.com/discord-get-user-id?code='
-                    const endpoint = 'http://localhost:8546/handle-discord-callback?code='
+                    //const endpoint = 'https://bot.stoxtrading.com/twitter-verify-client-code?code='
+                    const endpoint = 'http://localhost:8546/handle-x-callback?code='
 
-                    const RedirectUri = 'http://localhost:5173/validate-discord-auth'
+                    //const RedirectUri = 'https://stoxtrading.com/validate-x-auth'
+                    const RedirectUri = 'http://localhost:5173/validate-x-auth'
 
                     const body = {
                         RedirectUri,
                     };
                     console.log('fetching')
-                    const response = await fetch(endpoint + code +'&ethWalletAddress='+connectedWalletAddress, {
+                    const response = await fetch(endpoint + code+'&ethWalletAddress='+connectedWalletAddress,  {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -45,10 +46,10 @@ export default function ValidateDiscord() {
                     if (response.ok) {
                         console.log('user is identified')
                         setIsVerified(true);
-                        setDiscordUserName(`${data.username}#${data.discriminator}`);
+                        //setXUserName(`${data.username}#${data.discriminator}`);
                         navigate('/airdrop');
                     } else {
-                        throw new Error(data.error || 'Failed to verify Discord account');
+                        throw new Error(data.error || 'Failed to verify X account');
                     }
                 } catch (error) {
                     console.error(error);
@@ -57,7 +58,7 @@ export default function ValidateDiscord() {
                 }
             };
 
-            verifyDiscordCode();
+            verifyXCode();
         } else {
             setLoading(false);
         }
@@ -66,15 +67,19 @@ export default function ValidateDiscord() {
     return (
         <CommonPageBackground>
             <Box display="flex" flexDirection="column" marginTop="10vh" alignItems="center">
+                <Stack rowGap={2}>
+                    <Grid container columnSpacing={2} rowSpacing={2}>
+                        <Grid size={12}>
                             <Grid container justifyContent="center" display={{ xs: 'flex', sm: 'none' }} alignItems={"center"}>
-                                <HomePageAnnoucementTypography sx={{ fontSize: '2.4rem' }} marginRight='-1rem'>
+                                <HomePageAnnoucementTypography sx={{ fontSize: '2.4rem' }} marginRight='-1rem' color='red' marginTop='10rem'>
                                     CONNECTING DISCORD ACCOUNT...
                                 </HomePageAnnoucementTypography>
-                                {loading ? (
-                                    <ClipLoader size={50} color={"#123abc"} loading={loading} />
-                                ) : null}
+                                
+                                
                             </Grid>
-               
+                        </Grid>
+                    </Grid>
+                </Stack>
 
             </Box>
         </CommonPageBackground>
