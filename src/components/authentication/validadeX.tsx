@@ -13,7 +13,7 @@ export default function ValidateX() {
     const isCodeVerified = useRef<boolean>(false);
     const {  setIsVerified, } = useX();
     const navigate = useNavigate();
-    const [ setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(true);
     const {  address: connectedWalletAddress } = useAccount();
     useEffect(() => {
         const params = new URLSearchParams(location.search);
@@ -72,8 +72,11 @@ export default function ValidateX() {
                         <Grid size={12}>
                             <Grid container justifyContent="center" display={{ xs: 'flex', sm: 'none' }} alignItems={"center"}>
                                 <HomePageAnnoucementTypography sx={{ fontSize: '2.4rem' }} marginRight='-1rem' color='red' marginTop='10rem'>
-                                    CONNECTING DISCORD ACCOUNT...
+                                    CONNECTING X ACCOUNT...
                                 </HomePageAnnoucementTypography>
+                                {loading ? (
+                                    <ClipLoader size={50} color={"#123abc"} loading={loading} />
+                                ) : null}
                                 
                                 
                             </Grid>
