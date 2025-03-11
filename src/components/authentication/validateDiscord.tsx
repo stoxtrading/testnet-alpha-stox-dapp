@@ -24,16 +24,13 @@ export default function ValidateDiscord() {
             isCodeVerified.current = true;
             const verifyDiscordCode = async () => {
                 try {
-                    //const endpoint = 'https://bot.stoxtrading.com/discord-get-user-id?code='
-                    const endpoint = 'http://localhost:8546/handle-discord-callback?code='
-
-                    const RedirectUri = 'http://localhost:5173/validate-discord-auth'
-
+                    const endpoint = `${import.meta.env.VITE_APP_STOX_TRADING_BOT_ENDPOINT}`
+                    const redirectUri = `${import.meta.env.VITE_APP_REDIRECT_ENDPOINT}`+'/validate-discord-auth'
                     const body = {
-                        RedirectUri,
+                        redirectUri,
                     };
                     console.log('fetching')
-                    const response = await fetch(endpoint + code +'&ethWalletAddress='+connectedWalletAddress, {
+                    const response = await fetch(endpoint +'?code='+ code +'&ethWalletAddress='+connectedWalletAddress, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

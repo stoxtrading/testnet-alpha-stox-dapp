@@ -25,16 +25,18 @@ export default function ValidateX() {
             const verifyXCode = async () => {
                 try {
                     //const endpoint = 'https://bot.stoxtrading.com/twitter-verify-client-code?code='
-                    const endpoint = 'http://localhost:8546/handle-x-callback?code='
+                    //const endpoint = 'http://localhost:8546/handle-x-callback?code='
 
-                    //const RedirectUri = 'https://stoxtrading.com/validate-x-auth'
-                    const RedirectUri = 'http://localhost:5173/validate-x-auth'
+                    const endpoint = `${import.meta.env.VITE_APP_STOX_TRADING_BOT_ENDPOINT}`
+                    const redirectUri = `${import.meta.env.VITE_APP_REDIRECT_ENDPOINT}`+'/validate-x-auth'
+
+ 
 
                     const body = {
-                        RedirectUri,
+                        redirectUri,
                     };
                     console.log('fetching')
-                    const response = await fetch(endpoint + code+'&ethWalletAddress='+connectedWalletAddress,  {
+                    const response = await fetch(endpoint +'?code='+ code+'&ethWalletAddress='+connectedWalletAddress,  {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

@@ -50,7 +50,7 @@ export default function Airdrop() {
             });
             return;
         }
-        const discordAuthUrl = `https://discord.com/oauth2/authorize?client_id=1346848533692551178&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A5173%2Fvalidate-discord-auth&scope=identify`;
+        const discordAuthUrl = `https://discord.com/oauth2/authorize?client_id=1346848533692551178&response_type=code&redirect_uri=https%3A%2F%2Fstoxtrading.com%2Fvalidate-discord-auth&scope=identify`;
         location.href = discordAuthUrl;
     }
 
@@ -74,9 +74,9 @@ export default function Airdrop() {
             await signMessageAsync({ message });
             setIsEthSignedTxVerified(true);
 
-
+            const apiEndpoint = `${import.meta.env.VITE_APP_STOX_TRADING_BOT_ENDPOINT}`
             // API call to Lambda function
-            const response = await fetch("http://localhost:8546/record-eth-wallet-address/" + connectedWalletAddress, {
+            const response = await fetch(apiEndpoint+"/record-eth-wallet-address/" + connectedWalletAddress, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ export default function Airdrop() {
         }
 
 
-        const twitterAuthUrl = `https://x.com/i/oauth2/authorize?response_type=code&client_id=T0RRR3Y4V2FERDNOQTRaM1dVM0c6MTpjaQ&redirect_uri=http://localhost:5173/validate-x-auth&scope=users.read&state=state&code_challenge=challenge&code_challenge_method=plain`;
+        const twitterAuthUrl = `https://x.com/i/oauth2/authorize?response_type=code&client_id=T0RRR3Y4V2FERDNOQTRaM1dVM0c6MTpjaQ&redirect_uri=https://stoxtrading.com/validate-x-auth&scope=users.read&state=state&code_challenge=challenge&code_challenge_method=plain`;
         location.href = twitterAuthUrl;
     };
 
@@ -170,7 +170,7 @@ export default function Airdrop() {
                                 letterSpacing: '1px',
                             }}
                         >
-                            Connect your ETH Wallet account
+                            Connect your ETH Wallet (+250 STOX)
                         </Button>
                     ) : (<GenericTypography align='center' usage='paragraph' fontSize="1.2rem" >
                         Connected to your Wallet + 500 STOX
@@ -188,7 +188,7 @@ export default function Airdrop() {
                                 letterSpacing: '1px',
                             }}
                         >
-                            Connect your X account
+                            Connect your X account (+1000 STOX)
                         </Button>
                     ) : (<GenericTypography align='center' usage='paragraph' fontSize="1.2rem" >
                         Connected to X + 1000 STOX
@@ -210,7 +210,7 @@ export default function Airdrop() {
                                         letterSpacing: '1px',
                                     }}
                                 >
-                                    Connect your Discord account
+                                    Connect your Discord account (+1000 STOX)
                                 </Button>
                             ) : (<GenericTypography align='center' usage='paragraph' fontSize="1.2rem" >
                                 Connected to Discord + 500 STOX
